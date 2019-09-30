@@ -4,25 +4,40 @@
 
 /* Card */
 .card {
-    @apply bg-white rounded p-6 shadow
+    @apply bg-white rounded p-6 shadow;
 }
 
 /* Button */
 .btn {
-    @apply text-white px-4 py-2 rounded shadow font-bold
+    @apply text-white px-4 py-2 rounded shadow font-bold;
 }
 
 .btn:focus {
-    @apply outline-none shadow-outline
+    @apply outline-none shadow-outline;
 }
 
 /* Button Primary */
 .btn-primary {
-    @apply bg-blue-500
+    @apply bg-blue-500;
 }
 
 .btn-primary:hover {
-    @apply bg-blue-700
+    @apply bg-blue-700;
+}
+
+/* Invalid Input */
+.is-invalid {
+    @apply border-red-500;
+}
+
+.is-invalid:focus {
+    @apply border-red-500;
+    box-shadow: 0 0 0 3px rgba(245, 101, 101, 0.5);
+}
+
+/* Gradient */
+.gradient {
+    background: linear-gradient(theme('colors.gray.700'), theme('colors.gray.600'));
 }
 
 @tailwind utilities;

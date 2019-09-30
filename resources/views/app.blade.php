@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="bg-gray-100 text-gray-800 antialiased">
     <div id="app">
         <router-view/>
     </div>

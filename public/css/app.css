@@ -894,7 +894,7 @@ video {
   background-color: #fff;
   border-radius: 0.25rem;
   padding: 1.5rem;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 /* Button */
@@ -907,22 +907,39 @@ video {
   padding-bottom: 0.5rem;
   border-radius: 0.25rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  font-weight: 700
+  font-weight: 700;
 }
 
 .btn:focus {
   outline: 0;
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5)
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
 }
 
 /* Button Primary */
 
 .btn-primary {
-  background-color: #4299e1
+  background-color: #4299e1;
 }
 
 .btn-primary:hover {
-  background-color: #2b6cb0
+  background-color: #2b6cb0;
+}
+
+/* Invalid Input */
+
+.is-invalid {
+  border-color: #f56565;
+}
+
+.is-invalid:focus {
+  border-color: #f56565;
+  box-shadow: 0 0 0 3px rgba(245, 101, 101, 0.5);
+}
+
+/* Gradient */
+
+.gradient {
+  background: linear-gradient(#4a5568, #718096);
 }
 
 .sr-only {
