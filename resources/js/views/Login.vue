@@ -1,10 +1,10 @@
 <template>
-    <div class="flex flex-col items-center min-h-screen">
+    <div class="flex flex-col items-center min-h-screen px-2 sm:px-0">
         <div class="flex items-center py-12 md:pt-24">
             <img src="/images/logo.svg" class="h-10" alt="Logo">
             <h3 class="ml-3 text-2xl tracking-wide">Invoice</h3>
         </div>
-        <div class="w-full max-w-sm mx-2 card">
+        <div class="w-full max-w-sm card">
             <form @submit.prevent="login">
                 <div class="mb-6">
                     <label for="email" class="block mb-2">Email</label>
@@ -16,7 +16,7 @@
                     <input v-model="form.password" type="password" name="password" class="form-input w-full" :class="{ 'is-invalid': form.errors.has('password') }" id="password" required>
                     <p class="text-red-500 text-sm mt-1" v-if="form.errors.has('password')" v-text="form.errors.first('password')"></p>
                 </div>
-                <button type="submit" class="btn btn-primary is-loading">Login</button>
+                <button type="submit" class="btn btn-primary">Login</button>
             </form>
         </div>
     </div>

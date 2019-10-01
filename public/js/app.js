@@ -1984,7 +1984,7 @@ __webpack_require__.r(__webpack_exports__);
   name: "Index",
   data: function data() {
     return {
-      open: false
+      isOpen: false
     };
   },
   methods: {
@@ -3278,124 +3278,125 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex flex-col items-center min-h-screen" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "w-full max-w-sm mx-2 card" }, [
-      _c(
-        "form",
-        {
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.login($event)
+  return _c(
+    "div",
+    { staticClass: "flex flex-col items-center min-h-screen px-2 sm:px-0" },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "w-full max-w-sm card" }, [
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.login($event)
+              }
             }
-          }
-        },
-        [
-          _c("div", { staticClass: "mb-6" }, [
+          },
+          [
+            _c("div", { staticClass: "mb-6" }, [
+              _c(
+                "label",
+                { staticClass: "block mb-2", attrs: { for: "email" } },
+                [_vm._v("Email")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.email,
+                    expression: "form.email"
+                  }
+                ],
+                staticClass: "form-input w-full",
+                class: { "is-invalid": _vm.form.errors.has("email") },
+                attrs: {
+                  type: "email",
+                  name: "email",
+                  id: "email",
+                  autofocus: "",
+                  required: ""
+                },
+                domProps: { value: _vm.form.email },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "email", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.form.errors.has("email")
+                ? _c("p", {
+                    staticClass: "text-red-500 text-sm mt-1",
+                    domProps: {
+                      textContent: _vm._s(_vm.form.errors.first("email"))
+                    }
+                  })
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "mb-6" }, [
+              _c(
+                "label",
+                { staticClass: "block mb-2", attrs: { for: "password" } },
+                [_vm._v("Password")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.password,
+                    expression: "form.password"
+                  }
+                ],
+                staticClass: "form-input w-full",
+                class: { "is-invalid": _vm.form.errors.has("password") },
+                attrs: {
+                  type: "password",
+                  name: "password",
+                  id: "password",
+                  required: ""
+                },
+                domProps: { value: _vm.form.password },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "password", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.form.errors.has("password")
+                ? _c("p", {
+                    staticClass: "text-red-500 text-sm mt-1",
+                    domProps: {
+                      textContent: _vm._s(_vm.form.errors.first("password"))
+                    }
+                  })
+                : _vm._e()
+            ]),
+            _vm._v(" "),
             _c(
-              "label",
-              { staticClass: "block mb-2", attrs: { for: "email" } },
-              [_vm._v("Email")]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.email,
-                  expression: "form.email"
-                }
-              ],
-              staticClass: "form-input w-full",
-              class: { "is-invalid": _vm.form.errors.has("email") },
-              attrs: {
-                type: "email",
-                name: "email",
-                id: "email",
-                autofocus: "",
-                required: ""
-              },
-              domProps: { value: _vm.form.email },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "email", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm.form.errors.has("email")
-              ? _c("p", {
-                  staticClass: "text-red-500 text-sm mt-1",
-                  domProps: {
-                    textContent: _vm._s(_vm.form.errors.first("email"))
-                  }
-                })
-              : _vm._e()
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "mb-6" }, [
-            _c(
-              "label",
-              { staticClass: "block mb-2", attrs: { for: "password" } },
-              [_vm._v("Password")]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.password,
-                  expression: "form.password"
-                }
-              ],
-              staticClass: "form-input w-full",
-              class: { "is-invalid": _vm.form.errors.has("password") },
-              attrs: {
-                type: "password",
-                name: "password",
-                id: "password",
-                required: ""
-              },
-              domProps: { value: _vm.form.password },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "password", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm.form.errors.has("password")
-              ? _c("p", {
-                  staticClass: "text-red-500 text-sm mt-1",
-                  domProps: {
-                    textContent: _vm._s(_vm.form.errors.first("password"))
-                  }
-                })
-              : _vm._e()
-          ]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-primary is-loading",
-              attrs: { type: "submit" }
-            },
-            [_vm._v("Login")]
-          )
-        ]
-      )
-    ])
-  ])
+              "button",
+              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+              [_vm._v("Login")]
+            )
+          ]
+        )
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -3488,14 +3489,14 @@ var render = function() {
             "bg-white border-b flex-grow px-4 py-3 shadow flex justify-end"
         },
         [
-          _c("div", { staticClass: "inline-flex relative" }, [
+          _c("div", { staticClass: "relative" }, [
             _c(
               "button",
               {
                 staticClass: "flex items-center focus:outline-none",
                 on: {
                   click: function($event) {
-                    _vm.open = !_vm.open
+                    _vm.isOpen = !_vm.isOpen
                   }
                 }
               },
@@ -3531,13 +3532,12 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _vm.open
+            _vm.isOpen
               ? _c(
                   "div",
                   {
                     staticClass:
-                      "absolute right-0 left-auto bg-white border shadow py-2 rounded",
-                    staticStyle: { top: "100%" }
+                      "absolute right-0 left-auto bg-white border shadow py-2 rounded"
                   },
                   [
                     _c(
