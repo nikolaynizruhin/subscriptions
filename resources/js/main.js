@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import NProgress from 'nprogress'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -9,6 +10,8 @@ import './utils/http'
 
 Vue.component('default-layout', Default)
 Vue.component('main-layout', Main)
+
+NProgress.configure({ showSpinner: false });
 
 new Vue({
     router,

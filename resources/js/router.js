@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import NProgress from 'nprogress'
 import Index from './views/invoices/Index'
 import Login from './views/Login.vue'
 import NotFound from './views/NotFound.vue'
@@ -49,5 +50,16 @@ router.beforeEach((to, from, next) => {
 
     next()
 })
+
+// NProgress
+router.beforeResolve((to, from, next) => {
+    if (to.name) {
+        NProgress.start()
+    }
+
+    next()
+})
+
+router.afterEach((to, from) => NProgress.done())
 
 export default router

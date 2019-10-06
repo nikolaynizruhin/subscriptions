@@ -2,6 +2,9 @@
 
 @tailwind components;
 
+/* NProgress */
+@import "~nprogress/nprogress.css";
+
 /* Card */
 .card {
     @apply bg-white rounded p-6 shadow;
