@@ -4020,7 +4020,8 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "flex items-center focus:outline-none",
+                staticClass:
+                  "relative z-10 flex items-center focus:outline-none",
                 attrs: { type: "button" },
                 on: {
                   click: function($event) {
@@ -4091,21 +4092,11 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "flex flex-grow" }, [
-      _vm.isOpenMenu
-        ? _c("div", {
-            staticClass: "fixed inset-0",
-            on: {
-              click: function($event) {
-                _vm.isOpenMenu = false
-              }
-            }
-          })
-        : _vm._e(),
-      _vm._v(" "),
       _c(
         "aside",
         {
-          staticClass: "gradient sm:block w-56 p-4 text-gray-300",
+          staticClass:
+            "gradient sm:block w-56 p-4 text-gray-300 z-10 sm:z-auto",
           class: _vm.isOpenMenu ? "absolute h-full" : "hidden"
         },
         [
@@ -4161,7 +4152,25 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("main", { staticClass: "flex-grow p-6" }, [_vm._t("default")], 2)
+      _c(
+        "main",
+        { staticClass: "flex-grow p-6 relative sm:static" },
+        [
+          _vm.isOpenMenu
+            ? _c("div", {
+                staticClass: "absolute inset-0 bg-gray-500 opacity-50",
+                on: {
+                  click: function($event) {
+                    _vm.isOpenMenu = false
+                  }
+                }
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          _vm._t("default")
+        ],
+        2
+      )
     ])
   ])
 }
