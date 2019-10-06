@@ -20,8 +20,6 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="bg-gray-100 text-gray-800 antialiased">
-    <div id="app">
-        <router-view/>
-    </div>
+    <div id="app"></div>
 </body>
 </html>

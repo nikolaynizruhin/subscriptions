@@ -1,6 +1,7 @@
-import router from "./router"
+import axios from 'axios'
+import router from "../router"
 
-window.axios = require('axios')
+window.axios = axios
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 

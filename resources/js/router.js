@@ -13,13 +13,18 @@ const router = new Router({
             path: '/login',
             name: 'login',
             component: Login,
-            meta: { guestOnly: true }
+            meta: {
+                guestOnly: true
+            }
         },
         {
             path: '/invoices',
             name: 'invoices.index',
             component: Index,
-            meta: { requiresAuth: true }
+            meta: {
+                layout: 'main',
+                requiresAuth: true
+            }
         },
         {
             path: '*',

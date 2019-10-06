@@ -21,7 +21,11 @@
     @apply bg-blue-500;
 }
 
-.btn-primary:hover {
+.btn-primary:disabled {
+    @apply opacity-75 cursor-not-allowed;
+}
+
+.btn-primary:hover:enabled {
     @apply bg-blue-700;
 }
 
@@ -38,6 +42,18 @@
 /* Gradient */
 .gradient {
     background: linear-gradient(theme('colors.gray.700'), theme('colors.gray.600'));
+}
+
+/* Spinner */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.spinner {
+    @apply inline-block w-4 h-4 align-text-bottom rounded-full;
+    border: .2em solid currentColor;
+    border-right-color: transparent;
+    animation: spin .75s linear infinite;
 }
 
 @tailwind utilities;

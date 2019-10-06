@@ -921,7 +921,12 @@ video {
   background-color: #4299e1;
 }
 
-.btn-primary:hover {
+.btn-primary:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.btn-primary:hover:enabled {
   background-color: #2b6cb0;
 }
 
@@ -940,6 +945,30 @@ video {
 
 .gradient {
   background: linear-gradient(#4a5568, #718096);
+}
+
+/* Spinner */
+
+@-webkit-keyframes spin {
+  to { transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  vertical-align: text-bottom;
+  border-radius: 9999px;
+  border: .2em solid currentColor;
+  border-right-color: transparent;
+  -webkit-animation: spin .75s linear infinite;
+          animation: spin .75s linear infinite;
 }
 
 .sr-only {

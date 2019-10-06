@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col items-center min-h-screen px-2 sm:px-0">
-        <div class="flex items-center py-12 md:pt-24">
+        <div class="flex items-center py-12 sm:pt-24">
             <img src="/images/logo.svg" class="h-10" alt="Logo">
             <h3 class="ml-3 text-2xl tracking-wide">Invoice</h3>
         </div>
@@ -16,34 +16,37 @@
                     <input v-model="form.password" type="password" name="password" class="form-input w-full" :class="{ 'is-invalid': form.errors.has('password') }" id="password" required>
                     <p class="text-red-500 text-sm mt-1" v-if="form.errors.has('password')" v-text="form.errors.first('password')"></p>
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary w-full sm:w-auto" :disabled="form.processing">
+                    <span v-if="form.processing" class="spinner"></span>
+                    {{ form.processing ? 'Loading...' : 'Login' }}
+                </button>
             </form>
         </div>
     </div>
 </template>
 
 <script>
-    import Form from 'form-backend-validation';
+import Form from 'form-backend-validation';
 
-    export default {
-        name: "Login",
-        data () {
-            return {
-                form: new Form({
-                    email: '',
-                    password: '',
+export default {
+    name: "Login",
+    data () {
+        return {
+            form: new Form({
+                email: '',
+                password: '',
+            })
+        }
+    },
+    methods: {
+        login () {
+            this.form
+                .post('/api/login')
+                .then(({ token }) => {
+                    localStorage.setItem('token', token)
+                    this.$router.push(this.$route.query.redirect || '/invoices')
                 })
-            }
-        },
-        methods: {
-            login () {
-                this.form
-                    .post('/api/login')
-                    .then(({ token }) => {
-                        localStorage.setItem('token', token)
-                        this.$router.push(this.$route.query.redirect || '/invoices')
-                    })
-            }
         }
     }
+}
 </script>
