@@ -4235,7 +4235,8 @@ var render = function() {
           [
             _vm.isOpen
               ? _c("div", {
-                  staticClass: "absolute inset-0 bg-gray-500 opacity-50",
+                  staticClass:
+                    "sm:hidden absolute inset-0 bg-gray-500 opacity-50",
                   on: {
                     click: function($event) {
                       _vm.isOpen = false
