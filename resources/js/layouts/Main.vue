@@ -16,7 +16,7 @@
             </div>
         </header>
         <div class="flex flex-grow">
-            <sidebar :class="isOpen ? 'absolute h-full' : 'hidden'"/>
+            <sidebar :class="isOpen ? 'slide-in' : 'slide-out'"/>
             <main class="flex-grow p-6 relative sm:static">
                 <div v-if="isOpen" @click="isOpen = false" class="sm:hidden absolute inset-0 bg-gray-500 opacity-50"></div>
                 <slot/>

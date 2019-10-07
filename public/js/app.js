@@ -4108,7 +4108,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "aside",
-    { staticClass: "gradient sm:block w-56 p-4 text-gray-300 z-10 sm:z-auto" },
+    {
+      staticClass:
+        "gradient absolute h-full sm:h-auto sm:transform-none sm:static sm:block w-56 p-4 text-gray-300 z-10 sm:z-auto"
+    },
     [
       _c(
         "router-link",
@@ -4227,7 +4230,7 @@ var render = function() {
       "div",
       { staticClass: "flex flex-grow" },
       [
-        _c("sidebar", { class: _vm.isOpen ? "absolute h-full" : "hidden" }),
+        _c("sidebar", { class: _vm.isOpen ? "slide-in" : "slide-out" }),
         _vm._v(" "),
         _c(
           "main",
