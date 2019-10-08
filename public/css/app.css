@@ -1062,6 +1062,13 @@ video {
   transition: transform .3s;
 }
 
+/* Active Link */
+
+.router-link-active {
+  background-color: #2d3748;
+  color: #fff;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

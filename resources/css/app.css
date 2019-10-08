@@ -70,6 +70,11 @@
     transition: transform .3s;
 }
 
+/* Active Link */
+.router-link-active {
+    @apply bg-gray-800 text-white;
+}
+
 @tailwind utilities;
 
 @responsive {
