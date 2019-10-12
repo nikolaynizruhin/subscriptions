@@ -21075,7 +21075,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     name: 'login',
     component: _views_Login_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     meta: {
-      guestOnly: true
+      requiresGuest: true
     }
   }, {
     path: '/invoices',
@@ -21093,7 +21093,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 });
 router.beforeEach(function (to, from, next) {
   if (to.matched.some(function (record) {
-    return record.meta.guestOnly;
+    return record.meta.requiresGuest;
   }) && localStorage.getItem('token')) {
     return next({
       name: 'invoices.index'

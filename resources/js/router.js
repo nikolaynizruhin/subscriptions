@@ -15,7 +15,7 @@ const router = new Router({
             name: 'login',
             component: Login,
             meta: {
-                guestOnly: true
+                requiresGuest: true
             }
         },
         {
@@ -36,7 +36,7 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.guestOnly) && localStorage.getItem('token')) {
+    if (to.matched.some(record => record.meta.requiresGuest) && localStorage.getItem('token')) {
         return next({ name: 'invoices.index' })
     }
 
