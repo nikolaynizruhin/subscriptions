@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import Form from 'form-backend-validation';
+import Form from 'form-backend-validation'
 
 export default {
     name: "Login",
@@ -39,13 +39,12 @@ export default {
         }
     },
     methods: {
-        login () {
-            this.form
-                .post('/api/login')
-                .then(({ token }) => {
-                    localStorage.setItem('token', token)
-                    this.$router.push(this.$route.query.redirect || '/invoices')
-                })
+        async login () {
+            const { token } = await this.form.post('/api/login')
+
+            localStorage.token = token
+
+            this.$router.push(this.$route.query.redirect || '/invoices')
         }
     }
 }

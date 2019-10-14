@@ -36,7 +36,7 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requiresGuest) && localStorage.getItem('token')) {
+    if (to.matched.some(record => record.meta.requiresGuest) && localStorage.token) {
         return next({ name: 'invoices.index' })
     }
 
@@ -44,7 +44,7 @@ router.beforeEach((to, from, next) => {
         return next()
     }
 
-    if (!localStorage.getItem('token')) {
+    if (!localStorage.token) {
         return next({ name: 'login', query: { redirect: to.fullPath }})
     }
 
