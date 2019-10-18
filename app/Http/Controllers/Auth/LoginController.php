@@ -35,7 +35,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest');
     }
 
     /**
@@ -49,18 +49,5 @@ class LoginController extends Controller
         $this->clearLoginAttempts($request);
 
         return response(['token' => $this->guard()->user()->api_token]);
-    }
-
-    /**
-     * Log the user out of the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function logout(Request $request)
-    {
-        $this->guard()->logout();
-
-        return response()->noContent();
     }
 }

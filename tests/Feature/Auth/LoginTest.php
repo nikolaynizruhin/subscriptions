@@ -51,16 +51,4 @@ class LoginTest extends TestCase
 
         $this->assertGuest();
     }
-
-    /** @test */
-    public function user_can_logout()
-    {
-        $user = factory(User::class)->create();
-
-        $this->actingAs($user)
-            ->postJson(route('logout'))
-            ->assertSuccessful();
-
-        $this->assertGuest();
-    }
 }
