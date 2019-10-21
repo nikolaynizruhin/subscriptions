@@ -2041,6 +2041,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Icon",
   props: {
@@ -2169,6 +2170,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var form_backend_validation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! form-backend-validation */ "./node_modules/form-backend-validation/dist/index.js");
 /* harmony import */ var form_backend_validation__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(form_backend_validation__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_Icon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Icon */ "./resources/js/components/Icon.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2203,8 +2205,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Login",
+  components: {
+    Icon: _components_Icon__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
   data: function data() {
     return {
       form: new form_backend_validation__WEBPACK_IMPORTED_MODULE_1___default.a({
@@ -5641,6 +5647,12 @@ var render = function() {
             _c("line", { attrs: { x1: "3", y1: "6", x2: "21", y2: "6" } }),
             _c("line", { attrs: { x1: "3", y1: "18", x2: "21", y2: "18" } })
           ])
+        : _vm.name === "layers"
+        ? _c("g", [
+            _c("polygon", { attrs: { points: "12 2 2 7 12 12 22 7 12 2" } }),
+            _c("polyline", { attrs: { points: "2 17 12 22 22 17" } }),
+            _c("polyline", { attrs: { points: "2 12 12 17 22 12" } })
+          ])
         : _vm._e()
     ]
   )
@@ -5749,7 +5761,23 @@ var render = function() {
             "bg-gray-800 border-b border-gray-800 w-full sm:w-56 px-6 py-3 flex items-center justify-between"
         },
         [
-          _vm._m(0),
+          _c(
+            "div",
+            { staticClass: "flex items-center" },
+            [
+              _c("icon", {
+                staticClass: "text-white",
+                attrs: { name: "layers", width: "32", height: "32" }
+              }),
+              _vm._v(" "),
+              _c(
+                "h3",
+                { staticClass: "ml-3 text-white text-xl tracking-wide" },
+                [_vm._v("Libra")]
+              )
+            ],
+            1
+          ),
           _vm._v(" "),
           _c(
             "button",
@@ -5818,23 +5846,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex items-center" }, [
-      _c("img", {
-        staticClass: "h-8 w-10",
-        attrs: { src: "/images/logo.svg", alt: "Logo" }
-      }),
-      _vm._v(" "),
-      _c("h3", { staticClass: "ml-3 text-white text-xl tracking-wide" }, [
-        _vm._v("Invoice")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -5860,7 +5872,18 @@ var render = function() {
     "div",
     { staticClass: "flex flex-col items-center min-h-screen px-2 sm:px-0" },
     [
-      _vm._m(0),
+      _c(
+        "div",
+        { staticClass: "flex items-center py-12 sm:pt-20" },
+        [
+          _c("icon", { attrs: { name: "layers", width: "32", height: "32" } }),
+          _vm._v(" "),
+          _c("h3", { staticClass: "ml-3 text-2xl tracking-wide" }, [
+            _vm._v("Libra")
+          ])
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "w-full max-w-sm card" }, [
         _c(
@@ -5988,23 +6011,7 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex items-center py-12 sm:pt-24" }, [
-      _c("img", {
-        staticClass: "h-10",
-        attrs: { src: "/images/logo.svg", alt: "Logo" }
-      }),
-      _vm._v(" "),
-      _c("h3", { staticClass: "ml-3 text-2xl tracking-wide" }, [
-        _vm._v("Invoice")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

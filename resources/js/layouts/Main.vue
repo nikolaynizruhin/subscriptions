@@ -3,8 +3,8 @@
         <header class="flex shadow">
             <div class="bg-gray-800 border-b border-gray-800 w-full sm:w-56 px-6 py-3 flex items-center justify-between">
                 <div class="flex items-center">
-                    <img src="/images/logo.svg" class="h-8 w-10" alt="Logo">
-                    <h3 class="ml-3 text-white text-xl tracking-wide">Invoice</h3>
+                    <icon name="layers" class="text-white" width="32" height="32"/>
+                    <h3 class="ml-3 text-white text-xl tracking-wide">Libra</h3>
                 </div>
                 <button @click="isOpen = !isOpen" type="button" class="sm:hidden text-white focus:outline-none">
                     <icon v-if="isOpen" name="x" width="32" height="32"/>
