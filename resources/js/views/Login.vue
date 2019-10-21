@@ -46,7 +46,7 @@ export default {
 
             localStorage.token = token
 
-            this.$router.push(this.$route.query.redirect || '/invoices')
+            this.$router.push(this.$route.query.redirect || '/')
         }
     }
 }

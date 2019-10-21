@@ -6,8 +6,11 @@
             <span class="ml-2">{{ user.name }}</span>
             <icon name="chevron-down" class="ml-1" width="16" height="16"/>
         </button>
-        <div v-if="isOpen" class="absolute right-0 left-auto bg-white border shadow py-2 rounded">
-            <a href="#" @click.prevent="logout" class="block px-6 py-1 hover:bg-gray-300">Logout</a>
+        <div v-if="isOpen" class="absolute right-0 left-auto w-32 bg-white border shadow py-1 rounded">
+            <a href="#" @click.prevent="logout" class="flex items-center px-3 py-1 hover:bg-gray-300">
+                <icon name="log-out" width="18" height="18"/>
+                <span class="ml-2">Logout</span>
+            </a>
         </div>
     </div>
 </template>

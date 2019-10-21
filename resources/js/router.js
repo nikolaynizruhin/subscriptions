@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import NProgress from 'nprogress'
-import Index from './views/invoices/Index'
+import Dashboard from './views/Dashboard'
 import Login from './views/Login.vue'
 import NotFound from './views/NotFound.vue'
 
@@ -19,9 +19,9 @@ const router = new Router({
             }
         },
         {
-            path: '/invoices',
-            name: 'invoices.index',
-            component: Index,
+            path: '/',
+            name: 'dashboard',
+            component: Dashboard,
             meta: {
                 layout: 'main',
                 requiresAuth: true
@@ -37,7 +37,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresGuest) && localStorage.token) {
-        return next({ name: 'invoices.index' })
+        return next({ name: 'dashboard' })
     }
 
     if (!to.matched.some(record => record.meta.requiresAuth)) {
