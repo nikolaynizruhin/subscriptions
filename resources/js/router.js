@@ -15,7 +15,8 @@ const router = new Router({
             name: 'login',
             component: Login,
             meta: {
-                requiresGuest: true
+                requiresGuest: true,
+                title: 'Login'
             }
         },
         {
@@ -24,7 +25,8 @@ const router = new Router({
             component: Dashboard,
             meta: {
                 layout: 'main',
-                requiresAuth: true
+                requiresAuth: true,
+                title: 'Dashboard'
             }
         },
         {
@@ -36,6 +38,8 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+    document.title = to.meta.title ? `${to.meta.title} - ${app.name}` : app.name
+
     if (to.matched.some(record => record.meta.requiresGuest) && localStorage.token) {
         return next({ name: 'dashboard' })
     }

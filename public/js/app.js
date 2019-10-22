@@ -2156,7 +2156,12 @@ __webpack_require__.r(__webpack_exports__);
     Icon: _components_Icon__WEBPACK_IMPORTED_MODULE_3__["default"],
     Sidebar: _components_Sidebar__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  mixins: [_mixins_toggle__WEBPACK_IMPORTED_MODULE_2__["default"]]
+  mixins: [_mixins_toggle__WEBPACK_IMPORTED_MODULE_2__["default"]],
+  data: function data() {
+    return {
+      title: app.name
+    };
+  }
 });
 
 /***/ }),
@@ -2236,6 +2241,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
+      title: app.name,
       form: new form_backend_validation__WEBPACK_IMPORTED_MODULE_1___default.a({
         email: '',
         password: ''
@@ -5774,7 +5780,7 @@ var render = function() {
               _c(
                 "h3",
                 { staticClass: "ml-3 text-white text-xl tracking-wide" },
-                [_vm._v("Libra")]
+                [_vm._v(_vm._s(_vm.title))]
               )
             ],
             1
@@ -5896,7 +5902,7 @@ var render = function() {
           _c("icon", { attrs: { name: "layers", width: "32", height: "32" } }),
           _vm._v(" "),
           _c("h3", { staticClass: "ml-3 text-2xl tracking-wide" }, [
-            _vm._v("Libra")
+            _vm._v(_vm._s(_vm.title))
           ])
         ],
         1
@@ -22729,7 +22735,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     name: 'login',
     component: _views_Login_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     meta: {
-      requiresGuest: true
+      requiresGuest: true,
+      title: 'Login'
     }
   }, {
     path: '/',
@@ -22737,7 +22744,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     component: _views_Dashboard__WEBPACK_IMPORTED_MODULE_3__["default"],
     meta: {
       layout: 'main',
-      requiresAuth: true
+      requiresAuth: true,
+      title: 'Dashboard'
     }
   }, {
     path: '*',
@@ -22746,6 +22754,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }]
 });
 router.beforeEach(function (to, from, next) {
+  document.title = to.meta.title ? "".concat(to.meta.title, " - ").concat(app.name) : app.name;
+
   if (to.matched.some(function (record) {
     return record.meta.requiresGuest;
   }) && localStorage.token) {
