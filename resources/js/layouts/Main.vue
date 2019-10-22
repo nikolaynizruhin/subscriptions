@@ -6,7 +6,7 @@
                     <icon name="layers" class="text-white" width="32" height="32"/>
                     <h3 class="ml-3 text-white text-xl tracking-wide">Libra</h3>
                 </div>
-                <button @click="isOpen = !isOpen" type="button" class="sm:hidden text-white focus:outline-none">
+                <button @click="toggle" type="button" class="sm:hidden text-white focus:outline-none">
                     <icon v-if="isOpen" name="x" width="32" height="32"/>
                     <icon v-else name="menu" width="32" height="32"/>
                 </button>
@@ -18,7 +18,7 @@
         <div class="flex flex-grow">
             <sidebar :class="isOpen ? 'slide-in' : 'slide-out'"/>
             <main class="flex-grow p-6 relative sm:static">
-                <div v-if="isOpen" @click="isOpen = false" class="sm:hidden absolute inset-0 bg-gray-500 opacity-50"></div>
+                <div v-if="isOpen" @click="close" class="sm:hidden absolute inset-0 bg-gray-500 opacity-50"></div>
                 <slot/>
             </main>
         </div>

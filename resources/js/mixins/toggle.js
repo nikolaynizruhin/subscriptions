@@ -11,6 +11,12 @@ export default {
         document.removeEventListener('keydown', this.handleEscape)
     },
     methods: {
+        toggle () {
+            this.isOpen = !this.isOpen
+        },
+        close () {
+            this.isOpen = false
+        },
         handleEscape (event) {
             if (event.key === 'Escape') {
                 this.isOpen = false

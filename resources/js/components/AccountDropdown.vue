@@ -1,7 +1,7 @@
 <template>
     <div class="hidden sm:block relative">
-        <div v-if="isOpen" @click="isOpen = false" class="fixed inset-0"></div>
-        <button type="button" class="relative z-10 flex items-center focus:outline-none" @click="isOpen = !isOpen">
+        <div v-if="isOpen" @click="close" class="fixed inset-0"></div>
+        <button type="button" class="relative z-10 flex items-center focus:outline-none" @click="toggle">
             <img src="https://github.com/adamwathan.png" alt="Adam Wathan's avatar" class="rounded-full h-8 w-8">
             <span class="ml-2">{{ user.name }}</span>
             <icon name="chevron-down" class="ml-1" width="16" height="16"/>

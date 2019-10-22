@@ -5483,14 +5483,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "hidden sm:block relative" }, [
     _vm.isOpen
-      ? _c("div", {
-          staticClass: "fixed inset-0",
-          on: {
-            click: function($event) {
-              _vm.isOpen = false
-            }
-          }
-        })
+      ? _c("div", { staticClass: "fixed inset-0", on: { click: _vm.close } })
       : _vm._e(),
     _vm._v(" "),
     _c(
@@ -5498,11 +5491,7 @@ var render = function() {
       {
         staticClass: "relative z-10 flex items-center focus:outline-none",
         attrs: { type: "button" },
-        on: {
-          click: function($event) {
-            _vm.isOpen = !_vm.isOpen
-          }
-        }
+        on: { click: _vm.toggle }
       },
       [
         _c("img", {
@@ -5796,11 +5785,7 @@ var render = function() {
             {
               staticClass: "sm:hidden text-white focus:outline-none",
               attrs: { type: "button" },
-              on: {
-                click: function($event) {
-                  _vm.isOpen = !_vm.isOpen
-                }
-              }
+              on: { click: _vm.toggle }
             },
             [
               _vm.isOpen
@@ -5841,11 +5826,7 @@ var render = function() {
               ? _c("div", {
                   staticClass:
                     "sm:hidden absolute inset-0 bg-gray-500 opacity-50",
-                  on: {
-                    click: function($event) {
-                      _vm.isOpen = false
-                    }
-                  }
+                  on: { click: _vm.close }
                 })
               : _vm._e(),
             _vm._v(" "),
@@ -22701,6 +22682,12 @@ __webpack_require__.r(__webpack_exports__);
     document.removeEventListener('keydown', this.handleEscape);
   },
   methods: {
+    toggle: function toggle() {
+      this.isOpen = !this.isOpen;
+    },
+    close: function close() {
+      this.isOpen = false;
+    },
     handleEscape: function handleEscape(event) {
       if (event.key === 'Escape') {
         this.isOpen = false;
