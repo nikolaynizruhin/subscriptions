@@ -2320,7 +2320,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".slide-up-enter-active[data-v-e4161ed6], .slide-up-leave-active[data-v-e4161ed6] {\n  opacity: 1;\n  transform: translateY(0%);\n  transition: all .3s;\n}\n.slide-up-enter[data-v-e4161ed6], .slide-up-leave-to[data-v-e4161ed6] {\n  opacity: 0;\n  transform: translateY(100%);\n  transition: all .3s;\n}\n", ""]);
+exports.push([module.i, ".slide-up-enter-active[data-v-e4161ed6], .slide-up-leave-active[data-v-e4161ed6] {\n  opacity: 1;\n  -webkit-transform: translateY(0%);\n          transform: translateY(0%);\n  -webkit-transition: all .3s;\n  transition: all .3s;\n}\n.slide-up-enter[data-v-e4161ed6], .slide-up-leave-to[data-v-e4161ed6] {\n  opacity: 0;\n  -webkit-transform: translateY(100%);\n          transform: translateY(100%);\n  -webkit-transition: all .3s;\n  transition: all .3s;\n}\n", ""]);
 
 // exports
 
@@ -3077,6 +3077,10 @@ function appendToFormData(formData, key, value) {
 
     if (typeof value === "boolean") {
         return formData.append(key, value ? '1' : '0');
+    }
+
+    if (value === null) {
+        return formData.append(key, '');
     }
 
     if ((typeof value === 'undefined' ? 'undefined' : _typeof(value)) !== 'object') {
