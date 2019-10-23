@@ -5,7 +5,7 @@
             <h3 class="ml-3 text-2xl tracking-wide">{{ title }}</h3>
         </div>
         <div class="w-full max-w-sm card">
-            <form @submit.prevent="login">
+            <form @submit.prevent="login" class="p-6">
                 <div class="mb-6">
                     <label for="email" class="block mb-2">Email</label>
                     <input v-model="form.email" type="email" name="email" class="form-input w-full" :class="{ 'is-invalid': form.errors.has('email') }" id="email" autofocus required>
@@ -21,6 +21,12 @@
                     {{ form.processing ? 'Loading...' : 'Login' }}
                 </button>
             </form>
+            <div class="bg-gray-100 p-4 text-center text-sm">
+                Don't have an account?
+                <router-link class="text-blue-500 underline" :to="{ name: 'register' }">
+                    Register
+                </router-link>
+            </div>
         </div>
     </div>
 </template>

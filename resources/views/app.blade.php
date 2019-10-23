@@ -10,9 +10,7 @@
     <title>{{ $app['name'] }}</title>
 
     <!-- Scripts -->
-    <script>
-        var app = @json($app)
-    </script>
+    <script> var app = @json($app) </script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Styles -->

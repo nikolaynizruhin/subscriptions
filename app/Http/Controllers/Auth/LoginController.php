@@ -48,6 +48,6 @@ class LoginController extends Controller
     {
         $this->clearLoginAttempts($request);
 
-        return response(['token' => $this->guard()->user()->api_token]);
+        return ['token' => $this->guard()->user()->api_token];
     }
 }

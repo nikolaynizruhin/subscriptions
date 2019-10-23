@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::share('app', [
-            'name' => config('app.name', 'Laravel'),
+            'name' => config('app.name', 'Libra'),
         ]);
     }
 }

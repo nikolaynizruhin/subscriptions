@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import NProgress from 'nprogress'
 import Dashboard from './views/Dashboard'
-import Login from './views/Login.vue'
-import NotFound from './views/NotFound.vue'
+import Login from './views/Login'
+import Register from './views/Register'
+import NotFound from './views/NotFound'
 
 Vue.use(Router)
 
@@ -17,6 +18,15 @@ const router = new Router({
             meta: {
                 requiresGuest: true,
                 title: 'Login'
+            }
+        },
+        {
+            path: '/register',
+            name: 'register',
+            component: Register,
+            meta: {
+                requiresGuest: true,
+                title: 'Register'
             }
         },
         {

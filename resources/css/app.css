@@ -7,7 +7,7 @@
 
 /* Card */
 .card {
-    @apply bg-white rounded p-6 shadow;
+    @apply bg-white rounded shadow;
 }
 
 /* Button */

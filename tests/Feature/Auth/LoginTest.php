@@ -19,9 +19,8 @@ class LoginTest extends TestCase
         $this->postJson(route('login'), [
             'email' => $user->email,
             'password' => 'password',
-        ])->assertJson([
-            'token' => $user->api_token,
-        ])->assertSuccessful();
+        ])->assertJson(['token' => $user->api_token])
+            ->assertSuccessful();
 
         $this->assertNotNull($user->api_token);
         $this->assertAuthenticatedAs($user);
