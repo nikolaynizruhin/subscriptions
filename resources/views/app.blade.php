@@ -16,7 +16,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="bg-gray-100 text-gray-800 antialiased">
+<body>
     <div id="app"></div>
 </body>
 </html>

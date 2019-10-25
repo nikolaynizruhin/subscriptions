@@ -15,7 +15,14 @@ use Illuminate\Http\Request;
 
 // Authentication
 Route::post('login', 'Auth\LoginController@login')->name('login');
+
+// Registration
 Route::post('register', 'Auth\RegisterController@register')->name('register');
+
+// Password Reset
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

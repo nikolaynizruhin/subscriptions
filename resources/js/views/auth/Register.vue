@@ -42,7 +42,7 @@
 
 <script>
 import Form from 'form-backend-validation'
-import Icon from "../components/Icon";
+import Icon from "../../components/Icon";
 
 export default {
     name: "Register",

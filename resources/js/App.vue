@@ -1,8 +1,10 @@
 <template>
-    <component :is="layout">
-        <router-view/>
+    <div class="bg-gray-100 text-gray-800 antialiased">
+        <component :is="layout">
+            <router-view/>
+        </component>
         <flash/>
-    </component>
+    </div>
 </template>
 
 <script>

@@ -2,9 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import NProgress from 'nprogress'
 import Dashboard from './views/Dashboard'
-import Login from './views/Login'
-import Register from './views/Register'
+import Login from './views/auth/Login'
+import Register from './views/auth/Register'
 import NotFound from './views/NotFound'
+import Email from "./views/auth/passwords/Email";
+import Reset from "./views/auth/passwords/Reset";
 
 Vue.use(Router)
 
@@ -27,6 +29,24 @@ const router = new Router({
             meta: {
                 requiresGuest: true,
                 title: 'Register'
+            }
+        },
+        {
+            path: '/password/reset/:token',
+            name: 'password.reset',
+            component: Reset,
+            meta: {
+                requiresGuest: true,
+                title: 'Reset Password'
+            }
+        },
+        {
+            path: '/password/reset',
+            name: 'password.request',
+            component: Email,
+            meta: {
+                requiresGuest: true,
+                title: 'Forgot Password'
             }
         },
         {

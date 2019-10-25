@@ -74,4 +74,15 @@ class RegisterTest extends TestCase
             'password_confirmation' => 'mismatch',
         ])->assertJsonValidationErrors(['password']);
     }
+
+    /** @test */
+    public function password_should_has_min_length_8()
+    {
+        $this->postJson(route('register'), [
+            'name' => 'John Doe',
+            'email' => 'john@example.com',
+            'password' => 'less',
+            'password_confirmation' => 'less',
+        ])->assertJsonValidationErrors(['password']);
+    }
 }
