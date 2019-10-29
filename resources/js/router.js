@@ -87,9 +87,7 @@ router.beforeEach((to, from, next) => {
 
 // NProgress
 router.beforeResolve((to, from, next) => {
-    if (to.name) {
-        NProgress.start()
-    }
+    to.name && NProgress.start()
 
     next()
 })

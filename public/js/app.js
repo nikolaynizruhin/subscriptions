@@ -6449,7 +6449,7 @@ var render = function() {
                 _c(
                   "router-link",
                   {
-                    staticClass: "sm:ml-auto text-blue-500 underline",
+                    staticClass: "sm:ml-auto text-blue-500",
                     attrs: { to: { name: "password.request" } }
                   },
                   [
@@ -6472,7 +6472,7 @@ var render = function() {
             _c(
               "router-link",
               {
-                staticClass: "text-blue-500 underline",
+                staticClass: "text-blue-500",
                 attrs: { to: { name: "register" } }
               },
               [_vm._v("\n                Register\n            ")]
@@ -6741,7 +6741,7 @@ var render = function() {
             _c(
               "router-link",
               {
-                staticClass: "text-blue-500 underline",
+                staticClass: "text-blue-500",
                 attrs: { to: { name: "login" } }
               },
               [_vm._v("\n                Login\n            ")]
@@ -23824,10 +23824,7 @@ router.beforeEach(function (to, from, next) {
 }); // NProgress
 
 router.beforeResolve(function (to, from, next) {
-  if (to.name) {
-    nprogress__WEBPACK_IMPORTED_MODULE_2___default.a.start();
-  }
-
+  to.name && nprogress__WEBPACK_IMPORTED_MODULE_2___default.a.start();
   next();
 });
 router.afterEach(function (to, from) {

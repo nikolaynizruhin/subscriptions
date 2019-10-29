@@ -21,14 +21,14 @@
                         <span v-if="form.processing" class="spinner"></span>
                         {{ form.processing ? 'Loading...' : 'Login' }}
                     </button>
-                    <router-link :to="{ name: 'password.request' }" class="sm:ml-auto text-blue-500 underline">
+                    <router-link :to="{ name: 'password.request' }" class="sm:ml-auto text-blue-500">
                         Forgot Your Password?
                     </router-link>
                 </div>
             </form>
             <div class="bg-gray-100 p-4 text-center text-sm">
                 Don't have an account?
-                <router-link class="text-blue-500 underline" :to="{ name: 'register' }">
+                <router-link class="text-blue-500" :to="{ name: 'register' }">
                     Register
                 </router-link>
             </div>

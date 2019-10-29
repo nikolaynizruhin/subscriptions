@@ -32,7 +32,7 @@
             </form>
             <div class="bg-gray-100 p-4 text-center text-sm">
                 Already have an account?
-                <router-link class="text-blue-500 underline" :to="{ name: 'login' }">
+                <router-link class="text-blue-500" :to="{ name: 'login' }">
                     Login
                 </router-link>
             </div>
