@@ -71,8 +71,12 @@
 }
 
 /* Active Link */
-.router-link-active {
+aside > .router-link-exact-active {
     @apply bg-gray-800 text-white;
+}
+
+.router-link-exact-active {
+    @apply bg-gray-300;
 }
 
 @tailwind utilities;

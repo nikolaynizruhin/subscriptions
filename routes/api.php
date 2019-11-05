@@ -23,6 +23,10 @@ Route::post('register', 'Auth\RegisterController@register')->name('register');
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
+// Email Verification
+Route::get('email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify');
+Route::post('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

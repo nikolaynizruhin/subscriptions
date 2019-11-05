@@ -1,12 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import NProgress from 'nprogress'
+import store from './store'
 import Dashboard from './views/Dashboard'
+import Settings from './views/Settings'
 import Login from './views/auth/Login'
 import Register from './views/auth/Register'
 import NotFound from './views/NotFound'
 import Email from "./views/auth/passwords/Email";
 import Reset from "./views/auth/passwords/Reset";
+import Verify from "./components/Verification";
 
 Vue.use(Router)
 
@@ -18,8 +21,8 @@ const router = new Router({
             name: 'login',
             component: Login,
             meta: {
-                requiresGuest: true,
-                title: 'Login'
+                title: 'Login',
+                requiresGuest: true
             }
         },
         {
@@ -27,8 +30,8 @@ const router = new Router({
             name: 'register',
             component: Register,
             meta: {
-                requiresGuest: true,
-                title: 'Register'
+                title: 'Register',
+                requiresGuest: true
             }
         },
         {
@@ -36,8 +39,8 @@ const router = new Router({
             name: 'password.reset',
             component: Reset,
             meta: {
-                requiresGuest: true,
-                title: 'Reset Password'
+                title: 'Reset Password',
+                requiresGuest: true
             }
         },
         {
@@ -45,8 +48,8 @@ const router = new Router({
             name: 'password.request',
             component: Email,
             meta: {
-                requiresGuest: true,
-                title: 'Forgot Password'
+                title: 'Forgot Password',
+                requiresGuest: true
             }
         },
         {
@@ -54,9 +57,20 @@ const router = new Router({
             name: 'dashboard',
             component: Dashboard,
             meta: {
+                title: 'Dashboard',
                 layout: 'main',
                 requiresAuth: true,
-                title: 'Dashboard'
+            }
+        },
+        {
+            path: '/settings',
+            name: 'settings',
+            component: Settings,
+            meta: {
+                title: 'Settings',
+                layout: 'main',
+                requiresAuth: true,
+                requiresVerification: true
             }
         },
         {
@@ -68,8 +82,6 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-    document.title = to.meta.title ? `${to.meta.title} - ${app.name}` : app.name
-
     if (to.matched.some(record => record.meta.requiresGuest) && localStorage.token) {
         return next({ name: 'dashboard' })
     }
@@ -78,12 +90,18 @@ router.beforeEach((to, from, next) => {
         return next()
     }
 
+    if (to.matched.some(record => record.meta.requiresVerification) && !store.state.user.email_verified_at) {
+        return next({ name: 'dashboard' })
+    }
+
     if (!localStorage.token) {
         return next({ name: 'login', query: { redirect: to.fullPath }})
     }
 
     next()
 })
+
+router.afterEach((to, from) => document.title = to.meta.title ? `${to.meta.title} - ${app.name}` : app.name)
 
 // NProgress
 router.beforeResolve((to, from, next) => {

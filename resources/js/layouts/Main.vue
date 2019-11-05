@@ -19,6 +19,7 @@
             <sidebar :class="isOpen ? 'slide-in' : 'slide-out'"/>
             <main class="flex-grow p-6 relative sm:static">
                 <div v-if="isOpen" @click="close" class="sm:hidden absolute inset-0 bg-gray-500 opacity-50"></div>
+                <verification v-if="!user.email_verified_at"/>
                 <slot/>
             </main>
         </div>
@@ -26,10 +27,12 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AccountDropdown from "../components/AccountDropdown";
 import Sidebar from "../components/Sidebar";
-import toggle from "../mixins/toggle";
+import Verification from "../components/Verification";
 import Icon from "../components/Icon";
+import toggle from "../mixins/toggle";
 
 export default {
     name: "MainLayout",
@@ -37,12 +40,14 @@ export default {
         AccountDropdown,
         Icon,
         Sidebar,
+        Verification,
     },
     mixins: [toggle],
     data () {
         return {
             title: app.name
         }
-    }
+    },
+    computed: mapState(['user']),
 }
 </script>

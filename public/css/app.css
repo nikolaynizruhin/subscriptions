@@ -1069,9 +1069,13 @@ video {
 
 /* Active Link */
 
-.router-link-active {
+aside > .router-link-exact-active {
   background-color: #2d3748;
   color: #fff;
+}
+
+.router-link-exact-active {
+  background-color: #e2e8f0;
 }
 
 .sr-only {

@@ -7,7 +7,7 @@ window.axios = axios
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 
 // Request interceptor
-axios.interceptors.request.use(config => {
+window.axios.interceptors.request.use(config => {
     const token = localStorage.token
 
     if (token) {
@@ -18,13 +18,13 @@ axios.interceptors.request.use(config => {
 }, error => Promise.reject(error));
 
 // Response interceptor
-axios.interceptors.response.use(response => response, error => {
+window.axios.interceptors.response.use(response => response, error => {
     if (error.response.status === 401) {
         delete localStorage.token
         return router.push('/login')
     }
 
-    if (error.response.status >= 500) {
+    if (error.response.status !== 422) {
         const message = error.response ? error.response.data.message : error.message
         store.commit('setFlash',  { message, type: 'error' })
     }
