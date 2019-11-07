@@ -8,9 +8,9 @@ import Settings from './views/Settings'
 import Login from './views/auth/Login'
 import Register from './views/auth/Register'
 import NotFound from './views/NotFound'
-import Email from "./views/auth/passwords/Email";
-import Reset from "./views/auth/passwords/Reset";
-import Confirm from "./views/auth/passwords/Confirm";
+import Email from "./views/auth/passwords/Email"
+import Reset from "./views/auth/passwords/Reset"
+import Confirm from "./views/auth/passwords/Confirm"
 
 Vue.use(Router)
 
