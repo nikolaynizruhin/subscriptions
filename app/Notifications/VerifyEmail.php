@@ -14,6 +14,6 @@ class VerifyEmail extends VerifyEmailNotification
      */
     protected function verificationUrl($notifiable)
     {
-        return url(config('app.url').'?verification-link='.urlencode(parent::verificationUrl($notifiable)));
+        return url(config('app.url').'?verify-link='.urlencode(parent::verificationUrl($notifiable)));
     }
 }

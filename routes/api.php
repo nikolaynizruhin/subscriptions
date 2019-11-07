@@ -27,6 +27,13 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('passw
 Route::get('email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify');
 Route::post('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
+// Password Confirmation
+Route::post('password/confirm', 'Auth\ConfirmPasswordController@confirm')->name('password.confirm');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('password.confirm')->get('settings', function (Request $request) {
+    return $request->user();
+})->name('settings');

@@ -18,7 +18,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'api_token',
+        'name', 'email', 'password', 'api_token', 'password_confirmed_at',
     ];
 
     /**
@@ -37,6 +37,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'password_confirmed_at' => 'datetime',
     ];
 
     /**
@@ -58,5 +59,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendEmailVerificationNotification()
     {
         $this->notify(new VerifyEmail);
+    }
+
+    /**
+     * Reset the password confirmation timeout.
+     *
+     * @return bool
+     */
+    public function resetPasswordConfirmationTimeout()
+    {
+        return $this->update(['password_confirmed_at' => now()]);
     }
 }

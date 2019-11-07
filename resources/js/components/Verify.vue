@@ -20,19 +20,19 @@ import { mapMutations } from 'vuex'
 import Icon from "./Icon"
 
 export default {
-    name: "Verification",
+    name: "Verify",
     components: { Icon },
     computed: {
-        verificationLink () {
-            return this.$route.query['verification-link']
+        verifyLink () {
+            return this.$route.query['verify-link']
         }
     },
     async created () {
-        if (!this.verificationLink) {
+        if (!this.verifyLink) {
             return
         }
 
-        const { data } = await axios.get(this.verificationLink)
+        const { data } = await axios.get(this.verifyLink)
 
         if (data.verified) {
             this.setUser(data.user)

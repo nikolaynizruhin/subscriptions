@@ -9,7 +9,7 @@ import Register from './views/auth/Register'
 import NotFound from './views/NotFound'
 import Email from "./views/auth/passwords/Email";
 import Reset from "./views/auth/passwords/Reset";
-import Verify from "./components/Verification";
+import Confirm from "./views/auth/passwords/Confirm";
 
 Vue.use(Router)
 
@@ -39,8 +39,7 @@ const router = new Router({
             name: 'password.reset',
             component: Reset,
             meta: {
-                title: 'Reset Password',
-                requiresGuest: true
+                title: 'Reset Password'
             }
         },
         {
@@ -48,8 +47,16 @@ const router = new Router({
             name: 'password.request',
             component: Email,
             meta: {
-                title: 'Forgot Password',
-                requiresGuest: true
+                title: 'Forgot Password'
+            }
+        },
+        {
+            path: '/password/confirm',
+            name: 'password.confirm',
+            component: Confirm,
+            meta: {
+                title: 'Confirm Password',
+                requiresAuth: true,
             }
         },
         {
@@ -70,7 +77,8 @@ const router = new Router({
                 title: 'Settings',
                 layout: 'main',
                 requiresAuth: true,
-                requiresVerification: true
+                requiresVerify: true,
+                requiresPasswordConfirm: true
             }
         },
         {
@@ -90,8 +98,12 @@ router.beforeEach((to, from, next) => {
         return next()
     }
 
-    if (to.matched.some(record => record.meta.requiresVerification) && !store.state.user.email_verified_at) {
+    if (to.matched.some(record => record.meta.requiresVerify) && !store.state.user.email_verified_at) {
         return next({ name: 'dashboard' })
+    }
+
+    if (to.matched.some(record => record.meta.requiresPasswordConfirm) && !store.state.user.password_confirmed_at) {
+        return next({ name: 'password.confirm', query: { redirect: to.fullPath } })
     }
 
     if (!localStorage.token) {
