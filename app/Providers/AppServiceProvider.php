@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::share('app', [
             'name' => config('app.name', 'Libra'),
+            'password_timeout' => config('auth.password_timeout', 10800)
         ]);
     }
 }

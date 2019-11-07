@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import NProgress from 'nprogress'
 import store from './store'
+import { time } from './utils/helpers'
 import Dashboard from './views/Dashboard'
 import Settings from './views/Settings'
 import Login from './views/auth/Login'
@@ -89,6 +90,12 @@ const router = new Router({
     ]
 })
 
+const shouldConfirmPassword = user => {
+    const confirmedAt = user.password_confirmed_at ? time(user.password_confirmed_at) : 0
+
+    return time() - confirmedAt > window.app.password_timeout
+}
+
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresGuest) && localStorage.token) {
         return next({ name: 'dashboard' })
@@ -102,7 +109,7 @@ router.beforeEach((to, from, next) => {
         return next({ name: 'dashboard' })
     }
 
-    if (to.matched.some(record => record.meta.requiresPasswordConfirm) && !store.state.user.password_confirmed_at) {
+    if (to.matched.some(record => record.meta.requiresPasswordConfirm) && shouldConfirmPassword(store.state.user)) {
         return next({ name: 'password.confirm', query: { redirect: to.fullPath } })
     }
 

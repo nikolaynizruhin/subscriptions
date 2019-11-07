@@ -24352,14 +24352,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! nprogress */ "./node_modules/nprogress/nprogress.js");
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nprogress__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store */ "./resources/js/store.js");
-/* harmony import */ var _views_Dashboard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/Dashboard */ "./resources/js/views/Dashboard.vue");
-/* harmony import */ var _views_Settings__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./views/Settings */ "./resources/js/views/Settings.vue");
-/* harmony import */ var _views_auth_Login__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./views/auth/Login */ "./resources/js/views/auth/Login.vue");
-/* harmony import */ var _views_auth_Register__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./views/auth/Register */ "./resources/js/views/auth/Register.vue");
-/* harmony import */ var _views_NotFound__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./views/NotFound */ "./resources/js/views/NotFound.vue");
-/* harmony import */ var _views_auth_passwords_Email__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./views/auth/passwords/Email */ "./resources/js/views/auth/passwords/Email.vue");
-/* harmony import */ var _views_auth_passwords_Reset__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./views/auth/passwords/Reset */ "./resources/js/views/auth/passwords/Reset.vue");
-/* harmony import */ var _views_auth_passwords_Confirm__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./views/auth/passwords/Confirm */ "./resources/js/views/auth/passwords/Confirm.vue");
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/helpers */ "./resources/js/utils/helpers.js");
+/* harmony import */ var _views_Dashboard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./views/Dashboard */ "./resources/js/views/Dashboard.vue");
+/* harmony import */ var _views_Settings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./views/Settings */ "./resources/js/views/Settings.vue");
+/* harmony import */ var _views_auth_Login__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./views/auth/Login */ "./resources/js/views/auth/Login.vue");
+/* harmony import */ var _views_auth_Register__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./views/auth/Register */ "./resources/js/views/auth/Register.vue");
+/* harmony import */ var _views_NotFound__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./views/NotFound */ "./resources/js/views/NotFound.vue");
+/* harmony import */ var _views_auth_passwords_Email__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./views/auth/passwords/Email */ "./resources/js/views/auth/passwords/Email.vue");
+/* harmony import */ var _views_auth_passwords_Reset__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./views/auth/passwords/Reset */ "./resources/js/views/auth/passwords/Reset.vue");
+/* harmony import */ var _views_auth_passwords_Confirm__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./views/auth/passwords/Confirm */ "./resources/js/views/auth/passwords/Confirm.vue");
+
 
 
 
@@ -24378,7 +24380,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: [{
     path: '/login',
     name: 'login',
-    component: _views_auth_Login__WEBPACK_IMPORTED_MODULE_6__["default"],
+    component: _views_auth_Login__WEBPACK_IMPORTED_MODULE_7__["default"],
     meta: {
       title: 'Login',
       requiresGuest: true
@@ -24386,7 +24388,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: '/register',
     name: 'register',
-    component: _views_auth_Register__WEBPACK_IMPORTED_MODULE_7__["default"],
+    component: _views_auth_Register__WEBPACK_IMPORTED_MODULE_8__["default"],
     meta: {
       title: 'Register',
       requiresGuest: true
@@ -24394,21 +24396,21 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: '/password/reset/:token',
     name: 'password.reset',
-    component: _views_auth_passwords_Reset__WEBPACK_IMPORTED_MODULE_10__["default"],
+    component: _views_auth_passwords_Reset__WEBPACK_IMPORTED_MODULE_11__["default"],
     meta: {
       title: 'Reset Password'
     }
   }, {
     path: '/password/reset',
     name: 'password.request',
-    component: _views_auth_passwords_Email__WEBPACK_IMPORTED_MODULE_9__["default"],
+    component: _views_auth_passwords_Email__WEBPACK_IMPORTED_MODULE_10__["default"],
     meta: {
       title: 'Forgot Password'
     }
   }, {
     path: '/password/confirm',
     name: 'password.confirm',
-    component: _views_auth_passwords_Confirm__WEBPACK_IMPORTED_MODULE_11__["default"],
+    component: _views_auth_passwords_Confirm__WEBPACK_IMPORTED_MODULE_12__["default"],
     meta: {
       title: 'Confirm Password',
       requiresAuth: true
@@ -24416,7 +24418,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: '/',
     name: 'dashboard',
-    component: _views_Dashboard__WEBPACK_IMPORTED_MODULE_4__["default"],
+    component: _views_Dashboard__WEBPACK_IMPORTED_MODULE_5__["default"],
     meta: {
       title: 'Dashboard',
       layout: 'main',
@@ -24425,7 +24427,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: '/settings',
     name: 'settings',
-    component: _views_Settings__WEBPACK_IMPORTED_MODULE_5__["default"],
+    component: _views_Settings__WEBPACK_IMPORTED_MODULE_6__["default"],
     meta: {
       title: 'Settings',
       layout: 'main',
@@ -24436,9 +24438,15 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: '*',
     name: 'not-found',
-    component: _views_NotFound__WEBPACK_IMPORTED_MODULE_8__["default"]
+    component: _views_NotFound__WEBPACK_IMPORTED_MODULE_9__["default"]
   }]
 });
+
+var shouldConfirmPassword = function shouldConfirmPassword(user) {
+  var confirmedAt = user.password_confirmed_at ? Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_4__["time"])(user.password_confirmed_at) : 0;
+  return Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_4__["time"])() - confirmedAt > window.app.password_timeout;
+};
+
 router.beforeEach(function (to, from, next) {
   if (to.matched.some(function (record) {
     return record.meta.requiresGuest;
@@ -24464,7 +24472,7 @@ router.beforeEach(function (to, from, next) {
 
   if (to.matched.some(function (record) {
     return record.meta.requiresPasswordConfirm;
-  }) && !_store__WEBPACK_IMPORTED_MODULE_3__["default"].state.user.password_confirmed_at) {
+  }) && shouldConfirmPassword(_store__WEBPACK_IMPORTED_MODULE_3__["default"].state.user)) {
     return next({
       name: 'password.confirm',
       query: {
@@ -24582,6 +24590,23 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
     }()
   }
 }));
+
+/***/ }),
+
+/***/ "./resources/js/utils/helpers.js":
+/*!***************************************!*\
+  !*** ./resources/js/utils/helpers.js ***!
+  \***************************************/
+/*! exports provided: time */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "time", function() { return time; });
+var time = function time(date) {
+  var timestamp = date ? +new Date(date) : +new Date();
+  return Math.floor(timestamp / 1000);
+};
 
 /***/ }),
 
