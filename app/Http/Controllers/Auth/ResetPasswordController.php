@@ -41,7 +41,7 @@ class ResetPasswordController extends Controller
     {
         return [
             'status' => trans($response),
-            'token' => Auth::user()->api_token
+            'token' => Auth::user()->api_token,
         ];
     }
 

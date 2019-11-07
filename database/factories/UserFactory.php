@@ -37,5 +37,5 @@ $factory->state(User::class, 'unconfirmed_password', [
 ]);
 
 $factory->state(User::class, 'expired_password_confirmation', [
-    'password_confirmed_at' => now()->subSeconds(config('auth.password_timeout') + 1) ,
+    'password_confirmed_at' => now()->subSeconds(config('auth.password_timeout') + 1),
 ]);
