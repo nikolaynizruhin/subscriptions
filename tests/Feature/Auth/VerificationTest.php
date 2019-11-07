@@ -2,12 +2,11 @@
 
 namespace Tests\Feature\Auth;
 
-use App\User;
 use App\Notifications\VerifyEmail;
+use App\User;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
@@ -67,9 +66,9 @@ class VerificationTest extends TestCase
         Event::fake();
 
         $this->actingAs($user, 'api')
-            ->getJson(route('verification.verify',[
+            ->getJson(route('verification.verify', [
                 'id' => 'wrong-id',
-                'hash' => sha1($user->getEmailForVerification())
+                'hash' => sha1($user->getEmailForVerification()),
             ]))->assertForbidden();
 
         $this->assertNull($user->email_verified_at);
@@ -85,7 +84,7 @@ class VerificationTest extends TestCase
         Event::fake();
 
         $this->actingAs($user, 'api')
-            ->getJson(route('verification.verify',[
+            ->getJson(route('verification.verify', [
                 'id' => $user->getKey(),
                 'hash' => 'wrong-hash',
             ]))->assertForbidden();

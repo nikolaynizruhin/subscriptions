@@ -2,10 +2,9 @@
 
 namespace Tests\Feature\Auth;
 
-use App\User;
 use App\Notifications\ResetPassword;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
