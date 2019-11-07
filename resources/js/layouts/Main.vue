@@ -33,6 +33,7 @@ import Sidebar from "../components/Sidebar";
 import Verify from "../components/Verify";
 import Icon from "../components/Icon";
 import toggle from "../mixins/toggle";
+import title from "../mixins/title";
 
 export default {
     name: "MainLayout",
@@ -42,12 +43,7 @@ export default {
         Sidebar,
         Verify,
     },
-    mixins: [toggle],
-    data () {
-        return {
-            title: app.name
-        }
-    },
+    mixins: [toggle, title],
     computed: mapState(['user']),
 }
 </script>

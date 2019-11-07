@@ -38,14 +38,15 @@
 
 <script>
 import Form from 'form-backend-validation'
-import Icon from "../../components/Icon";
+import Icon from '../../components/Icon'
+import title from '../../mixins/title'
 
 export default {
     name: "Login",
     components: { Icon },
+    mixins: [title],
     data () {
         return {
-            title: app.name,
             form: new Form({
                 email: '',
                 password: '',

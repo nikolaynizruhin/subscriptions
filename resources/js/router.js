@@ -93,7 +93,7 @@ const router = new Router({
 const shouldConfirmPassword = user => {
     const confirmedAt = user.password_confirmed_at ? time(user.password_confirmed_at) : 0
 
-    return time() - confirmedAt > window.app.password_timeout
+    return time() - confirmedAt > app.password_timeout
 }
 
 router.beforeEach((to, from, next) => {

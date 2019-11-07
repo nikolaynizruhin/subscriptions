@@ -2272,6 +2272,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Verify__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Verify */ "./resources/js/components/Verify.vue");
 /* harmony import */ var _components_Icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Icon */ "./resources/js/components/Icon.vue");
 /* harmony import */ var _mixins_toggle__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../mixins/toggle */ "./resources/js/mixins/toggle.js");
+/* harmony import */ var _mixins_title__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../mixins/title */ "./resources/js/mixins/title.js");
 //
 //
 //
@@ -2300,6 +2301,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
@@ -2314,12 +2316,7 @@ __webpack_require__.r(__webpack_exports__);
     Sidebar: _components_Sidebar__WEBPACK_IMPORTED_MODULE_2__["default"],
     Verify: _components_Verify__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
-  mixins: [_mixins_toggle__WEBPACK_IMPORTED_MODULE_5__["default"]],
-  data: function data() {
-    return {
-      title: app.name
-    };
-  },
+  mixins: [_mixins_toggle__WEBPACK_IMPORTED_MODULE_5__["default"], _mixins_title__WEBPACK_IMPORTED_MODULE_6__["default"]],
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['user'])
 });
 
@@ -2398,6 +2395,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var form_backend_validation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! form-backend-validation */ "./node_modules/form-backend-validation/dist/index.js");
 /* harmony import */ var form_backend_validation__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(form_backend_validation__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_Icon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Icon */ "./resources/js/components/Icon.vue");
+/* harmony import */ var _mixins_title__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../mixins/title */ "./resources/js/mixins/title.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2444,14 +2442,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Login",
   components: {
     Icon: _components_Icon__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
+  mixins: [_mixins_title__WEBPACK_IMPORTED_MODULE_3__["default"]],
   data: function data() {
     return {
-      title: app.name,
       form: new form_backend_validation__WEBPACK_IMPORTED_MODULE_1___default.a({
         email: '',
         password: ''
@@ -2511,6 +2510,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var form_backend_validation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! form-backend-validation */ "./node_modules/form-backend-validation/dist/index.js");
 /* harmony import */ var form_backend_validation__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(form_backend_validation__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_Icon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Icon */ "./resources/js/components/Icon.vue");
+/* harmony import */ var _mixins_title__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../mixins/title */ "./resources/js/mixins/title.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2561,14 +2561,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Register",
   components: {
     Icon: _components_Icon__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
+  mixins: [_mixins_title__WEBPACK_IMPORTED_MODULE_3__["default"]],
   data: function data() {
     return {
-      title: app.name,
       form: new form_backend_validation__WEBPACK_IMPORTED_MODULE_1___default.a({
         name: '',
         email: '',
@@ -2633,6 +2634,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var form_backend_validation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! form-backend-validation */ "./node_modules/form-backend-validation/dist/index.js");
 /* harmony import */ var form_backend_validation__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(form_backend_validation__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _components_Icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/Icon */ "./resources/js/components/Icon.vue");
+/* harmony import */ var _mixins_title__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../mixins/title */ "./resources/js/mixins/title.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2675,14 +2677,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Login",
   components: {
     Icon: _components_Icon__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
+  mixins: [_mixins_title__WEBPACK_IMPORTED_MODULE_4__["default"]],
   data: function data() {
     return {
-      title: app.name,
       form: new form_backend_validation__WEBPACK_IMPORTED_MODULE_2___default.a({
         password: ''
       })
@@ -2743,6 +2746,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var form_backend_validation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! form-backend-validation */ "./node_modules/form-backend-validation/dist/index.js");
 /* harmony import */ var form_backend_validation__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(form_backend_validation__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _components_Icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/Icon */ "./resources/js/components/Icon.vue");
+/* harmony import */ var _mixins_title__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../mixins/title */ "./resources/js/mixins/title.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2780,14 +2784,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Email",
   components: {
     Icon: _components_Icon__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
+  mixins: [_mixins_title__WEBPACK_IMPORTED_MODULE_4__["default"]],
   data: function data() {
     return {
-      title: app.name,
       form: new form_backend_validation__WEBPACK_IMPORTED_MODULE_2___default.a({
         email: ''
       })
@@ -2848,6 +2853,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var form_backend_validation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! form-backend-validation */ "./node_modules/form-backend-validation/dist/index.js");
 /* harmony import */ var form_backend_validation__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(form_backend_validation__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _components_Icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/Icon */ "./resources/js/components/Icon.vue");
+/* harmony import */ var _mixins_title__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../mixins/title */ "./resources/js/mixins/title.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2894,14 +2900,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Reset",
   components: {
     Icon: _components_Icon__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
+  mixins: [_mixins_title__WEBPACK_IMPORTED_MODULE_4__["default"]],
   data: function data() {
     return {
-      title: app.name,
       form: new form_backend_validation__WEBPACK_IMPORTED_MODULE_2___default.a({
         token: this.$route.params.token,
         email: this.$route.query.email || '',
@@ -24299,6 +24306,25 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 
 /***/ }),
 
+/***/ "./resources/js/mixins/title.js":
+/*!**************************************!*\
+  !*** ./resources/js/mixins/title.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      title: app.name
+    };
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/mixins/toggle.js":
 /*!***************************************!*\
   !*** ./resources/js/mixins/toggle.js ***!
@@ -24444,7 +24470,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 
 var shouldConfirmPassword = function shouldConfirmPassword(user) {
   var confirmedAt = user.password_confirmed_at ? Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_4__["time"])(user.password_confirmed_at) : 0;
-  return Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_4__["time"])() - confirmedAt > window.app.password_timeout;
+  return Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_4__["time"])() - confirmedAt > app.password_timeout;
 };
 
 router.beforeEach(function (to, from, next) {
