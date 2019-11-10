@@ -1,5 +1,5 @@
 <template>
-    <div class="card p-4 mb-4" role="alert">
+    <div dusk="verify-alert" class="card p-4 mb-4" role="alert">
         <div class="flex">
             <div class="py-1 mr-4">
                 <icon name="alert-circle" width="24" height="24"/>

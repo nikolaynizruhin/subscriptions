@@ -96,8 +96,12 @@ const shouldConfirmPassword = user => {
     return time() - confirmedAt > app.password_timeout
 }
 
-router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requiresGuest) && localStorage.token) {
+router.beforeEach(async (to, from, next) => {
+    if (localStorage.token && !store.getters.isAuth) {
+        await store.dispatch('getUser')
+    }
+
+    if (to.matched.some(record => record.meta.requiresGuest) && store.getters.isAuth) {
         return next({ name: 'dashboard' })
     }
 
@@ -113,7 +117,7 @@ router.beforeEach((to, from, next) => {
         return next({ name: 'password.confirm', query: { redirect: to.fullPath } })
     }
 
-    if (!localStorage.token) {
+    if (!store.getters.isAuth) {
         return next({ name: 'login', query: { redirect: to.fullPath }})
     }
 

@@ -26,9 +26,12 @@ export default new Vuex.Store({
     },
     actions: {
         async getUser ({ commit }) {
-            const { data } = await axios.get('api/user')
+            const { data } = await axios.get('/api/user')
 
             commit('setUser', data)
         }
+    },
+    getters: {
+        isAuth: state => Object.entries(state.user).length !== 0
     }
 })

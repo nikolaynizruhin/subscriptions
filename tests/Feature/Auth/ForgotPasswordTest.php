@@ -25,7 +25,7 @@ class ForgotPasswordTest extends TestCase
             'email' => $user->email,
         ])->assertJsonStructure(['status']);
 
-        $reset = DB::table('password_resets')->first();
+        $reset = DB::table('password_resets')->whereEmail($user->email)->first();
 
         $this->assertNotNull($reset);
 

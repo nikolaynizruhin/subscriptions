@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import toggle from "../mixins/toggle"
 import Icon from "./Icon"
 
@@ -30,14 +30,14 @@ export default {
     mixins: [toggle],
     computed: mapState(['user']),
     methods: {
-        ...mapActions(['getUser']),
+        ...mapMutations(['setUser']),
         logout () {
             delete localStorage.token
+
+            this.setUser({})
+
             this.$router.push('/login')
         }
-    },
-    created () {
-        this.getUser()
     }
 }
 </script>
