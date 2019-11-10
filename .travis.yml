@@ -1,27 +1,10 @@
-dist: trusty
-
 language: php
 
 php:
   - '7.2'
   - '7.3'
 
-services:
-  - postgresql
-
-addons:
-  chrome: stable
-
 install:
-  - cp .env.travis .env
+  - cp .env.example .env
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
   - php artisan key:generate
-
-before_script:
-  - psql -c 'create database libra;' -U postgres
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
-  - php artisan serve &
-
-script:
-  - vendor/bin/phpunit
-  - php artisan dusk
