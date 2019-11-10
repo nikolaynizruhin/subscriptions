@@ -4,8 +4,7 @@ php:
   - '7.2'
   - '7.3'
 
-install: composer install
-
-before_script:
+install:
   - cp .env.example .env
+  - travis_retry composer install --no-interaction --prefer-dist --no-suggest
   - php artisan key:generate
