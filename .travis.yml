@@ -7,13 +7,10 @@ php:
   - '7.3'
 
 services:
-  - mysql
+  - postgresql
 
 addons:
   chrome: stable
-
-before_install:
-  - mysql -e 'CREATE DATABASE libra;'
 
 install:
   - cp .env.travis .env
@@ -21,6 +18,7 @@ install:
   - php artisan key:generate
 
 before_script:
+  - psql -c 'create database libra;' -U postgres
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
   - php artisan serve &
 
