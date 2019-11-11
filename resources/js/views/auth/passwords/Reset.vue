@@ -50,11 +50,13 @@ export default {
         }
     },
     methods: {
-        ...mapMutations(['setFlash']),
+        ...mapMutations(['setFlash', 'setUser']),
         async reset () {
-            const { token, status } = await this.form.post('/api/password/reset')
+            const { token, status, user } = await this.form.post('/api/password/reset')
 
             localStorage.token = token
+
+            this.setUser(user)
 
             this.setFlash({ message: status })
 

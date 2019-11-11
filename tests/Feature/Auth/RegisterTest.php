@@ -23,8 +23,10 @@ class RegisterTest extends TestCase
         $user = User::whereEmail($email)->first();
 
         $response
-            ->assertJson(['token' => $user->api_token])
-            ->assertSuccessful();
+            ->assertJson([
+                'token' => $user->api_token,
+                'user' => $user->toArray(),
+            ])->assertSuccessful();
 
         $this->assertNotNull($user->api_token);
         $this->assertAuthenticatedAs($user);

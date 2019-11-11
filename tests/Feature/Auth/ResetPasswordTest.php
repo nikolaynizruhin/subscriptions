@@ -22,8 +22,10 @@ class ResetPasswordTest extends TestCase
             'email' => $user->email,
             'password' => 'new_password',
             'password_confirmation' => 'new_password',
-        ])->assertJson(['token' => $user->api_token])
-            ->assertJsonStructure(['status', 'token'])
+        ])->assertJson([
+            'token' => $user->api_token,
+            'user' => $user->toArray(),
+        ])->assertJsonStructure(['status', 'token', 'user'])
             ->assertSuccessful();
 
         $this->assertAuthenticatedAs($user);

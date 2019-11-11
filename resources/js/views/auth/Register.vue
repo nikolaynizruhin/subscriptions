@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 import Form from 'form-backend-validation'
 import Icon from '../../components/Icon'
 import title from '../../mixins/title'
@@ -60,10 +61,13 @@ export default {
         }
     },
     methods: {
+        ...mapMutations(['setUser']),
         async register () {
-            const { token } = await this.form.post('/api/register')
+            const { token, user } = await this.form.post('/api/register')
 
             localStorage.token = token
+
+            this.setUser(user)
 
             this.$router.push({ name: 'dashboard' })
         }

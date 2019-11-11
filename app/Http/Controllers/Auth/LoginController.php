@@ -48,6 +48,9 @@ class LoginController extends Controller
     {
         $this->clearLoginAttempts($request);
 
-        return ['token' => $this->guard()->user()->api_token];
+        return [
+            'token' => $this->guard()->user()->api_token,
+            'user' => $this->guard()->user(),
+        ];
     }
 }
