@@ -1946,10 +1946,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   mixins: [_mixins_toggle__WEBPACK_IMPORTED_MODULE_1__["default"]],
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['user']),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(['setUser']), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(['clearUser']), {
     logout: function logout() {
       delete localStorage.token;
-      this.setUser({});
+      this.clearUser();
       this.$router.push('/login');
     }
   })
@@ -2111,10 +2111,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 //
 //
 //
@@ -2144,91 +2140,71 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return this.$route.query['verify-link'];
     }
   },
-  created: function () {
-    var _created = _asyncToGenerator(
-    /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var _ref, data;
+  created: function created() {
+    var _ref, data;
 
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function created$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            if (this.verifyLink) {
+              _context.next = 2;
+              break;
+            }
+
+            return _context.abrupt("return");
+
+          case 2:
+            _context.next = 4;
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.get(this.verifyLink));
+
+          case 4:
+            _ref = _context.sent;
+            data = _ref.data;
+
+            if (data.verified) {
+              this.setUser(data.user);
+              this.setFlash({
+                message: 'Your email was successfully verified!'
+              });
+            }
+
+            this.$router.replace({
+              'query': null
+            });
+
+          case 8:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, null, this);
+  },
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setFlash', 'setUser']), {
+    resend: function resend() {
+      var _ref2, data;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function resend$(_context2) {
         while (1) {
-          switch (_context.prev = _context.next) {
+          switch (_context2.prev = _context2.next) {
             case 0:
-              if (this.verifyLink) {
-                _context.next = 2;
-                break;
-              }
-
-              return _context.abrupt("return");
+              _context2.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.post('/api/email/resend'));
 
             case 2:
-              _context.next = 4;
-              return axios.get(this.verifyLink);
-
-            case 4:
-              _ref = _context.sent;
-              data = _ref.data;
-
-              if (data.verified) {
-                this.setUser(data.user);
-                this.setFlash({
-                  message: 'Your email was successfully verified!'
-                });
-              }
-
-              this.$router.replace({
-                'query': null
+              _ref2 = _context2.sent;
+              data = _ref2.data;
+              data.resent && this.setFlash({
+                message: 'A fresh verification link has been sent to your email address.'
               });
 
-            case 8:
+            case 5:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
         }
-      }, _callee, this);
-    }));
-
-    function created() {
-      return _created.apply(this, arguments);
+      }, null, this);
     }
-
-    return created;
-  }(),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setFlash', 'setUser']), {
-    resend: function () {
-      var _resend = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var _ref2, data;
-
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return axios.post('/api/email/resend');
-
-              case 2:
-                _ref2 = _context2.sent;
-                data = _ref2.data;
-                data.resent && this.setFlash({
-                  message: 'A fresh verification link has been sent to your email address.'
-                });
-
-              case 5:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this);
-      }));
-
-      function resend() {
-        return _resend.apply(this, arguments);
-      }
-
-      return resend;
-    }()
   })
 });
 
@@ -2397,10 +2373,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_title__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../mixins/title */ "./resources/js/mixins/title.js");
 
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2464,41 +2436,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setUser']), {
-    login: function () {
-      var _login = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _ref, token, user;
+    login: function login() {
+      var _ref, token, user;
 
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return this.form.post('/api/login');
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function login$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.form.post('/api/login'));
 
-              case 2:
-                _ref = _context.sent;
-                token = _ref.token;
-                user = _ref.user;
-                localStorage.token = token;
-                this.setUser(user);
-                this.$router.push(this.$route.query.redirect || '/');
+            case 2:
+              _ref = _context.sent;
+              token = _ref.token;
+              user = _ref.user;
+              localStorage.token = token;
+              this.setUser(user);
+              this.$router.push(this.$route.query.redirect || '/');
 
-              case 8:
-              case "end":
-                return _context.stop();
-            }
+            case 8:
+            case "end":
+              return _context.stop();
           }
-        }, _callee, this);
-      }));
-
-      function login() {
-        return _login.apply(this, arguments);
-      }
-
-      return login;
-    }()
+        }
+      }, null, this);
+    }
   })
 });
 
@@ -2521,10 +2483,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Icon */ "./resources/js/components/Icon.vue");
 /* harmony import */ var _mixins_title__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../mixins/title */ "./resources/js/mixins/title.js");
 
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -2595,43 +2553,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setUser']), {
-    register: function () {
-      var _register = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _ref, token, user;
+    register: function register() {
+      var _ref, token, user;
 
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return this.form.post('/api/register');
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function register$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.form.post('/api/register'));
 
-              case 2:
-                _ref = _context.sent;
-                token = _ref.token;
-                user = _ref.user;
-                localStorage.token = token;
-                this.setUser(user);
-                this.$router.push({
-                  name: 'dashboard'
-                });
+            case 2:
+              _ref = _context.sent;
+              token = _ref.token;
+              user = _ref.user;
+              localStorage.token = token;
+              this.setUser(user);
+              this.$router.push({
+                name: 'dashboard'
+              });
 
-              case 8:
-              case "end":
-                return _context.stop();
-            }
+            case 8:
+            case "end":
+              return _context.stop();
           }
-        }, _callee, this);
-      }));
-
-      function register() {
-        return _register.apply(this, arguments);
-      }
-
-      return register;
-    }()
+        }
+      }, null, this);
+    }
   })
 });
 
@@ -2654,10 +2602,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/Icon */ "./resources/js/components/Icon.vue");
 /* harmony import */ var _mixins_title__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../mixins/title */ "./resources/js/mixins/title.js");
 
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -2710,40 +2654,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setUser']), {
-    confirm: function () {
-      var _confirm = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _ref, confirmed, user;
+    confirm: function confirm() {
+      var _ref, confirmed, user;
 
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return this.form.post('/api/password/confirm');
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function confirm$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.form.post('/api/password/confirm'));
 
-              case 2:
-                _ref = _context.sent;
-                confirmed = _ref.confirmed;
-                user = _ref.user;
-                confirmed && this.setUser(user);
-                this.$router.push(this.$route.query.redirect || '/');
+            case 2:
+              _ref = _context.sent;
+              confirmed = _ref.confirmed;
+              user = _ref.user;
+              confirmed && this.setUser(user);
+              this.$router.push(this.$route.query.redirect || '/');
 
-              case 7:
-              case "end":
-                return _context.stop();
-            }
+            case 7:
+            case "end":
+              return _context.stop();
           }
-        }, _callee, this);
-      }));
-
-      function confirm() {
-        return _confirm.apply(this, arguments);
-      }
-
-      return confirm;
-    }()
+        }
+      }, null, this);
+    }
   })
 });
 
@@ -2766,10 +2700,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/Icon */ "./resources/js/components/Icon.vue");
 /* harmony import */ var _mixins_title__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../mixins/title */ "./resources/js/mixins/title.js");
 
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -2817,40 +2747,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setFlash']), {
-    send: function () {
-      var _send = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _ref, status;
+    send: function send() {
+      var _ref, status;
 
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return this.form.post('/api/password/email');
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function send$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.form.post('/api/password/email'));
 
-              case 2:
-                _ref = _context.sent;
-                status = _ref.status;
-                this.setFlash({
-                  message: status
-                });
+            case 2:
+              _ref = _context.sent;
+              status = _ref.status;
+              this.setFlash({
+                message: status
+              });
 
-              case 5:
-              case "end":
-                return _context.stop();
-            }
+            case 5:
+            case "end":
+              return _context.stop();
           }
-        }, _callee, this);
-      }));
-
-      function send() {
-        return _send.apply(this, arguments);
-      }
-
-      return send;
-    }()
+        }
+      }, null, this);
+    }
   })
 });
 
@@ -2873,10 +2793,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/Icon */ "./resources/js/components/Icon.vue");
 /* harmony import */ var _mixins_title__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../mixins/title */ "./resources/js/mixins/title.js");
 
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -2936,47 +2852,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setFlash', 'setUser']), {
-    reset: function () {
-      var _reset = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _ref, token, status, user;
+    reset: function reset() {
+      var _ref, token, status, user;
 
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return this.form.post('/api/password/reset');
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function reset$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.form.post('/api/password/reset'));
 
-              case 2:
-                _ref = _context.sent;
-                token = _ref.token;
-                status = _ref.status;
-                user = _ref.user;
-                localStorage.token = token;
-                this.setUser(user);
-                this.setFlash({
-                  message: status
-                });
-                this.$router.push({
-                  name: 'dashboard'
-                });
+            case 2:
+              _ref = _context.sent;
+              token = _ref.token;
+              status = _ref.status;
+              user = _ref.user;
+              localStorage.token = token;
+              this.setUser(user);
+              this.setFlash({
+                message: status
+              });
+              this.$router.push({
+                name: 'dashboard'
+              });
 
-              case 10:
-              case "end":
-                return _context.stop();
-            }
+            case 10:
+            case "end":
+              return _context.stop();
           }
-        }, _callee, this);
-      }));
-
-      function reset() {
-        return _reset.apply(this, arguments);
-      }
-
-      return reset;
-    }()
+        }
+      }, null, this);
+    }
   })
 });
 
@@ -6178,7 +6084,7 @@ var render = function() {
       "button",
       {
         staticClass: "relative z-10 flex items-center focus:outline-none",
-        attrs: { type: "button" },
+        attrs: { dusk: "account-button", type: "button" },
         on: { click: _vm.toggle }
       },
       [
@@ -22665,7 +22571,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapActions", function() { return mapActions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNamespacedHelpers", function() { return createNamespacedHelpers; });
 /**
- * vuex v3.1.1
+ * vuex v3.1.2
  * (c) 2019 Evan You
  * @license MIT
  */
@@ -22987,6 +22893,7 @@ var Store = function Store (options) {
   this._modulesNamespaceMap = Object.create(null);
   this._subscribers = [];
   this._watcherVM = new Vue();
+  this._makeLocalGettersCache = Object.create(null);
 
   // bind commit and dispatch to self
   var store = this;
@@ -23219,12 +23126,14 @@ function resetStoreVM (store, state, hot) {
 
   // bind store public getters
   store.getters = {};
+  // reset local getters cache
+  store._makeLocalGettersCache = Object.create(null);
   var wrappedGetters = store._wrappedGetters;
   var computed = {};
   forEachValue(wrappedGetters, function (fn, key) {
     // use computed to leverage its lazy-caching mechanism
     // direct inline function use will lead to closure preserving oldVm.
-    // using partial to return function with only arguments preserved in closure enviroment.
+    // using partial to return function with only arguments preserved in closure environment.
     computed[key] = partial(fn, store);
     Object.defineProperty(store.getters, key, {
       get: function () { return store._vm[key]; },
@@ -23268,6 +23177,9 @@ function installModule (store, rootState, path, module, hot) {
 
   // register in namespace map
   if (module.namespaced) {
+    if (store._modulesNamespaceMap[namespace] && "development" !== 'production') {
+      console.error(("[vuex] duplicate namespace " + namespace + " for the namespaced module " + (path.join('/'))));
+    }
     store._modulesNamespaceMap[namespace] = module;
   }
 
@@ -23276,6 +23188,13 @@ function installModule (store, rootState, path, module, hot) {
     var parentState = getNestedState(rootState, path.slice(0, -1));
     var moduleName = path[path.length - 1];
     store._withCommit(function () {
+      if (true) {
+        if (moduleName in parentState) {
+          console.warn(
+            ("[vuex] state field \"" + moduleName + "\" was overridden by a module with the same name at \"" + (path.join('.')) + "\"")
+          );
+        }
+      }
       Vue.set(parentState, moduleName, module.state);
     });
   }
@@ -23363,26 +23282,28 @@ function makeLocalContext (store, namespace, path) {
 }
 
 function makeLocalGetters (store, namespace) {
-  var gettersProxy = {};
+  if (!store._makeLocalGettersCache[namespace]) {
+    var gettersProxy = {};
+    var splitPos = namespace.length;
+    Object.keys(store.getters).forEach(function (type) {
+      // skip if the target getter is not match this namespace
+      if (type.slice(0, splitPos) !== namespace) { return }
 
-  var splitPos = namespace.length;
-  Object.keys(store.getters).forEach(function (type) {
-    // skip if the target getter is not match this namespace
-    if (type.slice(0, splitPos) !== namespace) { return }
+      // extract local getter type
+      var localType = type.slice(splitPos);
 
-    // extract local getter type
-    var localType = type.slice(splitPos);
-
-    // Add a port to the getters proxy.
-    // Define as getter property because
-    // we do not want to evaluate the getters in this time.
-    Object.defineProperty(gettersProxy, localType, {
-      get: function () { return store.getters[type]; },
-      enumerable: true
+      // Add a port to the getters proxy.
+      // Define as getter property because
+      // we do not want to evaluate the getters in this time.
+      Object.defineProperty(gettersProxy, localType, {
+        get: function () { return store.getters[type]; },
+        enumerable: true
+      });
     });
-  });
+    store._makeLocalGettersCache[namespace] = gettersProxy;
+  }
 
-  return gettersProxy
+  return store._makeLocalGettersCache[namespace]
 }
 
 function registerMutation (store, type, handler, local) {
@@ -23394,7 +23315,7 @@ function registerMutation (store, type, handler, local) {
 
 function registerAction (store, type, handler, local) {
   var entry = store._actions[type] || (store._actions[type] = []);
-  entry.push(function wrappedActionHandler (payload, cb) {
+  entry.push(function wrappedActionHandler (payload) {
     var res = handler.call(store, {
       dispatch: local.dispatch,
       commit: local.commit,
@@ -23402,7 +23323,7 @@ function registerAction (store, type, handler, local) {
       state: local.state,
       rootGetters: store.getters,
       rootState: store.state
-    }, payload, cb);
+    }, payload);
     if (!isPromise(res)) {
       res = Promise.resolve(res);
     }
@@ -23483,6 +23404,9 @@ function install (_Vue) {
  */
 var mapState = normalizeNamespace(function (namespace, states) {
   var res = {};
+  if ( true && !isValidMap(states)) {
+    console.error('[vuex] mapState: mapper parameter must be either an Array or an Object');
+  }
   normalizeMap(states).forEach(function (ref) {
     var key = ref.key;
     var val = ref.val;
@@ -23516,6 +23440,9 @@ var mapState = normalizeNamespace(function (namespace, states) {
  */
 var mapMutations = normalizeNamespace(function (namespace, mutations) {
   var res = {};
+  if ( true && !isValidMap(mutations)) {
+    console.error('[vuex] mapMutations: mapper parameter must be either an Array or an Object');
+  }
   normalizeMap(mutations).forEach(function (ref) {
     var key = ref.key;
     var val = ref.val;
@@ -23549,6 +23476,9 @@ var mapMutations = normalizeNamespace(function (namespace, mutations) {
  */
 var mapGetters = normalizeNamespace(function (namespace, getters) {
   var res = {};
+  if ( true && !isValidMap(getters)) {
+    console.error('[vuex] mapGetters: mapper parameter must be either an Array or an Object');
+  }
   normalizeMap(getters).forEach(function (ref) {
     var key = ref.key;
     var val = ref.val;
@@ -23579,6 +23509,9 @@ var mapGetters = normalizeNamespace(function (namespace, getters) {
  */
 var mapActions = normalizeNamespace(function (namespace, actions) {
   var res = {};
+  if ( true && !isValidMap(actions)) {
+    console.error('[vuex] mapActions: mapper parameter must be either an Array or an Object');
+  }
   normalizeMap(actions).forEach(function (ref) {
     var key = ref.key;
     var val = ref.val;
@@ -23624,9 +23557,21 @@ var createNamespacedHelpers = function (namespace) { return ({
  * @return {Object}
  */
 function normalizeMap (map) {
+  if (!isValidMap(map)) {
+    return []
+  }
   return Array.isArray(map)
     ? map.map(function (key) { return ({ key: key, val: key }); })
     : Object.keys(map).map(function (key) { return ({ key: key, val: map[key] }); })
+}
+
+/**
+ * Validate whether given map is valid or not
+ * @param {*} map
+ * @return {Boolean}
+ */
+function isValidMap (map) {
+  return Array.isArray(map) || isObject(map)
 }
 
 /**
@@ -23664,7 +23609,7 @@ function getModuleByNamespace (store, helper, namespace) {
 var index_esm = {
   Store: Store,
   install: install,
-  version: '3.1.1',
+  version: '3.1.2',
   mapState: mapState,
   mapMutations: mapMutations,
   mapGetters: mapGetters,
@@ -24418,11 +24363,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_auth_passwords_Confirm__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./views/auth/passwords/Confirm */ "./resources/js/views/auth/passwords/Confirm.vue");
 
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
 
 
 
@@ -24508,101 +24448,91 @@ var shouldConfirmPassword = function shouldConfirmPassword(user) {
   return Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_5__["time"])() - confirmedAt > app.password_timeout;
 };
 
-router.beforeEach(
-/*#__PURE__*/
-function () {
-  var _ref = _asyncToGenerator(
-  /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(to, from, next) {
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            if (!(localStorage.token && !_store__WEBPACK_IMPORTED_MODULE_4__["default"].getters.isAuth)) {
-              _context.next = 3;
-              break;
-            }
-
+router.beforeEach(function _callee(to, from, next) {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          if (!(localStorage.token && !_store__WEBPACK_IMPORTED_MODULE_4__["default"].getters.isAuth)) {
             _context.next = 3;
-            return _store__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch('getUser');
+            break;
+          }
 
-          case 3:
-            if (!(to.matched.some(function (record) {
-              return record.meta.requiresGuest;
-            }) && _store__WEBPACK_IMPORTED_MODULE_4__["default"].getters.isAuth)) {
-              _context.next = 5;
-              break;
+          _context.next = 3;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_store__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch('getUser'));
+
+        case 3:
+          if (!(to.matched.some(function (record) {
+            return record.meta.requiresGuest;
+          }) && _store__WEBPACK_IMPORTED_MODULE_4__["default"].getters.isAuth)) {
+            _context.next = 5;
+            break;
+          }
+
+          return _context.abrupt("return", next({
+            name: 'dashboard'
+          }));
+
+        case 5:
+          if (to.matched.some(function (record) {
+            return record.meta.requiresAuth;
+          })) {
+            _context.next = 7;
+            break;
+          }
+
+          return _context.abrupt("return", next());
+
+        case 7:
+          if (!(to.matched.some(function (record) {
+            return record.meta.requiresVerify;
+          }) && !_store__WEBPACK_IMPORTED_MODULE_4__["default"].state.user.email_verified_at)) {
+            _context.next = 9;
+            break;
+          }
+
+          return _context.abrupt("return", next({
+            name: 'dashboard'
+          }));
+
+        case 9:
+          if (!(to.matched.some(function (record) {
+            return record.meta.requiresPasswordConfirm;
+          }) && shouldConfirmPassword(_store__WEBPACK_IMPORTED_MODULE_4__["default"].state.user))) {
+            _context.next = 11;
+            break;
+          }
+
+          return _context.abrupt("return", next({
+            name: 'password.confirm',
+            query: {
+              redirect: to.fullPath
             }
+          }));
 
-            return _context.abrupt("return", next({
-              name: 'dashboard'
-            }));
+        case 11:
+          if (_store__WEBPACK_IMPORTED_MODULE_4__["default"].getters.isAuth) {
+            _context.next = 13;
+            break;
+          }
 
-          case 5:
-            if (to.matched.some(function (record) {
-              return record.meta.requiresAuth;
-            })) {
-              _context.next = 7;
-              break;
+          return _context.abrupt("return", next({
+            name: 'login',
+            query: {
+              redirect: to.fullPath
             }
+          }));
 
-            return _context.abrupt("return", next());
+        case 13:
+          next();
 
-          case 7:
-            if (!(to.matched.some(function (record) {
-              return record.meta.requiresVerify;
-            }) && !_store__WEBPACK_IMPORTED_MODULE_4__["default"].state.user.email_verified_at)) {
-              _context.next = 9;
-              break;
-            }
-
-            return _context.abrupt("return", next({
-              name: 'dashboard'
-            }));
-
-          case 9:
-            if (!(to.matched.some(function (record) {
-              return record.meta.requiresPasswordConfirm;
-            }) && shouldConfirmPassword(_store__WEBPACK_IMPORTED_MODULE_4__["default"].state.user))) {
-              _context.next = 11;
-              break;
-            }
-
-            return _context.abrupt("return", next({
-              name: 'password.confirm',
-              query: {
-                redirect: to.fullPath
-              }
-            }));
-
-          case 11:
-            if (_store__WEBPACK_IMPORTED_MODULE_4__["default"].getters.isAuth) {
-              _context.next = 13;
-              break;
-            }
-
-            return _context.abrupt("return", next({
-              name: 'login',
-              query: {
-                redirect: to.fullPath
-              }
-            }));
-
-          case 13:
-            next();
-
-          case 14:
-          case "end":
-            return _context.stop();
-        }
+        case 14:
+        case "end":
+          return _context.stop();
       }
-    }, _callee);
-  }));
-
-  return function (_x, _x2, _x3) {
-    return _ref.apply(this, arguments);
-  };
-}());
+    }
+  });
+});
 router.afterEach(function (to, from) {
   return document.title = to.meta.title ? "".concat(to.meta.title, " - ").concat(app.name) : app.name;
 }); // NProgress
@@ -24634,11 +24564,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
 
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
@@ -24653,6 +24578,9 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
     setUser: function setUser(state, user) {
       state.user = user;
     },
+    clearUser: function clearUser(state) {
+      state.user = {};
+    },
     setFlash: function setFlash(state, _ref) {
       var message = _ref.message,
           _ref$type = _ref.type,
@@ -24666,39 +24594,29 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
     }
   },
   actions: {
-    getUser: function () {
-      var _getUser = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref2) {
-        var commit, _ref3, data;
+    getUser: function getUser(_ref2) {
+      var commit, _ref3, data;
 
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                commit = _ref2.commit;
-                _context.next = 3;
-                return axios.get('/api/user');
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function getUser$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              commit = _ref2.commit;
+              _context.next = 3;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.get('/api/user'));
 
-              case 3:
-                _ref3 = _context.sent;
-                data = _ref3.data;
-                commit('setUser', data);
+            case 3:
+              _ref3 = _context.sent;
+              data = _ref3.data;
+              commit('setUser', data);
 
-              case 6:
-              case "end":
-                return _context.stop();
-            }
+            case 6:
+            case "end":
+              return _context.stop();
           }
-        }, _callee);
-      }));
-
-      function getUser(_x) {
-        return _getUser.apply(this, arguments);
-      }
-
-      return getUser;
-    }()
+        }
+      });
+    }
   },
   getters: {
     isAuth: function isAuth(state) {
@@ -24762,6 +24680,7 @@ window.axios.interceptors.response.use(function (response) {
 }, function (error) {
   if (error.response.status === 401) {
     delete localStorage.token;
+    _store__WEBPACK_IMPORTED_MODULE_2__["default"].commit('clearUser');
     return _router__WEBPACK_IMPORTED_MODULE_1__["default"].push('/login');
   }
 

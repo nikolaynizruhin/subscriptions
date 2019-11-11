@@ -58,7 +58,7 @@ class LoginTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->actingAs($user)
-                ->press($user->name)
+                ->click('@account-button')
                 ->clickLink('Logout')
                 ->assertPathIs('/login');
         });

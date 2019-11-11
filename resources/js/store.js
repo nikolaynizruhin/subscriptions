@@ -15,6 +15,9 @@ export default new Vuex.Store({
         setUser (state, user) {
             state.user = user
         },
+        clearUser (state) {
+            state.user = {}
+        },
         setFlash (state, { message, type = 'success' }) {
             state.flash.message = message
             state.flash.type = type

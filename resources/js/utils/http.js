@@ -21,6 +21,7 @@ window.axios.interceptors.request.use(config => {
 window.axios.interceptors.response.use(response => response, error => {
     if (error.response.status === 401) {
         delete localStorage.token
+        store.commit('clearUser')
         return router.push('/login')
     }
 

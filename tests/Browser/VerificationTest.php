@@ -21,7 +21,7 @@ class VerificationTest extends DuskTestCase
                 ->visit('/')
                 ->waitFor('@verify-alert')
                 ->assertSee('Verify Your Email Address')
-                ->press($user->name)
+                ->click('@account-button')
                 ->clickLink('Logout')
                 ->assertPathIs('/login');
         });
