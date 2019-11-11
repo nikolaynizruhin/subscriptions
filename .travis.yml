@@ -1,3 +1,5 @@
+dist: trusty
+
 language: php
 
 php:
@@ -12,7 +14,6 @@ install:
   - cp .env.travis .env
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
   - php artisan key:generate
-  - php artisan dusk:chrome-driver 73
 
 before_script:
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
