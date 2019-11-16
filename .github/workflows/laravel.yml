@@ -24,6 +24,4 @@ jobs:
     - name: Run PHPUnit Tests
       run: vendor/bin/phpunit
     - name: Run Dusk Tests
-      env:
-        APP_URL: http://localhost
       run: php artisan dusk
