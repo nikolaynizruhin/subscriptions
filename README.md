@@ -23,9 +23,9 @@ composer install
 ```
 yarn && yarn dev
 ```
-5. Migrate database (--seed optional):
+5. Migrate database:
 ```
-php artisan migrate --seed
+php artisan migrate
 ```
 6. Generate app key:
 ```
@@ -33,7 +33,11 @@ php artisan key:generate
 ```
 
 ## Testing
-
+PHPUnit:
 ```
 vendor/bin/phpunit
+```
+Dusk:
+```
+php artisan dusk
 ```
