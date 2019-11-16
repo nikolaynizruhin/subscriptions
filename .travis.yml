@@ -9,7 +9,7 @@ addons:
 
 install:
   - touch database/database.sqlite
-  - cp .env.travis .env
+  - cp .env.testing .env
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
   - php artisan key:generate
   - php artisan dusk:chrome-driver
