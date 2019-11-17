@@ -1,5 +1,6 @@
 # Libra
 
+[![GitHub Actions](https://github.com/nikolaynizruhin/libra/workflows/Laravel/badge.svg)](https://github.com/nikolaynizruhin/libra/workflows/Laravel/badge.svg)
 [![Build Status](https://travis-ci.com/nikolaynizruhin/libra.svg?branch=master)](https://travis-ci.com/nikolaynizruhin/libra)
 [![StyleCI](https://github.styleci.io/repos/220341513/shield?branch=master)](https://github.styleci.io/repos/220341513)
 
