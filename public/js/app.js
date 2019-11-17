@@ -24342,7 +24342,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! nprogress */ "./node_modules/nprogress/nprogress.js");
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(nprogress__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App.vue */ "./resources/js/App.vue");
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./router */ "./resources/js/router.js");
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./router */ "./resources/js/router/index.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store */ "./resources/js/store.js");
 /* harmony import */ var _layouts_Auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./layouts/Auth */ "./resources/js/layouts/Auth.vue");
 /* harmony import */ var _layouts_Default__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./layouts/Default */ "./resources/js/layouts/Default.vue");
@@ -24430,10 +24430,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/router.js":
-/*!********************************!*\
-  !*** ./resources/js/router.js ***!
-  \********************************/
+/***/ "./resources/js/router/index.js":
+/*!**************************************!*\
+  !*** ./resources/js/router/index.js ***!
+  \**************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -24446,29 +24446,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nprogress */ "./node_modules/nprogress/nprogress.js");
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(nprogress__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store */ "./resources/js/store.js");
-/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils/helpers */ "./resources/js/utils/helpers.js");
-/* harmony import */ var _views_Dashboard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./views/Dashboard */ "./resources/js/views/Dashboard.vue");
-/* harmony import */ var _views_settings_Index__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./views/settings/Index */ "./resources/js/views/settings/Index.vue");
-/* harmony import */ var _views_auth_Login__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./views/auth/Login */ "./resources/js/views/auth/Login.vue");
-/* harmony import */ var _views_auth_Register__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./views/auth/Register */ "./resources/js/views/auth/Register.vue");
-/* harmony import */ var _views_NotFound__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./views/NotFound */ "./resources/js/views/NotFound.vue");
-/* harmony import */ var _views_auth_passwords_Email__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./views/auth/passwords/Email */ "./resources/js/views/auth/passwords/Email.vue");
-/* harmony import */ var _views_auth_passwords_Reset__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./views/auth/passwords/Reset */ "./resources/js/views/auth/passwords/Reset.vue");
-/* harmony import */ var _views_auth_passwords_Confirm__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./views/auth/passwords/Confirm */ "./resources/js/views/auth/passwords/Confirm.vue");
-/* harmony import */ var _views_settings_Profile__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./views/settings/Profile */ "./resources/js/views/settings/Profile.vue");
-/* harmony import */ var _views_settings_Security__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./views/settings/Security */ "./resources/js/views/settings/Security.vue");
-/* harmony import */ var _views_settings_Subscription__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./views/settings/Subscription */ "./resources/js/views/settings/Subscription.vue");
-
-
-
-
-
-
-
-
-
-
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
+/* harmony import */ var _router_routes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../router/routes */ "./resources/js/router/routes.js");
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/helpers */ "./resources/js/utils/helpers.js");
 
 
 
@@ -24479,108 +24459,12 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   mode: 'history',
-  routes: [{
-    path: '/login',
-    name: 'login',
-    component: _views_auth_Login__WEBPACK_IMPORTED_MODULE_8__["default"],
-    meta: {
-      title: 'Login',
-      layout: 'auth',
-      requiresGuest: true
-    }
-  }, {
-    path: '/register',
-    name: 'register',
-    component: _views_auth_Register__WEBPACK_IMPORTED_MODULE_9__["default"],
-    meta: {
-      title: 'Register',
-      layout: 'auth',
-      requiresGuest: true
-    }
-  }, {
-    path: '/password/reset/:token',
-    name: 'password.reset',
-    component: _views_auth_passwords_Reset__WEBPACK_IMPORTED_MODULE_12__["default"],
-    meta: {
-      title: 'Reset Password',
-      layout: 'auth'
-    }
-  }, {
-    path: '/password/reset',
-    name: 'password.request',
-    component: _views_auth_passwords_Email__WEBPACK_IMPORTED_MODULE_11__["default"],
-    meta: {
-      title: 'Forgot Password',
-      layout: 'auth'
-    }
-  }, {
-    path: '/password/confirm',
-    name: 'password.confirm',
-    component: _views_auth_passwords_Confirm__WEBPACK_IMPORTED_MODULE_13__["default"],
-    meta: {
-      title: 'Confirm Password',
-      layout: 'auth',
-      requiresAuth: true
-    }
-  }, {
-    path: '/',
-    name: 'dashboard',
-    component: _views_Dashboard__WEBPACK_IMPORTED_MODULE_6__["default"],
-    meta: {
-      title: 'Dashboard',
-      layout: 'main',
-      requiresAuth: true
-    }
-  }, {
-    path: '/settings',
-    component: _views_settings_Index__WEBPACK_IMPORTED_MODULE_7__["default"],
-    children: [{
-      path: 'profile',
-      name: 'settings.profile',
-      component: _views_settings_Profile__WEBPACK_IMPORTED_MODULE_14__["default"],
-      meta: {
-        title: 'Profile',
-        layout: 'main',
-        requiresAuth: true,
-        requiresVerify: true
-      }
-    }, {
-      path: 'security',
-      name: 'settings.security',
-      component: _views_settings_Security__WEBPACK_IMPORTED_MODULE_15__["default"],
-      meta: {
-        title: 'Security',
-        layout: 'main',
-        requiresAuth: true,
-        requiresVerify: true,
-        requiresPasswordConfirm: true
-      }
-    }, {
-      path: 'subscription',
-      name: 'settings.subscription',
-      component: _views_settings_Subscription__WEBPACK_IMPORTED_MODULE_16__["default"],
-      meta: {
-        title: 'Subscription',
-        layout: 'main',
-        requiresAuth: true,
-        requiresVerify: true
-      }
-    }, {
-      path: '',
-      redirect: {
-        name: 'settings.profile'
-      }
-    }]
-  }, {
-    path: '*',
-    name: 'not-found',
-    component: _views_NotFound__WEBPACK_IMPORTED_MODULE_10__["default"]
-  }]
+  routes: _router_routes__WEBPACK_IMPORTED_MODULE_5__["default"]
 });
 
 var shouldConfirmPassword = function shouldConfirmPassword(user) {
-  var confirmedAt = user.password_confirmed_at ? Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_5__["time"])(user.password_confirmed_at) : 0;
-  return Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_5__["time"])() - confirmedAt > app.password_timeout;
+  var confirmedAt = user.password_confirmed_at ? Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_6__["time"])(user.password_confirmed_at) : 0;
+  return Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_6__["time"])() - confirmedAt > app.password_timeout;
 };
 
 router.beforeEach(function _callee(to, from, next) {
@@ -24680,6 +24564,137 @@ router.afterEach(function (to, from) {
   return nprogress__WEBPACK_IMPORTED_MODULE_3___default.a.done();
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
+
+/***/ }),
+
+/***/ "./resources/js/router/routes.js":
+/*!***************************************!*\
+  !*** ./resources/js/router/routes.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _views_Dashboard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../views/Dashboard */ "./resources/js/views/Dashboard.vue");
+/* harmony import */ var _views_settings_Index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../views/settings/Index */ "./resources/js/views/settings/Index.vue");
+/* harmony import */ var _views_auth_Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../views/auth/Login */ "./resources/js/views/auth/Login.vue");
+/* harmony import */ var _views_auth_Register__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../views/auth/Register */ "./resources/js/views/auth/Register.vue");
+/* harmony import */ var _views_NotFound__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../views/NotFound */ "./resources/js/views/NotFound.vue");
+/* harmony import */ var _views_auth_passwords_Email__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../views/auth/passwords/Email */ "./resources/js/views/auth/passwords/Email.vue");
+/* harmony import */ var _views_auth_passwords_Reset__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../views/auth/passwords/Reset */ "./resources/js/views/auth/passwords/Reset.vue");
+/* harmony import */ var _views_auth_passwords_Confirm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../views/auth/passwords/Confirm */ "./resources/js/views/auth/passwords/Confirm.vue");
+/* harmony import */ var _views_settings_Profile__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../views/settings/Profile */ "./resources/js/views/settings/Profile.vue");
+/* harmony import */ var _views_settings_Security__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../views/settings/Security */ "./resources/js/views/settings/Security.vue");
+/* harmony import */ var _views_settings_Subscription__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../views/settings/Subscription */ "./resources/js/views/settings/Subscription.vue");
+
+
+
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ([{
+  path: '/login',
+  name: 'login',
+  component: _views_auth_Login__WEBPACK_IMPORTED_MODULE_2__["default"],
+  meta: {
+    title: 'Login',
+    layout: 'auth',
+    requiresGuest: true
+  }
+}, {
+  path: '/register',
+  name: 'register',
+  component: _views_auth_Register__WEBPACK_IMPORTED_MODULE_3__["default"],
+  meta: {
+    title: 'Register',
+    layout: 'auth',
+    requiresGuest: true
+  }
+}, {
+  path: '/password/reset/:token',
+  name: 'password.reset',
+  component: _views_auth_passwords_Reset__WEBPACK_IMPORTED_MODULE_6__["default"],
+  meta: {
+    title: 'Reset Password',
+    layout: 'auth'
+  }
+}, {
+  path: '/password/reset',
+  name: 'password.request',
+  component: _views_auth_passwords_Email__WEBPACK_IMPORTED_MODULE_5__["default"],
+  meta: {
+    title: 'Forgot Password',
+    layout: 'auth'
+  }
+}, {
+  path: '/password/confirm',
+  name: 'password.confirm',
+  component: _views_auth_passwords_Confirm__WEBPACK_IMPORTED_MODULE_7__["default"],
+  meta: {
+    title: 'Confirm Password',
+    layout: 'auth',
+    requiresAuth: true
+  }
+}, {
+  path: '/',
+  name: 'dashboard',
+  component: _views_Dashboard__WEBPACK_IMPORTED_MODULE_0__["default"],
+  meta: {
+    title: 'Dashboard',
+    layout: 'main',
+    requiresAuth: true
+  }
+}, {
+  path: '/settings',
+  component: _views_settings_Index__WEBPACK_IMPORTED_MODULE_1__["default"],
+  children: [{
+    path: 'profile',
+    name: 'settings.profile',
+    component: _views_settings_Profile__WEBPACK_IMPORTED_MODULE_8__["default"],
+    meta: {
+      title: 'Profile',
+      layout: 'main',
+      requiresAuth: true,
+      requiresVerify: true
+    }
+  }, {
+    path: 'security',
+    name: 'settings.security',
+    component: _views_settings_Security__WEBPACK_IMPORTED_MODULE_9__["default"],
+    meta: {
+      title: 'Security',
+      layout: 'main',
+      requiresAuth: true,
+      requiresVerify: true,
+      requiresPasswordConfirm: true
+    }
+  }, {
+    path: 'subscription',
+    name: 'settings.subscription',
+    component: _views_settings_Subscription__WEBPACK_IMPORTED_MODULE_10__["default"],
+    meta: {
+      title: 'Subscription',
+      layout: 'main',
+      requiresAuth: true,
+      requiresVerify: true
+    }
+  }, {
+    path: '',
+    redirect: {
+      name: 'settings.profile'
+    }
+  }]
+}, {
+  path: '*',
+  name: 'not-found',
+  component: _views_NotFound__WEBPACK_IMPORTED_MODULE_4__["default"]
+}]);
 
 /***/ }),
 
@@ -24790,7 +24805,7 @@ var time = function time(date) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../router */ "./resources/js/router.js");
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../router */ "./resources/js/router/index.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
 
 
