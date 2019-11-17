@@ -23,6 +23,7 @@ const router = new Router({
             component: Login,
             meta: {
                 title: 'Login',
+                layout: 'auth',
                 requiresGuest: true
             }
         },
@@ -32,6 +33,7 @@ const router = new Router({
             component: Register,
             meta: {
                 title: 'Register',
+                layout: 'auth',
                 requiresGuest: true
             }
         },
@@ -40,7 +42,8 @@ const router = new Router({
             name: 'password.reset',
             component: Reset,
             meta: {
-                title: 'Reset Password'
+                title: 'Reset Password',
+                layout: 'auth'
             }
         },
         {
@@ -48,7 +51,8 @@ const router = new Router({
             name: 'password.request',
             component: Email,
             meta: {
-                title: 'Forgot Password'
+                title: 'Forgot Password',
+                layout: 'auth'
             }
         },
         {
@@ -57,6 +61,7 @@ const router = new Router({
             component: Confirm,
             meta: {
                 title: 'Confirm Password',
+                layout: 'auth',
                 requiresAuth: true,
             }
         },

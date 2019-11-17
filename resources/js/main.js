@@ -3,11 +3,13 @@ import NProgress from 'nprogress'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import Default from "./layouts/Default.vue"
-import Main from "./layouts/Main.vue"
+import Auth from "./layouts/Auth"
+import Default from "./layouts/Default"
+import Main from "./layouts/Main"
 
 import './utils/http'
 
+Vue.component('auth-layout', Auth)
 Vue.component('default-layout', Default)
 Vue.component('main-layout', Main)
 
