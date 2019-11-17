@@ -7,7 +7,7 @@
             <icon name="chevron-down" class="ml-1" width="16" height="16"/>
         </button>
         <div v-if="isOpen" class="absolute right-0 left-auto w-32 bg-white border shadow py-1 rounded">
-            <router-link :to="{ name: 'settings' }" @click.native="close" class="flex items-center px-3 py-1 hover:bg-gray-300">
+            <router-link :to="{ name: 'settings.profile' }" @click.native="close" class="flex items-center px-3 py-1 hover:bg-gray-300">
                 <icon name="settings" width="18" height="18"/>
                 <span class="ml-2">Settings</span>
             </router-link>

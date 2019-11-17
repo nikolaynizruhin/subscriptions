@@ -4,13 +4,16 @@ import NProgress from 'nprogress'
 import store from './store'
 import { time } from './utils/helpers'
 import Dashboard from './views/Dashboard'
-import Settings from './views/Settings'
+import Settings from './views/settings/Index'
 import Login from './views/auth/Login'
 import Register from './views/auth/Register'
 import NotFound from './views/NotFound'
 import Email from "./views/auth/passwords/Email"
 import Reset from "./views/auth/passwords/Reset"
 import Confirm from "./views/auth/passwords/Confirm"
+import Profile from "./views/settings/Profile";
+import Security from "./views/settings/Security";
+import Subscription from "./views/settings/Subscription";
 
 Vue.use(Router)
 
@@ -77,15 +80,49 @@ const router = new Router({
         },
         {
             path: '/settings',
-            name: 'settings',
             component: Settings,
-            meta: {
-                title: 'Settings',
-                layout: 'main',
-                requiresAuth: true,
-                requiresVerify: true,
-                requiresPasswordConfirm: true
-            }
+            children: [
+                {
+                    path: 'profile',
+                    name: 'settings.profile',
+                    component: Profile,
+                    meta: {
+                        title: 'Profile',
+                        layout: 'main',
+                        requiresAuth: true,
+                        requiresVerify: true,
+                    }
+                },
+                {
+                    path: 'security',
+                    name: 'settings.security',
+                    component: Security,
+                    meta: {
+                        title: 'Security',
+                        layout: 'main',
+                        requiresAuth: true,
+                        requiresVerify: true,
+                        requiresPasswordConfirm: true
+                    }
+                },
+                {
+                    path: 'subscription',
+                    name: 'settings.subscription',
+                    component: Subscription,
+                    meta: {
+                        title: 'Subscription',
+                        layout: 'main',
+                        requiresAuth: true,
+                        requiresVerify: true
+                    }
+                },
+                {
+                    path: '',
+                    redirect: {
+                        name: 'settings.profile'
+                    }
+                }
+            ]
         },
         {
             path: '*',

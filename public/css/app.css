@@ -1074,8 +1074,10 @@ aside > .router-link-exact-active {
   color: #fff;
 }
 
-.router-link-exact-active {
-  background-color: #e2e8f0;
+nav > .router-link-exact-active,
+nav > .router-link-exact-active:hover {
+  border-color: #2d3748;
+  color: #2d3748;
 }
 
 .sr-only {

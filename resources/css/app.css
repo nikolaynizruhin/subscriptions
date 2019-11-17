@@ -75,8 +75,9 @@ aside > .router-link-exact-active {
     @apply bg-gray-800 text-white;
 }
 
-.router-link-exact-active {
-    @apply bg-gray-300;
+nav > .router-link-exact-active,
+nav > .router-link-exact-active:hover {
+    @apply border-gray-800 text-gray-800;
 }
 
 @tailwind utilities;

@@ -18,9 +18,9 @@ class ConfirmPasswordTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->actingAs($user)
-                ->visit('/settings')
-                ->waitForLocation('/settings')
-                ->assertPathIs('/settings')
+                ->visit('/settings/security')
+                ->waitForLocation('/settings/security')
+                ->assertPathIs('/settings/security')
                 ->signOut($user);
         });
     }
@@ -32,9 +32,9 @@ class ConfirmPasswordTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->actingAs($user)
-                ->visit('/settings')
+                ->visit('/settings/security')
                 ->waitForLocation('/password/confirm')
-                ->assertQueryStringHas('redirect', '/settings')
+                ->assertQueryStringHas('redirect', '/settings/security')
                 ->assertPathIs('/password/confirm')
                 ->signOut($user);
         });
