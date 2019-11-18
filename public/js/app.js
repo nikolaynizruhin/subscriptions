@@ -2052,6 +2052,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Icon",
   props: {
@@ -2837,6 +2840,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_Icon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/Icon */ "./resources/js/components/Icon.vue");
 //
 //
 //
@@ -2848,8 +2852,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Settings"
+  name: "Settings",
+  components: {
+    Icon: _components_Icon__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
 });
 
 /***/ }),
@@ -6269,6 +6286,13 @@ var render = function() {
           ])
         : _vm.name === "chevron-down"
         ? _c("g", [_c("polyline", { attrs: { points: "6 9 12 15 18 9" } })])
+        : _vm.name === "dollar-sign"
+        ? _c("g", [
+            _c("line", { attrs: { x1: "12", y1: "1", x2: "12", y2: "23" } }),
+            _c("path", {
+              attrs: { d: "M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" }
+            })
+          ])
         : _vm.name === "layers"
         ? _c("g", [
             _c("polygon", { attrs: { points: "12 2 2 7 12 12 22 7 12 2" } }),
@@ -6303,6 +6327,19 @@ var render = function() {
                   "M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
               }
             })
+          ])
+        : _vm.name === "shield"
+        ? _c("g", [
+            _c("path", {
+              attrs: { d: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" }
+            })
+          ])
+        : _vm.name === "user"
+        ? _c("g", [
+            _c("path", {
+              attrs: { d: "M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" }
+            }),
+            _c("circle", { attrs: { cx: "12", cy: "7", r: "4" } })
           ])
         : _vm.name === "x"
         ? _c("g", [
@@ -7497,30 +7534,51 @@ var render = function() {
             "router-link",
             {
               staticClass:
-                "inline-block px-4 py-3 -mb-px border-b-2 border-transparent hover:border-gray-500 text-gray-500",
+                "flex items-center px-4 py-3 -mb-px border-b-2 border-transparent hover:border-gray-500 text-gray-500",
               attrs: { to: { name: "settings.profile" } }
             },
-            [_vm._v("Profile")]
+            [
+              _c("icon", {
+                staticClass: "mr-1",
+                attrs: { name: "user", width: "18", height: "18" }
+              }),
+              _vm._v("\n            Profile\n        ")
+            ],
+            1
           ),
           _vm._v(" "),
           _c(
             "router-link",
             {
               staticClass:
-                "inline-block px-4 py-3 -mb-px border-b-2 border-transparent hover:border-gray-500 text-gray-500",
+                "flex items-center px-4 py-3 -mb-px border-b-2 border-transparent hover:border-gray-500 text-gray-500",
               attrs: { to: { name: "settings.security" } }
             },
-            [_vm._v("Security")]
+            [
+              _c("icon", {
+                staticClass: "mr-1",
+                attrs: { name: "shield", width: "18", height: "18" }
+              }),
+              _vm._v("\n            Security\n        ")
+            ],
+            1
           ),
           _vm._v(" "),
           _c(
             "router-link",
             {
               staticClass:
-                "inline-block px-4 py-3 -mb-px border-b-2 border-transparent hover:border-gray-500 text-gray-500",
+                "flex items-center px-4 py-3 -mb-px border-b-2 border-transparent hover:border-gray-500 text-gray-500",
               attrs: { to: { name: "settings.subscription" } }
             },
-            [_vm._v("Subscription")]
+            [
+              _c("icon", {
+                staticClass: "mr-1",
+                attrs: { name: "dollar-sign", width: "18", height: "18" }
+              }),
+              _vm._v("\n            Subscription\n        ")
+            ],
+            1
           )
         ],
         1
