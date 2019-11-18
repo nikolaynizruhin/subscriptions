@@ -1908,7 +1908,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _mixins_toggle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mixins/toggle */ "./resources/js/mixins/toggle.js");
-/* harmony import */ var _Icon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Icon */ "./resources/js/components/Icon.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1938,12 +1937,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AccountDropdown",
-  components: {
-    Icon: _Icon__WEBPACK_IMPORTED_MODULE_2__["default"]
-  },
   mixins: [_mixins_toggle__WEBPACK_IMPORTED_MODULE_1__["default"]],
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['user']),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(['clearUser']), {
@@ -2045,16 +2040,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Icon",
   props: {
@@ -2073,7 +2058,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Icon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Icon */ "./resources/js/components/Icon.vue");
 //
 //
 //
@@ -2083,12 +2067,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Sidebar",
-  components: {
-    Icon: _Icon__WEBPACK_IMPORTED_MODULE_0__["default"]
-  }
+  name: "Sidebar"
 });
 
 /***/ }),
@@ -2105,7 +2085,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _Icon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Icon */ "./resources/js/components/Icon.vue");
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -2132,12 +2111,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Verify",
-  components: {
-    Icon: _Icon__WEBPACK_IMPORTED_MODULE_2__["default"]
-  },
   computed: {
     verifyLink: function verifyLink() {
       return this.$route.query['verify-link'];
@@ -2222,8 +2197,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_Icon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Icon */ "./resources/js/components/Icon.vue");
-/* harmony import */ var _mixins_title__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mixins/title */ "./resources/js/mixins/title.js");
+/* harmony import */ var _mixins_title__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mixins/title */ "./resources/js/mixins/title.js");
 //
 //
 //
@@ -2236,14 +2210,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AuthLayout",
-  components: {
-    Icon: _components_Icon__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
-  mixins: [_mixins_title__WEBPACK_IMPORTED_MODULE_1__["default"]]
+  mixins: [_mixins_title__WEBPACK_IMPORTED_MODULE_0__["default"]]
 });
 
 /***/ }),
@@ -2282,9 +2252,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_AccountDropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/AccountDropdown */ "./resources/js/components/AccountDropdown.vue");
 /* harmony import */ var _components_Sidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Sidebar */ "./resources/js/components/Sidebar.vue");
 /* harmony import */ var _components_Verify__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Verify */ "./resources/js/components/Verify.vue");
-/* harmony import */ var _components_Icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Icon */ "./resources/js/components/Icon.vue");
-/* harmony import */ var _mixins_toggle__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../mixins/toggle */ "./resources/js/mixins/toggle.js");
-/* harmony import */ var _mixins_title__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../mixins/title */ "./resources/js/mixins/title.js");
+/* harmony import */ var _mixins_toggle__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../mixins/toggle */ "./resources/js/mixins/toggle.js");
+/* harmony import */ var _mixins_title__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../mixins/title */ "./resources/js/mixins/title.js");
 //
 //
 //
@@ -2313,7 +2282,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 
 
 
@@ -2324,11 +2292,10 @@ __webpack_require__.r(__webpack_exports__);
   name: "MainLayout",
   components: {
     AccountDropdown: _components_AccountDropdown__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Icon: _components_Icon__WEBPACK_IMPORTED_MODULE_4__["default"],
     Sidebar: _components_Sidebar__WEBPACK_IMPORTED_MODULE_2__["default"],
     Verify: _components_Verify__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
-  mixins: [_mixins_toggle__WEBPACK_IMPORTED_MODULE_5__["default"], _mixins_title__WEBPACK_IMPORTED_MODULE_6__["default"]],
+  mixins: [_mixins_toggle__WEBPACK_IMPORTED_MODULE_4__["default"], _mixins_title__WEBPACK_IMPORTED_MODULE_5__["default"]],
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['user'])
 });
 
@@ -2840,7 +2807,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_Icon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/Icon */ "./resources/js/components/Icon.vue");
 //
 //
 //
@@ -2861,12 +2827,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Settings",
-  components: {
-    Icon: _components_Icon__WEBPACK_IMPORTED_MODULE_0__["default"]
-  }
+  name: "Settings"
 });
 
 /***/ }),
@@ -6278,75 +6240,9 @@ var render = function() {
       }
     },
     [
-      _vm.name === "alert-circle"
-        ? _c("g", [
-            _c("circle", { attrs: { cx: "12", cy: "12", r: "10" } }),
-            _c("line", { attrs: { x1: "12", y1: "8", x2: "12", y2: "12" } }),
-            _c("line", { attrs: { x1: "12", y1: "16", x2: "12.01", y2: "16" } })
-          ])
-        : _vm.name === "chevron-down"
-        ? _c("g", [_c("polyline", { attrs: { points: "6 9 12 15 18 9" } })])
-        : _vm.name === "dollar-sign"
-        ? _c("g", [
-            _c("line", { attrs: { x1: "12", y1: "1", x2: "12", y2: "23" } }),
-            _c("path", {
-              attrs: { d: "M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" }
-            })
-          ])
-        : _vm.name === "layers"
-        ? _c("g", [
-            _c("polygon", { attrs: { points: "12 2 2 7 12 12 22 7 12 2" } }),
-            _c("polyline", { attrs: { points: "2 17 12 22 22 17" } }),
-            _c("polyline", { attrs: { points: "2 12 12 17 22 12" } })
-          ])
-        : _vm.name === "log-out"
-        ? _c("g", [
-            _c("path", {
-              attrs: { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" }
-            }),
-            _c("polyline", { attrs: { points: "16 17 21 12 16 7" } }),
-            _c("line", { attrs: { x1: "21", y1: "12", x2: "9", y2: "12" } })
-          ])
-        : _vm.name === "menu"
-        ? _c("g", [
-            _c("line", { attrs: { x1: "3", y1: "12", x2: "21", y2: "12" } }),
-            _c("line", { attrs: { x1: "3", y1: "6", x2: "21", y2: "6" } }),
-            _c("line", { attrs: { x1: "3", y1: "18", x2: "21", y2: "18" } })
-          ])
-        : _vm.name === "pie-chart"
-        ? _c("g", [
-            _c("path", { attrs: { d: "M21.21 15.89A10 10 0 1 1 8 2.83" } }),
-            _c("path", { attrs: { d: "M22 12A10 10 0 0 0 12 2v10z" } })
-          ])
-        : _vm.name === "settings"
-        ? _c("g", [
-            _c("circle", { attrs: { cx: "12", cy: "12", r: "3" } }),
-            _c("path", {
-              attrs: {
-                d:
-                  "M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
-              }
-            })
-          ])
-        : _vm.name === "shield"
-        ? _c("g", [
-            _c("path", {
-              attrs: { d: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" }
-            })
-          ])
-        : _vm.name === "user"
-        ? _c("g", [
-            _c("path", {
-              attrs: { d: "M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" }
-            }),
-            _c("circle", { attrs: { cx: "12", cy: "7", r: "4" } })
-          ])
-        : _vm.name === "x"
-        ? _c("g", [
-            _c("line", { attrs: { x1: "18", y1: "6", x2: "6", y2: "18" } }),
-            _c("line", { attrs: { x1: "6", y1: "6", x2: "18", y2: "18" } })
-          ])
-        : _vm._e()
+      _c("use", {
+        attrs: { "xlink:href": "/images/feather-sprite.svg#" + _vm.name }
+      })
     ]
   )
 }
@@ -24399,13 +24295,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! nprogress */ "./node_modules/nprogress/nprogress.js");
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(nprogress__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App.vue */ "./resources/js/App.vue");
+/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App */ "./resources/js/App.vue");
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./router */ "./resources/js/router/index.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store */ "./resources/js/store.js");
 /* harmony import */ var _layouts_Auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./layouts/Auth */ "./resources/js/layouts/Auth.vue");
 /* harmony import */ var _layouts_Default__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./layouts/Default */ "./resources/js/layouts/Default.vue");
 /* harmony import */ var _layouts_Main__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./layouts/Main */ "./resources/js/layouts/Main.vue");
-/* harmony import */ var _utils_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./utils/http */ "./resources/js/utils/http.js");
+/* harmony import */ var _components_Icon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Icon */ "./resources/js/components/Icon.vue");
+/* harmony import */ var _utils_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./utils/http */ "./resources/js/utils/http.js");
 
 
 
@@ -24415,6 +24312,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('icon', _components_Icon__WEBPACK_IMPORTED_MODULE_8__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('auth-layout', _layouts_Auth__WEBPACK_IMPORTED_MODULE_5__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('default-layout', _layouts_Default__WEBPACK_IMPORTED_MODULE_6__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('main-layout', _layouts_Main__WEBPACK_IMPORTED_MODULE_7__["default"]);
@@ -24425,7 +24324,7 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   router: _router__WEBPACK_IMPORTED_MODULE_3__["default"],
   store: _store__WEBPACK_IMPORTED_MODULE_4__["default"],
   render: function render(h) {
-    return h(_App_vue__WEBPACK_IMPORTED_MODULE_2__["default"]);
+    return h(_App__WEBPACK_IMPORTED_MODULE_2__["default"]);
   }
 }).$mount('#app');
 

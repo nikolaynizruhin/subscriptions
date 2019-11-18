@@ -31,7 +31,6 @@ import { mapState } from 'vuex'
 import AccountDropdown from "../components/AccountDropdown";
 import Sidebar from "../components/Sidebar";
 import Verify from "../components/Verify";
-import Icon from "../components/Icon";
 import toggle from "../mixins/toggle";
 import title from "../mixins/title";
 
@@ -39,7 +38,6 @@ export default {
     name: "MainLayout",
     components: {
         AccountDropdown,
-        Icon,
         Sidebar,
         Verify,
     },

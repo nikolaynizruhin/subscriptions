@@ -19,11 +19,8 @@
 </template>
 
 <script>
-import Icon from "../../components/Icon"
-
 export default {
-    name: "Settings",
-    components: { Icon },
+    name: "Settings"
 }
 </script>
 

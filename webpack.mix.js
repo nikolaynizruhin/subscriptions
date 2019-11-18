@@ -12,6 +12,5 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/main.js', 'public/js/app.js')
-    .postCss('resources/css/app.css', 'public/css', [
-        require('tailwindcss'),
-    ]);
+    .copy('node_modules/feather-icons/dist/feather-sprite.svg', 'public/images')
+    .postCss('resources/css/app.css', 'public/css', [require('tailwindcss')]);

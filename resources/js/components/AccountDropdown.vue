@@ -22,11 +22,9 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 import toggle from "../mixins/toggle"
-import Icon from "./Icon"
 
 export default {
     name: "AccountDropdown",
-    components: { Icon },
     mixins: [toggle],
     computed: mapState(['user']),
     methods: {

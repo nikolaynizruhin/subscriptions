@@ -11,12 +11,10 @@
 </template>
 
 <script>
-import Icon from '../components/Icon'
 import title from '../mixins/title'
 
 export default {
     name: "AuthLayout",
-    components: { Icon },
     mixins: [title],
 }
 </script>

@@ -17,11 +17,9 @@
 
 <script>
 import { mapMutations } from 'vuex'
-import Icon from "./Icon"
 
 export default {
     name: "Verify",
-    components: { Icon },
     computed: {
         verifyLink () {
             return this.$route.query['verify-link']

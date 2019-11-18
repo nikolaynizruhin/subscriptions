@@ -8,10 +8,7 @@
 </template>
 
 <script>
-import Icon from "./Icon";
-
 export default {
-    name: "Sidebar",
-    components: { Icon },
+    name: "Sidebar"
 }
 </script>
