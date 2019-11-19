@@ -2846,6 +2846,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Profile"
 });
@@ -2861,6 +2885,38 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7507,9 +7563,69 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("Profile")])
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "w-full card" }, [
+      _c("form", { staticClass: "w-full max-w-3xl p-6" }, [
+        _c("div", { staticClass: "md:flex md:items-center mb-6" }, [
+          _c("div", { staticClass: "md:w-1/3" }, [
+            _c(
+              "label",
+              {
+                staticClass: "block mb-1 md:mb-0 pr-4",
+                attrs: { for: "name" }
+              },
+              [_vm._v("Name")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "md:w-2/3" }, [
+            _c("input", {
+              staticClass: "form-input w-full",
+              attrs: { id: "name", type: "text", value: "" }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "md:flex md:items-center" }, [
+          _c("div", { staticClass: "md:w-1/3" }, [
+            _c(
+              "label",
+              {
+                staticClass: "block mb-1 md:mb-0 pr-4",
+                attrs: { for: "email" }
+              },
+              [_vm._v("Email")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "md:w-2/3" }, [
+            _c("input", {
+              staticClass: "form-input w-full",
+              attrs: { id: "email", type: "email", placeholder: "" }
+            })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "bg-gray-100 px-6 py-4" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary w-full sm:w-auto",
+            attrs: { type: "submit" }
+          },
+          [_vm._v("\n            Update\n        ")]
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -7531,9 +7647,89 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("Security")])
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "w-full card" }, [
+      _c("form", { staticClass: "w-full max-w-3xl p-6" }, [
+        _c("div", { staticClass: "md:flex md:items-center mb-6" }, [
+          _c("div", { staticClass: "md:w-1/3" }, [
+            _c(
+              "label",
+              {
+                staticClass: "block mb-1 md:mb-0 pr-4",
+                attrs: { for: "current_password" }
+              },
+              [_vm._v("Current Password")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "md:w-2/3" }, [
+            _c("input", {
+              staticClass: "form-input w-full",
+              attrs: { id: "current_password", type: "password" }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "md:flex md:items-center mb-6" }, [
+          _c("div", { staticClass: "md:w-1/3" }, [
+            _c(
+              "label",
+              {
+                staticClass: "block mb-1 md:mb-0 pr-4",
+                attrs: { for: "new_password" }
+              },
+              [_vm._v("New Password")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "md:w-2/3" }, [
+            _c("input", {
+              staticClass: "form-input w-full",
+              attrs: { id: "new_password", type: "password" }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "md:flex md:items-center" }, [
+          _c("div", { staticClass: "md:w-1/3" }, [
+            _c(
+              "label",
+              {
+                staticClass: "block mb-1 md:mb-0 pr-4",
+                attrs: { for: "confirm_password" }
+              },
+              [_vm._v("Confirm Password")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "md:w-2/3" }, [
+            _c("input", {
+              staticClass: "form-input w-full",
+              attrs: { id: "confirm_password", type: "password" }
+            })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "bg-gray-100 px-6 py-4" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary w-full sm:w-auto",
+            attrs: { type: "submit" }
+          },
+          [_vm._v("\n            Update\n        ")]
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
