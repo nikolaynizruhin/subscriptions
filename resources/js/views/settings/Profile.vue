@@ -49,7 +49,7 @@ export default {
     methods: {
         ...mapMutations(['setUser', 'setFlash']),
         async update () {
-            const user = await this.form.put('/api/profile')
+            const user = await this.form.put('/api/user')
 
             this.setUser(user)
 

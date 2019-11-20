@@ -7,14 +7,14 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ProfileTest extends TestCase
+class UserTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
     /** @test */
     public function guest_cant_update_profile()
     {
-        $this->putJson(route('profile'))
+        $this->putJson(route('user.update'))
             ->assertUnauthorized();
     }
 
@@ -24,7 +24,7 @@ class ProfileTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user, 'api')
-            ->putJson(route('profile'), $userData = [
+            ->putJson(route('user.update'), $userData = [
                 'name' => $this->faker->name,
                 'email' => $this->faker->unique()->safeEmail,
             ])->assertSuccessful()
@@ -39,7 +39,7 @@ class ProfileTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user, 'api')
-            ->putJson(route('profile'), [
+            ->putJson(route('user.update'), [
                 'email' => $this->faker->unique()->safeEmail,
             ])->assertJsonValidationErrors('name');
     }
@@ -50,7 +50,7 @@ class ProfileTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user, 'api')
-            ->putJson(route('profile'), [
+            ->putJson(route('user.update'), [
                 'name' => $this->faker->name,
             ])->assertJsonValidationErrors('email');
     }
@@ -61,7 +61,7 @@ class ProfileTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user, 'api')
-            ->putJson(route('profile'), [
+            ->putJson(route('user.update'), [
                 'email' => 'invalid',
             ])->assertJsonValidationErrors('email');
     }
@@ -73,7 +73,7 @@ class ProfileTest extends TestCase
         $existingUser = factory(User::class)->create();
 
         $this->actingAs($user, 'api')
-            ->putJson(route('profile'), [
+            ->putJson(route('user.update'), [
                 'email' => $existingUser->email,
             ])->assertJsonValidationErrors('email');
     }
@@ -84,7 +84,7 @@ class ProfileTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user, 'api')
-            ->putJson(route('profile'), [
+            ->putJson(route('user.update'), [
                 'name' => $user->name,
                 'email' => $user->email,
             ])->assertSuccessful();

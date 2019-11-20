@@ -30,12 +30,9 @@ Route::post('email/resend', 'Auth\VerificationController@resend')->name('verific
 // Password Confirmation
 Route::post('password/confirm', 'Auth\ConfirmPasswordController@confirm')->name('password.confirm');
 
-// Profile
-Route::put('profile', 'ProfileController@update')->name('profile');
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Account
+Route::get('user', 'UserController@show')->name('user.show');
+Route::put('user', 'UserController@update')->name('user.update');
 
 Route::middleware('password.confirm')->get('settings', function (Request $request) {
     return $request->user();
