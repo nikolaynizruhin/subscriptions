@@ -39,7 +39,7 @@ class DuskServiceProvider extends ServiceProvider
         Browser::macro('signOut', function (User $user) {
             $this->visit('/')
                 ->waitForLocation('/')
-                ->press($user->name)
+                ->click('@account-button')
                 ->clickLink('Logout')
                 ->assertPathIs('/login');
 
