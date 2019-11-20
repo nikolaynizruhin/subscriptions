@@ -28,8 +28,8 @@ class PasswordController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'password' => ['required', 'string', 'min:8', 'max:255', 'password:api'],
-            'new_password' => ['required', 'string', 'min:8', 'max:255', 'confirmed'],
+            'password' => 'required|string|min:8|max:255|password:api',
+            'new_password' => 'required|string|min:8|max:255|confirmed',
         ]);
 
         $request->user()->update([
