@@ -1941,10 +1941,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: "AccountDropdown",
   mixins: [_mixins_toggle__WEBPACK_IMPORTED_MODULE_1__["default"]],
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['user']),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(['clearUser']), {
-    logout: function logout() {
-      delete localStorage.token;
-      this.clearUser();
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(['logout']), {
+    signOut: function signOut() {
+      this.logout();
       this.$router.push('/login');
     }
   })
@@ -2943,6 +2942,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var form_backend_validation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! form-backend-validation */ "./node_modules/form-backend-validation/dist/index.js");
+/* harmony import */ var form_backend_validation__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(form_backend_validation__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2979,8 +2991,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Security"
+  name: "Security",
+  data: function data() {
+    return {
+      form: new form_backend_validation__WEBPACK_IMPORTED_MODULE_2___default.a({
+        password: '',
+        new_password: '',
+        new_password_confirmation: ''
+      })
+    };
+  },
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setFlash', 'logout']), {
+    update: function update() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function update$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.form.put('/api/user/password'));
+
+            case 2:
+              this.setFlash({
+                message: 'Password updated successfully!'
+              });
+              this.logout();
+              this.$router.push('/login');
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, null, this);
+    }
+  })
 });
 
 /***/ }),
@@ -6259,7 +6309,7 @@ var render = function() {
                 on: {
                   click: function($event) {
                     $event.preventDefault()
-                    return _vm.logout($event)
+                    return _vm.signOut($event)
                   }
                 }
               },
@@ -7178,6 +7228,7 @@ var render = function() {
             type: "password",
             name: "password",
             id: "password",
+            autofocus: "",
             required: ""
           },
           domProps: { value: _vm.form.password },
@@ -7801,15 +7852,18 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "w-full card" }, [
-      _c("form", [
+  return _c("div", { staticClass: "w-full card" }, [
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.update($event)
+          }
+        }
+      },
+      [
         _c(
           "div",
           {
@@ -7817,22 +7871,45 @@ var staticRenderFns = [
               "md:flex md:items-center mb-6 w-full max-w-3xl px-6 pt-6"
           },
           [
-            _c("div", { staticClass: "md:w-1/3" }, [
-              _c(
-                "label",
-                {
-                  staticClass: "block mb-1 md:mb-0 pr-4",
-                  attrs: { for: "current_password" }
-                },
-                [_vm._v("Current Password")]
-              )
-            ]),
+            _vm._m(0),
             _vm._v(" "),
             _c("div", { staticClass: "md:w-2/3" }, [
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.password,
+                    expression: "form.password"
+                  }
+                ],
                 staticClass: "form-input w-full",
-                attrs: { id: "current_password", type: "password" }
-              })
+                class: { "is-invalid": _vm.form.errors.has("password") },
+                attrs: {
+                  name: "password",
+                  id: "password",
+                  type: "password",
+                  required: ""
+                },
+                domProps: { value: _vm.form.password },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "password", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.form.errors.has("password")
+                ? _c("p", {
+                    staticClass: "text-red-500 text-sm mt-1",
+                    domProps: {
+                      textContent: _vm._s(_vm.form.errors.first("password"))
+                    }
+                  })
+                : _vm._e()
             ])
           ]
         ),
@@ -7841,22 +7918,46 @@ var staticRenderFns = [
           "div",
           { staticClass: "md:flex md:items-center mb-6 w-full max-w-3xl px-6" },
           [
-            _c("div", { staticClass: "md:w-1/3" }, [
-              _c(
-                "label",
-                {
-                  staticClass: "block mb-1 md:mb-0 pr-4",
-                  attrs: { for: "new_password" }
-                },
-                [_vm._v("New Password")]
-              )
-            ]),
+            _vm._m(1),
             _vm._v(" "),
             _c("div", { staticClass: "md:w-2/3" }, [
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.new_password,
+                    expression: "form.new_password"
+                  }
+                ],
                 staticClass: "form-input w-full",
-                attrs: { id: "new_password", type: "password" }
-              })
+                class: { "is-invalid": _vm.form.errors.has("new_password") },
+                attrs: {
+                  name: "new_password",
+                  id: "new_password",
+                  type: "password",
+                  minlength: "8",
+                  required: ""
+                },
+                domProps: { value: _vm.form.new_password },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "new_password", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.form.errors.has("new_password")
+                ? _c("p", {
+                    staticClass: "text-red-500 text-sm mt-1",
+                    domProps: {
+                      textContent: _vm._s(_vm.form.errors.first("new_password"))
+                    }
+                  })
+                : _vm._e()
             ])
           ]
         ),
@@ -7865,21 +7966,39 @@ var staticRenderFns = [
           "div",
           { staticClass: "md:flex md:items-center w-full max-w-3xl px-6 pb-6" },
           [
-            _c("div", { staticClass: "md:w-1/3" }, [
-              _c(
-                "label",
-                {
-                  staticClass: "block mb-1 md:mb-0 pr-4",
-                  attrs: { for: "confirm_password" }
-                },
-                [_vm._v("Confirm Password")]
-              )
-            ]),
+            _vm._m(2),
             _vm._v(" "),
             _c("div", { staticClass: "md:w-2/3" }, [
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.new_password_confirmation,
+                    expression: "form.new_password_confirmation"
+                  }
+                ],
                 staticClass: "form-input w-full",
-                attrs: { id: "confirm_password", type: "password" }
+                attrs: {
+                  name: "new_password_confirmation",
+                  id: "confirm_password",
+                  type: "password",
+                  minlength: "8",
+                  required: ""
+                },
+                domProps: { value: _vm.form.new_password_confirmation },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.form,
+                      "new_password_confirmation",
+                      $event.target.value
+                    )
+                  }
+                }
               })
             ])
           ]
@@ -7890,12 +8009,65 @@ var staticRenderFns = [
             "button",
             {
               staticClass: "btn btn-primary w-full sm:w-auto",
-              attrs: { type: "submit" }
+              attrs: { type: "submit", disabled: _vm.form.processing }
             },
-            [_vm._v("\n                Update\n            ")]
+            [
+              _vm.form.processing
+                ? _c("span", { staticClass: "spinner" })
+                : _vm._e(),
+              _vm._v(
+                "\n                " +
+                  _vm._s(_vm.form.processing ? "Loading..." : "Update") +
+                  "\n            "
+              )
+            ]
           )
         ])
-      ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "md:w-1/3" }, [
+      _c(
+        "label",
+        { staticClass: "block mb-1 md:mb-0 pr-4", attrs: { for: "password" } },
+        [_vm._v("Current Password")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "md:w-1/3" }, [
+      _c(
+        "label",
+        {
+          staticClass: "block mb-1 md:mb-0 pr-4",
+          attrs: { for: "new_password" }
+        },
+        [_vm._v("New Password")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "md:w-1/3" }, [
+      _c(
+        "label",
+        {
+          staticClass: "block mb-1 md:mb-0 pr-4",
+          attrs: { for: "confirm_password" }
+        },
+        [_vm._v("Confirm Password")]
+      )
     ])
   }
 ]
@@ -25050,9 +25222,6 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
     setUser: function setUser(state, user) {
       state.user = user;
     },
-    clearUser: function clearUser(state) {
-      state.user = {};
-    },
     setFlash: function setFlash(state, _ref) {
       var message = _ref.message,
           _ref$type = _ref.type,
@@ -25063,6 +25232,10 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
     clearFlash: function clearFlash(state) {
       state.flash.message = null;
       state.flash.type = null;
+    },
+    logout: function logout(state) {
+      delete localStorage.token;
+      state.user = {};
     }
   },
   actions: {
@@ -25151,8 +25324,7 @@ window.axios.interceptors.response.use(function (response) {
   return response;
 }, function (error) {
   if (error.response.status === 401) {
-    delete localStorage.token;
-    _store__WEBPACK_IMPORTED_MODULE_2__["default"].commit('clearUser');
+    _store__WEBPACK_IMPORTED_MODULE_2__["default"].commit('logout');
     return _router__WEBPACK_IMPORTED_MODULE_1__["default"].push('/login');
   }
 

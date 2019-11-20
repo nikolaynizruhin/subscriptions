@@ -15,9 +15,6 @@ export default new Vuex.Store({
         setUser (state, user) {
             state.user = user
         },
-        clearUser (state) {
-            state.user = {}
-        },
         setFlash (state, { message, type = 'success' }) {
             state.flash.message = message
             state.flash.type = type
@@ -25,6 +22,11 @@ export default new Vuex.Store({
         clearFlash (state) {
             state.flash.message = null
             state.flash.type = null
+        },
+        logout (state) {
+            delete localStorage.token
+
+            state.user = {}
         }
     },
     actions: {

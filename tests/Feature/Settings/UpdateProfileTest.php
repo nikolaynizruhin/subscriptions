@@ -1,13 +1,14 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Settings;
 
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
-class UserTest extends TestCase
+class UpdateProfileTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
@@ -45,6 +46,30 @@ class UserTest extends TestCase
     }
 
     /** @test */
+    public function name_should_be_a_string()
+    {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user, 'api')
+            ->putJson(route('user.update'), [
+                'name' => 1,
+                'email' => $this->faker->unique()->safeEmail,
+            ])->assertJsonValidationErrors('name');
+    }
+
+    /** @test */
+    public function name_should_be_less_than_255_chars()
+    {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user, 'api')
+            ->putJson(route('user.update'), [
+                'name' => str_repeat('a', 256),
+                'email' => $this->faker->unique()->safeEmail,
+            ])->assertJsonValidationErrors('name');
+    }
+
+    /** @test */
     public function email_is_required()
     {
         $user = factory(User::class)->create();
@@ -62,7 +87,32 @@ class UserTest extends TestCase
 
         $this->actingAs($user, 'api')
             ->putJson(route('user.update'), [
+                'name' => $this->faker->name,
                 'email' => 'invalid',
+            ])->assertJsonValidationErrors('email');
+    }
+
+    /** @test */
+    public function email_should_be_a_string()
+    {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user, 'api')
+            ->putJson(route('user.update'), [
+                'name' => $this->faker->name,
+                'email' => 1,
+            ])->assertJsonValidationErrors('email');
+    }
+
+    /** @test */
+    public function email_should_be_less_than_255_chars()
+    {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user, 'api')
+            ->putJson(route('user.update'), [
+                'name' => $this->faker->name,
+                'email' => str_repeat('a', 256),
             ])->assertJsonValidationErrors('email');
     }
 

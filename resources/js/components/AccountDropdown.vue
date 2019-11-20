@@ -11,7 +11,7 @@
                 <icon name="settings" width="18" height="18"/>
                 <span class="ml-2">Settings</span>
             </router-link>
-            <a href="#" @click.prevent="logout" class="flex items-center px-3 py-1 hover:bg-gray-300">
+            <a href="#" @click.prevent="signOut" class="flex items-center px-3 py-1 hover:bg-gray-300">
                 <icon name="log-out" width="18" height="18"/>
                 <span class="ml-2">Logout</span>
             </a>
@@ -28,11 +28,9 @@ export default {
     mixins: [toggle],
     computed: mapState(['user']),
     methods: {
-        ...mapMutations(['clearUser']),
-        logout () {
-            delete localStorage.token
-
-            this.clearUser()
+        ...mapMutations(['logout']),
+        signOut () {
+            this.logout()
 
             this.$router.push('/login')
         }

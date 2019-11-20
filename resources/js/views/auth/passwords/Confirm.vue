@@ -2,7 +2,7 @@
     <form @submit.prevent="confirm" class="p-6">
         <div class="mb-6">
             <label for="password" class="block mb-2">Password</label>
-            <input v-model="form.password" type="password" name="password" class="form-input w-full" :class="{ 'is-invalid': form.errors.has('password') }" id="password" required>
+            <input v-model="form.password" type="password" name="password" class="form-input w-full" :class="{ 'is-invalid': form.errors.has('password') }" id="password" autofocus required>
             <p class="text-red-500 text-sm mt-1" v-if="form.errors.has('password')" v-text="form.errors.first('password')"></p>
         </div>
         <div class="flex flex-col sm:flex-row items-center">

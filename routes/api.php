@@ -34,6 +34,9 @@ Route::post('password/confirm', 'Auth\ConfirmPasswordController@confirm')->name(
 Route::get('user', 'UserController@show')->name('user.show');
 Route::put('user', 'UserController@update')->name('user.update');
 
+// Update Password
+Route::put('user/password', 'User\PasswordController@update')->name('user.password.update');
+
 Route::middleware('password.confirm')->get('settings', function (Request $request) {
     return $request->user();
 })->name('settings');
