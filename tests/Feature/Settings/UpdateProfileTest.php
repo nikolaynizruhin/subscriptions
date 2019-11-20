@@ -5,7 +5,6 @@ namespace Tests\Feature\Settings;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class UpdateProfileTest extends TestCase
