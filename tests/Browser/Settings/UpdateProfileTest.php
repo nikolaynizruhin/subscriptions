@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
-class ProfileTest extends DuskTestCase
+class UpdateProfileTest extends DuskTestCase
 {
     use DatabaseMigrations, WithFaker;
 

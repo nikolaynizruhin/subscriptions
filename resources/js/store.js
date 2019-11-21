@@ -23,6 +23,11 @@ export default new Vuex.Store({
             state.flash.message = null
             state.flash.type = null
         },
+        login (state, { token, user }) {
+            localStorage.token = token
+
+            state.user = user
+        },
         logout (state) {
             delete localStorage.token
 

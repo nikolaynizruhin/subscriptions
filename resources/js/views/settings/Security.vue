@@ -53,15 +53,13 @@ export default {
         }
     },
     methods: {
-        ...mapMutations(['setFlash', 'logout']),
+        ...mapMutations(['setFlash', 'login']),
         async update () {
-            await this.form.put('/api/user/password')
+            const data = await this.form.put('/api/user/password')
+
+            this.login(data)
 
             this.setFlash({ message: 'Password updated successfully!' })
-
-            this.logout()
-
-            this.$router.push('/login')
         }
     }
 }

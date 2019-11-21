@@ -31,7 +31,10 @@ class UpdatePasswordTest extends TestCase
                 'new_password' => $newPassword = 'new_password',
                 'new_password_confirmation' => $newPassword,
             ])->assertSuccessful()
-                ->assertJson($user->toArray());
+                ->assertJson([
+                    'token' => $user->api_token,
+                    'user' => $user->toArray(),
+                ]);
 
         $this->assertTrue(Hash::check($newPassword, $user->password));
         $this->assertNotEquals($oldApiToken, $user->api_token);

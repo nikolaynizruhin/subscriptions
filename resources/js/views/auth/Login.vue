@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit.prevent="login" class="p-6">
+        <form @submit.prevent="signIn" class="p-6">
             <div class="mb-6">
                 <label for="email" class="block mb-2">Email</label>
                 <input v-model="form.email" type="email" name="email" class="form-input w-full" :class="{ 'is-invalid': form.errors.has('email') }" id="email" autofocus required>
@@ -45,13 +45,11 @@ export default {
         }
     },
     methods: {
-        ...mapMutations(['setUser']),
-        async login () {
-            const { token, user } = await this.form.post('/api/login')
+        ...mapMutations(['login']),
+        async signIn () {
+            const data = await this.form.post('/api/login')
 
-            localStorage.token = token
-
-            this.setUser(user)
+            this.login(data)
 
             this.$router.push(this.$route.query.redirect || '/')
         }

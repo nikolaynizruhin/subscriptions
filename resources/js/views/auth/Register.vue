@@ -51,13 +51,11 @@ export default {
         }
     },
     methods: {
-        ...mapMutations(['setUser']),
+        ...mapMutations(['login']),
         async register () {
-            const { token, user } = await this.form.post('/api/register')
+            const data = await this.form.post('/api/register')
 
-            localStorage.token = token
-
-            this.setUser(user)
+            this.login(data)
 
             this.$router.push({ name: 'dashboard' })
         }

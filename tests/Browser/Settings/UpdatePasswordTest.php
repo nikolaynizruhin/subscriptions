@@ -26,13 +26,6 @@ class UpdatePasswordTest extends DuskTestCase
                 ->press('Update')
                 ->waitForText('Password updated successfully!')
                 ->assertSee('Password updated successfully!')
-                ->waitForLocation('/login')
-                ->assertPathIs('/login')
-                ->type('email', $user->email)
-                ->type('password', $newPassword)
-                ->press('Login')
-                ->waitForLocation('/')
-                ->assertPathIs('/')
                 ->signOut($user);
         });
     }

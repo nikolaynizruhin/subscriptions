@@ -34,9 +34,9 @@ class PasswordController extends Controller
 
         $request->user()->update([
             'password' => Hash::make($request->new_password),
-            'api_token' => Str::random(60),
+            'api_token' => $token = Str::random(60),
         ]);
 
-        return $request->user();
+        return ['token' => $token, 'user' => $request->user()];
     }
 }

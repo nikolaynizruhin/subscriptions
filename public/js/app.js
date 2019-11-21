@@ -2406,11 +2406,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })
     };
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setUser']), {
-    login: function login() {
-      var _ref, token, user;
-
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function login$(_context) {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['login']), {
+    signIn: function signIn() {
+      var data;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function signIn$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
@@ -2418,14 +2417,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.form.post('/api/login'));
 
             case 2:
-              _ref = _context.sent;
-              token = _ref.token;
-              user = _ref.user;
-              localStorage.token = token;
-              this.setUser(user);
+              data = _context.sent;
+              this.login(data);
               this.$router.push(this.$route.query.redirect || '/');
 
-            case 8:
+            case 5:
             case "end":
               return _context.stop();
           }
@@ -2509,10 +2505,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })
     };
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setUser']), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['login']), {
     register: function register() {
-      var _ref, token, user;
-
+      var data;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function register$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -2521,16 +2516,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.form.post('/api/register'));
 
             case 2:
-              _ref = _context.sent;
-              token = _ref.token;
-              user = _ref.user;
-              localStorage.token = token;
-              this.setUser(user);
+              data = _context.sent;
+              this.login(data);
               this.$router.push({
                 name: 'dashboard'
               });
 
-            case 8:
+            case 5:
             case "end":
               return _context.stop();
           }
@@ -2760,7 +2752,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })
     };
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setFlash', 'setUser']), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setFlash', 'login']), {
     reset: function reset() {
       var _ref, token, status, user;
 
@@ -2776,8 +2768,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               token = _ref.token;
               status = _ref.status;
               user = _ref.user;
-              localStorage.token = token;
-              this.setUser(user);
+              this.login({
+                token: token,
+                user: user
+              });
               this.setFlash({
                 message: status
               });
@@ -2785,7 +2779,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 name: 'dashboard'
               });
 
-            case 10:
+            case 9:
             case "end":
               return _context.stop();
           }
@@ -3007,8 +3001,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })
     };
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setFlash', 'logout']), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setFlash', 'login']), {
     update: function update() {
+      var data;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function update$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -3017,11 +3012,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.form.put('/api/user/password'));
 
             case 2:
+              data = _context.sent;
+              this.login(data);
               this.setFlash({
                 message: 'Password updated successfully!'
               });
-              this.logout();
-              this.$router.push('/login');
 
             case 5:
             case "end":
@@ -6797,7 +6792,7 @@ var render = function() {
         on: {
           submit: function($event) {
             $event.preventDefault()
-            return _vm.login($event)
+            return _vm.signIn($event)
           }
         }
       },
@@ -25233,26 +25228,32 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
       state.flash.message = null;
       state.flash.type = null;
     },
+    login: function login(state, _ref2) {
+      var token = _ref2.token,
+          user = _ref2.user;
+      localStorage.token = token;
+      state.user = user;
+    },
     logout: function logout(state) {
       delete localStorage.token;
       state.user = {};
     }
   },
   actions: {
-    getUser: function getUser(_ref2) {
-      var commit, _ref3, data;
+    getUser: function getUser(_ref3) {
+      var commit, _ref4, data;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function getUser$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              commit = _ref2.commit;
+              commit = _ref3.commit;
               _context.next = 3;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.get('/api/user'));
 
             case 3:
-              _ref3 = _context.sent;
-              data = _ref3.data;
+              _ref4 = _context.sent;
+              data = _ref4.data;
               commit('setUser', data);
 
             case 6:
