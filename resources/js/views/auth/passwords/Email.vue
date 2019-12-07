@@ -3,10 +3,10 @@
         <div class="mb-6">
             <label for="email" class="block mb-2">Email</label>
             <input v-model="form.email" type="email" name="email" class="form-input w-full" :class="{ 'is-invalid': form.errors.has('email') }" id="email" autofocus required>
-            <p class="text-red-500 text-sm mt-1" v-if="form.errors.has('email')" v-text="form.errors.first('email')"></p>
+            <p class="text-red-500 text-sm mt-1" v-if="form.errors.has('email')" v-text="form.errors.first('email')"/>
         </div>
         <button type="submit" class="btn btn-primary w-full sm:w-auto" :disabled="form.processing">
-            <span v-if="form.processing" class="spinner"></span>
+            <span v-if="form.processing" class="spinner"/>
             {{ form.processing ? 'Loading...' : 'Send Password Reset Link' }}
         </button>
     </form>

@@ -15,7 +15,7 @@ class UpdatePasswordTest extends TestCase
     /** @test */
     public function guest_cant_update_password()
     {
-        $this->putJson(route('user.password.update'))
+        $this->putJson(route('password.update'))
             ->assertUnauthorized();
     }
 
@@ -26,7 +26,7 @@ class UpdatePasswordTest extends TestCase
         $oldApiToken = $user->api_token;
 
         $this->actingAs($user, 'api')
-            ->putJson(route('user.password.update'), [
+            ->putJson(route('password.update'), [
                 'password' => 'password',
                 'new_password' => $newPassword = 'new_password',
                 'new_password_confirmation' => $newPassword,
@@ -46,7 +46,7 @@ class UpdatePasswordTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user, 'api')
-            ->putJson(route('user.password.update'), [
+            ->putJson(route('password.update'), [
                 'new_password' => $newPassword = $this->faker->password(8),
                 'new_password_confirmation' => $newPassword,
             ])->assertJsonValidationErrors('password');
@@ -58,7 +58,7 @@ class UpdatePasswordTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user, 'api')
-            ->putJson(route('user.password.update'), [
+            ->putJson(route('password.update'), [
                 'password' => 1,
                 'new_password' => $newPassword = $this->faker->password(8),
                 'new_password_confirmation' => $newPassword,
@@ -71,7 +71,7 @@ class UpdatePasswordTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user, 'api')
-            ->putJson(route('user.password.update'), [
+            ->putJson(route('password.update'), [
                 'password' => str_repeat('a', 256),
                 'new_password' => $newPassword = $this->faker->password(8),
                 'new_password_confirmation' => $newPassword,
@@ -84,7 +84,7 @@ class UpdatePasswordTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user, 'api')
-            ->putJson(route('user.password.update'), [
+            ->putJson(route('password.update'), [
                 'password' => str_repeat('a', 7),
                 'new_password' => $newPassword = $this->faker->password(8),
                 'new_password_confirmation' => $newPassword,
@@ -97,7 +97,7 @@ class UpdatePasswordTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user, 'api')
-            ->putJson(route('user.password.update'), [
+            ->putJson(route('password.update'), [
                 'password' => 'does_not_match',
                 'new_password' => $newPassword = $this->faker->password(8),
                 'new_password_confirmation' => $newPassword,
@@ -110,7 +110,7 @@ class UpdatePasswordTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user, 'api')
-            ->putJson(route('user.password.update'), ['password' => 'password'])
+            ->putJson(route('password.update'), ['password' => 'password'])
             ->assertJsonValidationErrors('new_password');
     }
 
@@ -120,7 +120,7 @@ class UpdatePasswordTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user, 'api')
-            ->putJson(route('user.password.update'), [
+            ->putJson(route('password.update'), [
                 'password' => 'password',
                 'new_password' => 1,
             ])->assertJsonValidationErrors('new_password');
@@ -132,7 +132,7 @@ class UpdatePasswordTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user, 'api')
-            ->putJson(route('user.password.update'), [
+            ->putJson(route('password.update'), [
                 'password' => 'password',
                 'new_password' => str_repeat('a', 256),
             ])->assertJsonValidationErrors('new_password');
@@ -144,7 +144,7 @@ class UpdatePasswordTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user, 'api')
-            ->putJson(route('user.password.update'), [
+            ->putJson(route('password.update'), [
                 'password' => str_repeat('a', 7),
                 'new_password' => str_repeat('a', 7),
             ])->assertJsonValidationErrors('new_password');
@@ -156,7 +156,7 @@ class UpdatePasswordTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user, 'api')
-            ->putJson(route('user.password.update'), [
+            ->putJson(route('password.update'), [
                 'password' => 'password',
                 'new_password' => $newPassword = $this->faker->password(8),
             ])->assertJsonValidationErrors('new_password');

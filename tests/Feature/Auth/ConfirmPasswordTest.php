@@ -18,7 +18,7 @@ class ConfirmPasswordTest extends TestCase
         $this->assertNull($user->password_confirmed_at);
 
         $this->actingAs($user, 'api')
-            ->getJson(route('settings'))
+            ->putJson(route('password.update'))
             ->assertStatus(423)
             ->assertJsonStructure(['message']);
     }
@@ -31,7 +31,7 @@ class ConfirmPasswordTest extends TestCase
         $this->assertNotNull($user->password_confirmed_at);
 
         $this->actingAs($user, 'api')
-            ->getJson(route('settings'))
+            ->putJson(route('password.update'))
             ->assertStatus(423)
             ->assertJsonStructure(['message']);
     }
@@ -42,8 +42,11 @@ class ConfirmPasswordTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user, 'api')
-            ->getJson(route('settings'))
-            ->assertSuccessful();
+            ->putJson(route('password.update'), [
+                'password' => 'password',
+                'new_password' => $newPassword = 'new_password',
+                'new_password_confirmation' => $newPassword,
+            ])->assertSuccessful();
     }
 
     /** @test */

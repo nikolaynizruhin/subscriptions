@@ -18,7 +18,7 @@
         <div class="flex flex-grow">
             <sidebar :class="isOpen ? 'slide-in' : 'slide-out'"/>
             <main class="flex-grow p-6 relative sm:static">
-                <div v-if="isOpen" @click="close" class="sm:hidden absolute inset-0 bg-gray-500 opacity-50"></div>
+                <div v-if="isOpen" @click="close" class="sm:hidden absolute inset-0 bg-black opacity-25"></div>
                 <verify v-if="!user.email_verified_at"/>
                 <slot/>
             </main>

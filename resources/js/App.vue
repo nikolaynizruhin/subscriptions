@@ -3,6 +3,7 @@
         <component :is="layout">
             <router-view/>
         </component>
+        <portal-target name="modal"></portal-target>
         <flash/>
     </div>
 </template>

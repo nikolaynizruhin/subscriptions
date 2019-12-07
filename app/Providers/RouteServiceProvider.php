@@ -23,9 +23,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-
         parent::boot();
+
+        Route::bind('payment_method', function ($value) {
+            return request()->user()->findPaymentMethod($value) ?: abort(404);
+        });
     }
 
     /**

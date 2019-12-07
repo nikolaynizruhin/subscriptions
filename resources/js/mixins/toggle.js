@@ -5,10 +5,15 @@ export default {
         }
     },
     created () {
-        document.addEventListener('keydown', this.handleEscape)
-    },
-    beforeDestroy () {
-        document.removeEventListener('keydown', this.handleEscape)
+        const handleEscape = event => {
+            if (event.key === 'Escape') {
+                this.isOpen = false
+            }
+        }
+
+        document.addEventListener('keydown', handleEscape)
+
+        this.$once('hook:beforeDestroy', () => document.removeEventListener('keydown', handleEscape))
     },
     methods: {
         toggle () {
@@ -17,10 +22,5 @@ export default {
         close () {
             this.isOpen = false
         },
-        handleEscape (event) {
-            if (event.key === 'Escape') {
-                this.isOpen = false
-            }
-        }
     }
 }

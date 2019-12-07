@@ -12,16 +12,20 @@
 
 /* Button */
 .btn {
-    @apply text-white px-4 py-2 rounded shadow font-bold;
+    @apply px-4 py-2 rounded font-bold;
 }
 
 .btn:focus {
-    @apply outline-none shadow-outline;
+    @apply outline-none;
 }
 
 /* Button Primary */
 .btn-primary {
-    @apply bg-blue-500;
+    @apply text-white bg-blue-500 shadow;
+}
+
+.btn-primary:focus {
+    @apply shadow-outline;
 }
 
 .btn-primary:disabled {
@@ -30,6 +34,36 @@
 
 .btn-primary:hover:enabled {
     @apply bg-blue-700;
+}
+
+/* Button Danger */
+.btn-danger {
+    @apply text-white bg-red-600 shadow;
+}
+
+.btn-danger:focus {
+    @apply shadow-outline;
+}
+
+.btn-danger:disabled {
+    @apply opacity-75 cursor-not-allowed;
+}
+
+.btn-danger:hover:enabled {
+    @apply bg-red-800;
+}
+
+/* Button Link */
+.btn-link {
+    @apply text-gray-500;
+}
+
+.btn-link:disabled {
+    @apply opacity-75 cursor-not-allowed;
+}
+
+.btn-link:hover:enabled {
+    @apply text-gray-600;
 }
 
 /* Invalid Input */
@@ -78,6 +112,24 @@ aside > .router-link-exact-active {
 nav > .router-link-exact-active,
 nav > .router-link-exact-active:hover {
     @apply border-gray-800 text-gray-800;
+}
+
+/* Stripe */
+.StripeElement--focus {
+    @apply border-blue-400 shadow-outline;
+}
+
+.StripeElement--invalid {
+    @apply border-red-500;
+}
+
+.StripeElement--focus.StripeElement--invalid {
+    box-shadow: 0 0 0 3px rgba(245, 101, 101, 0.5) !important;
+}
+
+.StripeElement--focus.is-invalid {
+    @apply border-red-500;
+    box-shadow: 0 0 0 3px rgba(245, 101, 101, 0.5);
 }
 
 @tailwind utilities;

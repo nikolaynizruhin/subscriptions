@@ -17,7 +17,7 @@ class ResetPasswordTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $this->postJson(route('password.update'), [
+        $this->postJson(route('password.reset'), [
             'token' => Password::createToken($user),
             'email' => $user->email,
             'password' => 'new_password',
@@ -35,7 +35,7 @@ class ResetPasswordTest extends TestCase
     /** @test */
     public function guest_cant_reset_password()
     {
-        $this->postJson(route('password.update'), [
+        $this->postJson(route('password.reset'), [
             'token' => 'token',
             'email' => 'missing@example.com',
             'password' => 'new_password',
@@ -48,7 +48,7 @@ class ResetPasswordTest extends TestCase
     /** @test */
     public function email_is_required_to_reset_password()
     {
-        $this->postJson(route('password.update'))
+        $this->postJson(route('password.reset'))
             ->assertJsonValidationErrors('email');
     }
 
@@ -57,7 +57,7 @@ class ResetPasswordTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $this->postJson(route('password.update'), [
+        $this->postJson(route('password.reset'), [
             'token' => Password::createToken($user),
             'email' => 'invalid',
             'password' => 'new_password',
@@ -77,7 +77,7 @@ class ResetPasswordTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $this->postJson(route('password.update'), [
+        $this->postJson(route('password.reset'), [
             'token' => Password::createToken($user),
             'email' => 'invalid',
             'password' => 'less',
@@ -88,7 +88,7 @@ class ResetPasswordTest extends TestCase
     /** @test */
     public function token_is_required_to_reset_password()
     {
-        $this->postJson(route('password.update'))
+        $this->postJson(route('password.reset'))
             ->assertJsonValidationErrors('token');
     }
 }
