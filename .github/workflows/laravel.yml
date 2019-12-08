@@ -8,7 +8,7 @@ jobs:
     env:
       APP_URL: http://127.0.0.1:8000
       DB_CONNECTION: sqlite
-      DB_DATABASE: ${{ GITHUB_WORKSPACE }}/database/database.sqlite
+      DB_DATABASE: database/database.sqlite
       DB_FOREIGN_KEYS: true
       MAIL_DRIVER: log
       STRIPE_KEY: ${{ secrets.STRIPE_KEY }}
