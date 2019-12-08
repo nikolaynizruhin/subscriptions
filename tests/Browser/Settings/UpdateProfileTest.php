@@ -15,10 +15,6 @@ class UpdateProfileTest extends DuskTestCase
     /** @test */
     public function user_can_update_own_profile()
     {
-        dump(config('app'));
-        dump(config('database'));
-        dump(config('cashier'));
-
         $user = factory(User::class)->create();
 
         $this->browse(function (Browser $browser) use ($user) {
