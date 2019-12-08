@@ -2212,6 +2212,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -2230,7 +2234,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       isOpen: false
     };
   },
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(['paymentMethods']),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(['paymentMethods']), {
+    hasNoPaymentMethods: function hasNoPaymentMethods() {
+      return !this.paymentMethods.length;
+    }
+  }),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setFlash']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['getPaymentMethods']), {
     isDefault: function isDefault(paymentMethod) {
       return paymentMethod.id === this.customer.invoice_settings.default_payment_method;
@@ -7680,6 +7688,29 @@ var render = function() {
         ? _c("div", { staticClass: "flex items-center justify-center p-6" }, [
             _c("span", { staticClass: "spinner text-gray-500 w-6 h-6" })
           ])
+        : _vm._e(),
+      _vm._v(" "),
+      !_vm.loading && _vm.hasNoPaymentMethods
+        ? _c(
+            "div",
+            { staticClass: "p-6 flex flex-col items-center" },
+            [
+              _c("icon", {
+                staticClass: "text-gray-500 mb-2",
+                attrs: {
+                  name: "credit-card",
+                  "stroke-width": "1",
+                  width: "56",
+                  height: "56"
+                }
+              }),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-gray-500" }, [
+                _vm._v("No credit or debit cards.")
+              ])
+            ],
+            1
+          )
         : _c("table", { staticClass: "table-auto w-full" }, [
             _c(
               "tbody",
