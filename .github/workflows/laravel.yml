@@ -5,10 +5,13 @@ on: [push]
 jobs:
   laravel-tests:
     runs-on: ubuntu-latest
+    env:
+      STRIPE_KEY: ${{ secrets.STRIPE_KEY }}
+      STRIPE_SECRET: ${{ secrets.STRIPE_SECRET }}
     steps:
     - uses: actions/checkout@v1
     - name: Copy .env
-      run: cp .env.testing .env
+      run: cp .env.ci .env
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
     - name: Generate key

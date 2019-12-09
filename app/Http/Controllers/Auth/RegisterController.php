@@ -82,6 +82,8 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
+        $user->createAsStripeCustomer();
+
         return [
             'token' => $user->api_token,
             'user' => $user->fresh(),

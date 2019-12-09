@@ -29,6 +29,7 @@ class RegisterTest extends TestCase
             ])->assertSuccessful();
 
         $this->assertNotNull($user->api_token);
+        $this->assertNotNull($user->stripe_id);
         $this->assertAuthenticatedAs($user);
         $this->assertDatabaseHas('users', $user->toArray());
     }
