@@ -22,7 +22,11 @@ class ReadCustomerTest extends TestCase
     {
         $user = factory(User::class)->create();
 
+        $this->assertNull($user->stripe_id);
+
         $user->createAsStripeCustomer(['name' => $user->name]);
+
+        $this->assertNotNull($user->stripe_id);
 
         $this->actingAs($user, 'api')
             ->getJson(route('customer.index'))
