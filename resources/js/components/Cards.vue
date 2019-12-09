@@ -3,7 +3,7 @@
         <div v-if="loading" class="flex items-center justify-center p-6">
             <span class="spinner text-gray-500 w-6 h-6"/>
         </div>
-        <div v-if="!loading && hasNoPaymentMethods" class="p-6 flex flex-col items-center">
+        <div v-else-if="hasNoPaymentMethods" class="p-6 flex flex-col items-center">
             <icon name="credit-card" class="text-gray-500 mb-2" stroke-width="1" width="56" height="56"/>
             <p class="text-gray-500">No credit or debit cards.</p>
         </div>

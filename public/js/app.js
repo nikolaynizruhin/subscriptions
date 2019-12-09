@@ -7688,9 +7688,7 @@ var render = function() {
         ? _c("div", { staticClass: "flex items-center justify-center p-6" }, [
             _c("span", { staticClass: "spinner text-gray-500 w-6 h-6" })
           ])
-        : _vm._e(),
-      _vm._v(" "),
-      !_vm.loading && _vm.hasNoPaymentMethods
+        : _vm.hasNoPaymentMethods
         ? _c(
             "div",
             { staticClass: "p-6 flex flex-col items-center" },
