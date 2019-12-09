@@ -1,19 +1,19 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Subscription;
 
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ReadCustomerTest extends TestCase
+class SetupIntentTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
-    public function guest_cant_read_customer()
+    public function guest_cant_setup_intent()
     {
-        $this->getJson(route('customer.index'))
+        $this->postJson(route('setup-intents.store'))
             ->assertUnauthorized();
     }
 
@@ -22,15 +22,14 @@ class ReadCustomerTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $user->createAsStripeCustomer(['name' => $user->name]);
+        $user->createAsStripeCustomer();
 
         $this->actingAs($user, 'api')
-            ->getJson(route('customer.index'))
+            ->postJson(route('setup-intents.store'))
             ->assertSuccessful()
             ->assertJson([
-                'object' => 'customer',
-                'name' => $user->name,
-                'email' => $user->email,
+                'object' => 'setup_intent',
+                'status' => 'requires_payment_method',
             ]);
     }
 }
