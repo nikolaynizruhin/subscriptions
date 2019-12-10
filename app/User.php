@@ -7,8 +7,6 @@ use App\Notifications\VerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Cashier\Billable;
-use Stripe\PaymentMethod as StripePaymentMethod;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -71,26 +69,5 @@ class User extends Authenticatable implements MustVerifyEmail
     public function resetPasswordConfirmationTimeout()
     {
         return $this->update(['password_confirmed_at' => now()]);
-    }
-
-    /**
-     * Get a collection of the entity's payment methods.
-     *
-     * @param  array  $parameters
-     * @return \Illuminate\Support\Collection|\Stripe\PaymentMethod[]
-     */
-    public function stripePaymentMethods($parameters = [])
-    {
-        $this->assertCustomerExists();
-
-        $parameters = array_merge(['limit' => 24], $parameters);
-
-        // "type" is temporarily required by Stripe...
-        $paymentMethods = StripePaymentMethod::all(
-            ['customer' => $this->stripe_id, 'type' => 'card'] + $parameters,
-            $this->stripeOptions()
-        );
-
-        return $paymentMethods->data;
     }
 }

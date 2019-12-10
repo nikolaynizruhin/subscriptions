@@ -51,6 +51,19 @@ class UpdateDefaultPaymentMethodTest extends TestCase
     }
 
     /** @test */
+    public function payment_method_should_exists()
+    {
+        $user = factory(User::class)->create();
+
+        $user->createAsStripeCustomer();
+
+        $this->actingAs($user, 'api')
+            ->putJson(route('default-payment-method.update'), [
+                'payment_method' => 'non-exist',
+            ])->assertJsonValidationErrors('payment_method');
+    }
+
+    /** @test */
     public function customer_can_update_default_payment_method()
     {
         $user = factory(User::class)->create();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\PaymentMethodExists;
 use Illuminate\Http\Request;
 
 class DefaultPaymentMethodController extends Controller
@@ -24,7 +25,11 @@ class DefaultPaymentMethodController extends Controller
      */
     public function update(Request $request)
     {
-        $request->validate(['payment_method' => 'required|string|max:255']);
+        $request->validate([
+            'payment_method' => [
+                'required', 'string', 'max:255', new PaymentMethodExists($request->user())
+            ]
+        ]);
 
         $request->user()->updateDefaultPaymentMethod($request->payment_method);
 
