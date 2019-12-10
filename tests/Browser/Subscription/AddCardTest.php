@@ -19,9 +19,9 @@ class AddCardTest extends DuskTestCase
 
         $user->createAsStripeCustomer();
 
-        $this->browse(function (Browser $browser) use ($user) {
-            $expire = now()->addYear();
+        $expire = now()->addYear();
 
+        $this->browse(function (Browser $browser) use ($user, $expire) {
             $browser->actingAs($user)
                 ->visit('/settings/subscription')
                 ->waitForLocation('/settings/subscription')
