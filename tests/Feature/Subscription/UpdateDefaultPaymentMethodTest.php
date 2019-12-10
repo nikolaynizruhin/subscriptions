@@ -19,6 +19,38 @@ class UpdateDefaultPaymentMethodTest extends TestCase
     }
 
     /** @test */
+    public function payment_method_is_required()
+    {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user, 'api')
+            ->putJson(route('default-payment-method.update'))
+            ->assertJsonValidationErrors('payment_method');
+    }
+
+    /** @test */
+    public function payment_method_should_be_string()
+    {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user, 'api')
+            ->putJson(route('default-payment-method.update'), [
+                'payment_method' => 1,
+            ])->assertJsonValidationErrors('payment_method');
+    }
+
+    /** @test */
+    public function payment_method_should_be_less_than_255_chars()
+    {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user, 'api')
+            ->putJson(route('default-payment-method.update'), [
+                'payment_method' => str_repeat('a', 256),
+            ])->assertJsonValidationErrors('payment_method');
+    }
+
+    /** @test */
     public function customer_can_update_default_payment_method()
     {
         $user = factory(User::class)->create();
