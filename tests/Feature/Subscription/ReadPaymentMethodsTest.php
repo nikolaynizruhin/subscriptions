@@ -48,7 +48,7 @@ class ReadPaymentMethodsTest extends TestCase
                     ],
                     'customer' => $user->stripe_id,
                     'type' => 'card',
-                ]
+                ],
             ]);
 
         $this->assertCount(2, $user->paymentMethods());
