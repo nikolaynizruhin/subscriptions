@@ -25,13 +25,13 @@ class RemovePaymentMethodTest extends TestCase
 
         $user->createAsStripeCustomer();
 
-        $user->addPaymentMethod('pm_card_visa');
+        $paymentMethod = $user->addPaymentMethod('pm_card_visa');
 
-        $this->assertCount(1, $paymentMethods = $user->paymentMethods());
+        $this->assertCount(1, $user->paymentMethods());
 
         $this->actingAs($user, 'api')
             ->deleteJson(route('payment-methods.destroy', [
-                'payment_method' => $paymentMethods->first()->id,
+                'payment_method' => $paymentMethod->id,
             ]))->assertSuccessful();
 
         $this->assertCount(0, $user->paymentMethods());
