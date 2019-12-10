@@ -25,9 +25,7 @@ class PaymentMethodController extends Controller
      */
     public function index(Request $request)
     {
-        return $request->user()->paymentMethods()->map(function ($paymentMethod) {
-            return $paymentMethod->asStripePaymentMethod()->toArray();
-        });
+        return $request->user()->stripePaymentMethods();
     }
 
     /**
