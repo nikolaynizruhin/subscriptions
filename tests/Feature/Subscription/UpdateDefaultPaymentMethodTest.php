@@ -14,7 +14,7 @@ class UpdateDefaultPaymentMethodTest extends TestCase
     public function guest_cant_update_default_payment_method()
     {
         $this->putJson(route('default-payment-method.update', [
-            'payment_method' => 'pm_card_visa'
+            'payment_method' => 'pm_card_visa',
         ]))->assertUnauthorized();
     }
 
@@ -39,7 +39,7 @@ class UpdateDefaultPaymentMethodTest extends TestCase
                 'email' => $user->email,
                 'invoice_settings' => [
                     'default_payment_method' => $paymentMethod->id,
-                ]
+                ],
             ]);
 
         $this->assertEquals('4242', $user->card_last_four);
