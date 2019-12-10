@@ -31,7 +31,7 @@ class PaymentMethodExists implements Rule
      */
     public function passes($attribute, $value)
     {
-        return !!$this->user->findPaymentMethod($value);
+        return (bool) $this->user->findPaymentMethod($value);
     }
 
     /**
