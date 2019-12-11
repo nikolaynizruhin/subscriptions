@@ -46,7 +46,7 @@ export default {
 
             await this.removePaymentMethod(this.paymentMethod)
 
-            this.setFlash({ message: 'Payment method removed!' })
+            this.setFlash({ message: 'Card removed!' })
 
             this.loading = false
 

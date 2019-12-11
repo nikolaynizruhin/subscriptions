@@ -2594,7 +2594,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             case 3:
               this.setFlash({
-                message: 'Payment method removed!'
+                message: 'Card removed!'
               });
               this.loading = false;
               this.close();
@@ -7678,7 +7678,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "w-full card" },
+    { staticClass: "w-full card", attrs: { dusk: "card-list" } },
     [
       _vm.loading
         ? _c("div", { staticClass: "flex items-center justify-center p-6" }, [
@@ -7774,6 +7774,7 @@ var render = function() {
                             "span",
                             {
                               staticClass: "mr-2",
+                              attrs: { dusk: "remove-card-button" },
                               on: {
                                 click: function($event) {
                                   return _vm.showModal(paymentMethod)
@@ -7809,6 +7810,7 @@ var render = function() {
                                         staticClass:
                                           "text-gray-500 hover:text-blue-500",
                                         attrs: {
+                                          dusk: "card-actions-button",
                                           name: "more-vertical",
                                           width: "20",
                                           height: "20"

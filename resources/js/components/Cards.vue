@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full card">
+    <div class="w-full card" dusk="card-list">
         <div v-if="loading" class="flex items-center justify-center p-6">
             <span class="spinner text-gray-500 w-6 h-6"/>
         </div>
@@ -30,12 +30,12 @@
                             >
                                 Default
                             </span>
-                            <span @click="showModal(paymentMethod)" class="mr-2">
+                            <span dusk="remove-card-button" @click="showModal(paymentMethod)" class="mr-2">
                                 <icon name="trash-2" key="trash-2" class="text-gray-500 cursor-pointer hover:text-red-600" width="20" height="20"/>
                             </span>
                             <dropdown :ref="paymentMethod.id">
                                 <template #button>
-                                    <icon name="more-vertical" key="more-vertical" class="text-gray-500 hover:text-blue-500" width="20" height="20"/>
+                                    <icon dusk="card-actions-button" name="more-vertical" key="more-vertical" class="text-gray-500 hover:text-blue-500" width="20" height="20"/>
                                 </template>
                                 <template #dropdown>
                                     <div class="w-32">
