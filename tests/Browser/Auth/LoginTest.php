@@ -23,7 +23,7 @@ class LoginTest extends DuskTestCase
                 ->press('Login')
                 ->waitForLocation('/')
                 ->assertPathIs('/')
-                ->signOut($user);
+                ->signOut();
         });
     }
 
@@ -32,7 +32,6 @@ class LoginTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
-                ->waitForLocation('/login')
                 ->assertPathIs('/login');
         });
     }
@@ -47,7 +46,7 @@ class LoginTest extends DuskTestCase
                 ->visit('/login')
                 ->waitForLocation('/')
                 ->assertPathIs('/')
-                ->signOut($user);
+                ->signOut();
         });
     }
 

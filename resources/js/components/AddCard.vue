@@ -8,7 +8,7 @@
                     <p class="text-red-500 text-sm mt-1" v-if="error" v-text="error"/>
                 </div>
                 <div class="bg-gray-100 px-6 py-4 rounded-b">
-                    <button type="submit" class="btn btn-primary w-full sm:w-auto mr-2" :disabled="loading">
+                    <button dusk="add-card-button" type="submit" class="btn btn-primary w-full sm:w-auto mr-2" :disabled="loading">
                         <span v-if="loading" class="spinner"/>
                         {{ loading ? 'Loading...' : 'Add' }}
                     </button>

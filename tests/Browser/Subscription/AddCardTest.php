@@ -24,7 +24,6 @@ class AddCardTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user, $expire) {
             $browser->actingAs($user)
                 ->visit('/settings/subscription')
-                ->waitForLocation('/settings/subscription')
                 ->waitForText('No credit or debit cards.', 10)
                 ->assertSee('No credit or debit cards.')
                 ->press('Add Card')
@@ -35,12 +34,12 @@ class AddCardTest extends DuskTestCase
                         ->type('exp-date', $expire->format('my'))
                         ->type('cvc', '111')
                         ->type('postal', $this->faker->postcode);
-                })->click('button[type="submit"]')
+                })->click('@add-card-button')
                 ->waitForText('Credit card successfully added!', 10)
                 ->assertSee('Credit card successfully added!')
                 ->assertSee('4242')
                 ->assertSee($expire->format('n/Y'))
-                ->signOut($user);
+                ->signOut();
         });
     }
 }

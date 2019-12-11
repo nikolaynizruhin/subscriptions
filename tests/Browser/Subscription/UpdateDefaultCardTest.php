@@ -23,7 +23,6 @@ class UpdateDefaultCardTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user) {
             $browser->actingAs($user)
                 ->visit('/settings/subscription')
-                ->waitForLocation('/settings/subscription')
                 ->waitForText('4242', 10)
                 ->assertSee('4242')
                 ->assertDontSee('Default')
@@ -34,8 +33,7 @@ class UpdateDefaultCardTest extends DuskTestCase
                 ->assertSee('Default payment method updated!')
                 ->with('@card-list', function ($cards) {
                     $cards->assertSee('Default');
-                })
-                ->signOut($user);
+                })->signOut();
         });
     }
 }

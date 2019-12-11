@@ -19,14 +19,13 @@ class UpdatePasswordTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user) {
             $browser->actingAs($user)
                 ->visit('/settings/security')
-                ->waitForLocation('/settings/security')
                 ->type('password', 'password')
                 ->type('new_password', $newPassword = 'new_password')
                 ->type('new_password_confirmation', $newPassword)
                 ->press('Update')
                 ->waitForText('Password updated successfully!')
                 ->assertSee('Password updated successfully!')
-                ->signOut($user);
+                ->signOut();
         });
     }
 }

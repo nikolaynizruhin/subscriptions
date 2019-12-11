@@ -26,19 +26,15 @@ class DuskServiceProvider extends ServiceProvider
     public function boot()
     {
         Browser::macro('actingAs', function (User $user) {
-            $this->visit('/login')
-                ->waitForLocation('/login')
-                ->type('email', $user->email)
-                ->type('password', 'password')
-                ->press('Login')
-                ->waitForLocation('/');
+            $this->visit('/login');
+            $this->script("localStorage.token = '$user->api_token'");
+            $this->visit('/');
 
             return $this;
         });
 
-        Browser::macro('signOut', function (User $user) {
+        Browser::macro('signOut', function () {
             $this->visit('/')
-                ->waitForLocation('/')
                 ->click('@account-button')
                 ->clickLink('Logout')
                 ->assertPathIs('/login');

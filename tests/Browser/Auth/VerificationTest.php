@@ -37,7 +37,7 @@ class VerificationTest extends DuskTestCase
                 ->visit('/settings')
                 ->waitForLocation('/')
                 ->assertPathIs('/')
-                ->signOut($user);
+                ->signOut();
         });
     }
 
@@ -50,7 +50,7 @@ class VerificationTest extends DuskTestCase
             $browser->actingAs($user)
                 ->visit('/')
                 ->assertMissing('@verify-alert')
-                ->signOut($user);
+                ->signOut();
         });
     }
 }

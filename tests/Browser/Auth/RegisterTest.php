@@ -25,7 +25,7 @@ class RegisterTest extends DuskTestCase
                 ->press('Register')
                 ->waitForLocation('/')
                 ->assertPathIs('/')
-                ->signOut($user);
+                ->signOut();
         });
     }
 }

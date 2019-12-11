@@ -20,7 +20,6 @@ class UpdateProfileTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user) {
             $browser->actingAs($user)
                 ->visit('/settings/profile')
-                ->waitForLocation('/settings/profile')
                 ->clear('name')
                 ->type('name', $name = $this->faker->name)
                 ->clear('email')
@@ -30,7 +29,7 @@ class UpdateProfileTest extends DuskTestCase
                 ->assertSee('Profile updated successfully!')
                 ->assertInputValue('name', $name)
                 ->assertInputValue('email', $email)
-                ->signOut($user);
+                ->signOut();
         });
     }
 }

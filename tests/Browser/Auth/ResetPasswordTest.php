@@ -41,7 +41,7 @@ class ResetPasswordTest extends DuskTestCase
                 ->press('Reset Password')
                 ->waitForLocation('/')
                 ->assertPathIs('/')
-                ->signOut($user);
+                ->signOut();
         });
     }
 }

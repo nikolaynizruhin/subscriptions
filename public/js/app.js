@@ -7631,7 +7631,11 @@ var render = function() {
               "button",
               {
                 staticClass: "btn btn-primary w-full sm:w-auto mr-2",
-                attrs: { type: "submit", disabled: _vm.loading }
+                attrs: {
+                  dusk: "add-card-button",
+                  type: "submit",
+                  disabled: _vm.loading
+                }
               },
               [
                 _vm.loading ? _c("span", { staticClass: "spinner" }) : _vm._e(),

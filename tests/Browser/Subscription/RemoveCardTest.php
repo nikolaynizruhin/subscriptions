@@ -23,7 +23,6 @@ class RemoveCardTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user) {
             $browser->actingAs($user)
                 ->visit('/settings/subscription')
-                ->waitForLocation('/settings/subscription')
                 ->waitForText('4242', 10)
                 ->assertSee('4242')
                 ->click('@remove-card-button')
@@ -32,7 +31,7 @@ class RemoveCardTest extends DuskTestCase
                 ->waitForText('Card removed!', 10)
                 ->assertSee('Card removed!')
                 ->assertSee('No credit or debit cards.')
-                ->signOut($user);
+                ->signOut();
         });
     }
 }
