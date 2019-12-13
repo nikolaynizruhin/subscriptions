@@ -4,6 +4,7 @@ namespace Tests\Feature\Auth;
 
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Carbon;
 use Tests\TestCase;
 
 class RegisterTest extends TestCase
@@ -13,6 +14,8 @@ class RegisterTest extends TestCase
     /** @test */
     public function guest_can_register()
     {
+        Carbon::setTestNow(now()->startOfDay());
+
         $response = $this->postJson(route('register'), [
             'name' => 'John Doe',
             'email' => $email = 'john@example.com',
