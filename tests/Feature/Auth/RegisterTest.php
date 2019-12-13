@@ -30,6 +30,8 @@ class RegisterTest extends TestCase
 
         $this->assertNotNull($user->api_token);
         $this->assertNotNull($user->stripe_id);
+        $this->assertNotNull($user->trial_ends_at);
+        $this->assertEquals($user->trial_ends_at->diff(now())->days, config('subscription.trial_days'));
         $this->assertAuthenticatedAs($user);
         $this->assertDatabaseHas('users', $user->toArray());
     }
