@@ -79,4 +79,26 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->update(['password_confirmed_at' => now()]);
     }
+
+    /**
+     * Determine if the confirmation timeout has expired.
+     *
+     * @return bool
+     */
+    public function shouldConfirmPassword()
+    {
+        $confirmedAt = time() - $this->password_confirmed_timestamp;
+
+        return $confirmedAt > config('auth.password_timeout', 10800);
+    }
+
+    /**
+     * Get the user's password confirmed timestamp.
+     *
+     * @return int
+     */
+    public function getPasswordConfirmedTimestampAttribute()
+    {
+        return $this->password_confirmed_at ? $this->password_confirmed_at->timestamp : 0;
+    }
 }
