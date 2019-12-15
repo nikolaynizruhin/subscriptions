@@ -1,7 +1,7 @@
 <template>
     <dropdown class="hidden sm:block">
         <template #button="{ isOpen }">
-            <img src="https://github.com/adamwathan.png" alt="Adam Wathan's avatar" class="rounded-full h-8 w-8">
+            <img src="https://github.com/nikolaynizruhin.png" alt="Adam Wathan's avatar" class="rounded-full h-8 w-8">
             <span dusk="account-button" class="ml-2">{{ user.name }}</span>
             <span v-if="isOpen" key="up">
                 <icon name="chevron-up" class="ml-1" width="16" height="16"/>

@@ -7546,7 +7546,7 @@ var render = function() {
             _c("img", {
               staticClass: "rounded-full h-8 w-8",
               attrs: {
-                src: "https://github.com/adamwathan.png",
+                src: "https://github.com/nikolaynizruhin.png",
                 alt: "Adam Wathan's avatar"
               }
             }),
