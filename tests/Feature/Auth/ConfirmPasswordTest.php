@@ -63,7 +63,7 @@ class ConfirmPasswordTest extends TestCase
             ])->assertSuccessful()
             ->assertJson([
                 'confirmed' => true,
-                'user' => (new UserResource($user))->jsonSerialize()
+                'user' => (new UserResource($user))->jsonSerialize(),
             ]);
 
         $this->assertNotNull($user->password_confirmed_at);
