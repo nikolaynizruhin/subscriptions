@@ -1,25 +1,22 @@
 <template>
-    <div dusk="verify-alert" class="card p-4 mb-4" role="alert">
-        <div class="flex">
-            <div class="py-1 mr-4">
-                <icon name="alert-circle" width="24" height="24"/>
-            </div>
-            <div>
-                <p class="font-bold">Verify Your Email Address</p>
-                <p class="text-sm">
-                    Before proceeding, please check your email for a verification link. If you did not receive the email,
-                    <span class="text-blue-500 cursor-pointer" @click="resend">click here to request another</span>.
-                </p>
-            </div>
-        </div>
-    </div>
+    <alert>
+        <template #title>
+            Verify Your Email Address
+        </template>
+        <template #body>
+            Before proceeding, please check your email for a verification link. If you did not receive the email,
+            <span class="text-blue-500 cursor-pointer" @click="resend">click here to request another</span>.
+        </template>
+    </alert>
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
+import Alert from "./Alert";
 
 export default {
-    name: "Verify",
+    name: "VerifyAlert",
+    components: { Alert },
     computed: {
         verifyLink () {
             return this.$route.query['verify-link']

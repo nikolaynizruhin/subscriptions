@@ -19,11 +19,9 @@ class VerificationTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user) {
             $browser->actingAs($user)
                 ->visit('/')
-                ->waitFor('@verify-alert')
+                ->waitForText('Verify Your Email Address')
                 ->assertSee('Verify Your Email Address')
-                ->click('@account-button')
-                ->clickLink('Logout')
-                ->assertPathIs('/login');
+                ->signOut();
         });
     }
 
@@ -49,7 +47,7 @@ class VerificationTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user) {
             $browser->actingAs($user)
                 ->visit('/')
-                ->assertMissing('@verify-alert')
+                ->assertDontSee('Verify Your Email Address')
                 ->signOut();
         });
     }

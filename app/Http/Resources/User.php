@@ -16,6 +16,7 @@ class User extends JsonResource
     {
         return parent::toArray($request) + [
             'should_confirm_password' => $this->shouldConfirmPassword(),
+            'on_trial' => $this->onGenericTrial(),
         ];
     }
 }

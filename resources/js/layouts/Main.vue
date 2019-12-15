@@ -19,7 +19,8 @@
             <sidebar :class="isOpen ? 'slide-in' : 'slide-out'"/>
             <main class="flex-grow p-6 relative sm:static">
                 <div v-if="isOpen" @click="close" class="sm:hidden absolute inset-0 bg-black opacity-25"></div>
-                <verify v-if="!user.email_verified_at"/>
+                <verify-alert v-if="!user.email_verified_at"/>
+                <trial-alert v-if="user.on_trial"/>
                 <slot/>
             </main>
         </div>
@@ -30,16 +31,18 @@
 import { mapState } from 'vuex'
 import AccountDropdown from "../components/AccountDropdown";
 import Sidebar from "../components/Sidebar";
-import Verify from "../components/Verify";
+import VerifyAlert from "../components/VerifyAlert";
+import TrialAlert from "../components/TrialAlert"
 import toggle from "../mixins/toggle";
 import title from "../mixins/title";
 
 export default {
     name: "MainLayout",
     components: {
+        TrialAlert,
         AccountDropdown,
         Sidebar,
-        Verify,
+        VerifyAlert,
     },
     mixins: [toggle, title],
     computed: mapState(['user']),
