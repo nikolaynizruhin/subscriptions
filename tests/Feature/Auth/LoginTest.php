@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Auth;
 
+use App\Http\Resources\User as UserResource;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -20,7 +21,7 @@ class LoginTest extends TestCase
             'password' => 'password',
         ])->assertJson([
             'token' => $user->api_token,
-            'user' => $user->toArray(),
+            'user' => (new UserResource($user))->jsonSerialize(),
         ])->assertSuccessful();
 
         $this->assertNotNull($user->api_token);

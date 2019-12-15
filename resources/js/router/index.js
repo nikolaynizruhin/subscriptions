@@ -2,18 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import NProgress from 'nprogress'
 import store from '../store'
-import routes from "../router/routes";
-import { time } from '../utils/helpers'
+import routes from "../router/routes"
 
 Vue.use(Router)
 
 const router = new Router({ mode: 'history', routes })
-
-const shouldConfirmPassword = user => {
-    const confirmedAt = user.password_confirmed_at ? time(user.password_confirmed_at) : 0
-
-    return time() - confirmedAt > app.password_timeout
-}
 
 router.beforeEach(async (to, from, next) => {
     if (localStorage.token && !store.getters.isAuth) {
@@ -32,7 +25,7 @@ router.beforeEach(async (to, from, next) => {
         return next({ name: 'dashboard' })
     }
 
-    if (to.matched.some(record => record.meta.requiresPasswordConfirm) && shouldConfirmPassword(store.state.user)) {
+    if (to.matched.some(record => record.meta.requiresPasswordConfirm) && store.state.user.should_confirm_password) {
         return next({ name: 'password.confirm', query: { redirect: to.fullPath } })
     }
 

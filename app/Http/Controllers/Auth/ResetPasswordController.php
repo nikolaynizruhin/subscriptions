@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
@@ -43,7 +44,7 @@ class ResetPasswordController extends Controller
         return [
             'status' => trans($response),
             'token' => Auth::user()->api_token,
-            'user' => Auth::user(),
+            'user' => new User(Auth::user()),
         ];
     }
 

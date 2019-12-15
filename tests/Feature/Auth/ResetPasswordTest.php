@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Auth;
 
+use App\Http\Resources\User as UserResource;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
@@ -24,7 +25,7 @@ class ResetPasswordTest extends TestCase
             'password_confirmation' => 'new_password',
         ])->assertJson([
             'token' => $user->api_token,
-            'user' => $user->toArray(),
+            'user' => (new UserResource($user))->jsonSerialize(),
         ])->assertJsonStructure(['status', 'token', 'user'])
             ->assertSuccessful();
 

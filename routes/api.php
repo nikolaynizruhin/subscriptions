@@ -22,7 +22,7 @@ Route::get('email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->na
 Route::post('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
 // Account
-Route::get('user', 'UserController@show')->name('user.show');
+Route::get('user', 'UserController@index')->name('user.index');
 Route::put('user', 'UserController@update')->name('user.update');
 
 // Password Reset

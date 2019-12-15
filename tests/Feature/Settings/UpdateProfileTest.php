@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Settings;
 
+use App\Http\Resources\User as UserResource;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -28,7 +29,7 @@ class UpdateProfileTest extends TestCase
                 'name' => $this->faker->name,
                 'email' => $this->faker->unique()->safeEmail,
             ])->assertSuccessful()
-            ->assertJson($user->toArray());
+            ->assertJson((new UserResource($user))->jsonSerialize());
 
         $this->assertDatabaseHas('users', $userData);
     }

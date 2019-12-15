@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Http\Resources\User as UserResource;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -88,7 +89,7 @@ class RegisterController extends Controller
 
         return [
             'token' => $user->api_token,
-            'user' => $user->fresh(),
+            'user' => new UserResource($user->fresh()),
         ];
     }
 }

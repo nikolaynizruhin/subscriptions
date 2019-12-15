@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Auth;
 
+use App\Http\Resources\User as UserResource;
 use App\Notifications\VerifyEmail;
 use App\User;
 use Illuminate\Auth\Events\Verified;
@@ -49,7 +50,10 @@ class VerificationTest extends TestCase
         $this->actingAs($user, 'api')
             ->getJson($this->verificationUrl($user))
             ->assertSuccessful()
-            ->assertJson(['verified' => true, 'user' => $user->toArray()]);
+            ->assertJson([
+                'verified' => true,
+                'user' => (new UserResource($user))->jsonSerialize(),
+            ]);
 
         $this->assertNotNull($user->email_verified_at);
 

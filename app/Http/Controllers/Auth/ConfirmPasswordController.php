@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
 use Illuminate\Http\Request;
@@ -51,7 +52,7 @@ class ConfirmPasswordController extends Controller
 
         $this->resetPasswordConfirmationTimeout($request);
 
-        return ['confirmed' => true, 'user' => $request->user()];
+        return ['confirmed' => true, 'user' => new User($request->user())];
     }
 
     /**

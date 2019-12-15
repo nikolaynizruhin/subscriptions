@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -23,9 +24,9 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function index(Request $request)
     {
-        return $request->user();
+        return new User($request->user());
     }
 
     /**
@@ -49,6 +50,6 @@ class UserController extends Controller
 
         $request->user()->update($validatedData);
 
-        return $request->user();
+        return new User($request->user());
     }
 }

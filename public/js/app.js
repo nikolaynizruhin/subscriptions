@@ -27072,8 +27072,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator/index.js */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator_index_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator_index_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
@@ -27081,8 +27081,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(nprogress__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
 /* harmony import */ var _router_routes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../router/routes */ "./resources/js/router/routes.js");
-/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/helpers */ "./resources/js/utils/helpers.js");
-
 
 
 
@@ -27094,14 +27092,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   mode: 'history',
   routes: _router_routes__WEBPACK_IMPORTED_MODULE_5__["default"]
 });
-
-var shouldConfirmPassword = function shouldConfirmPassword(user) {
-  var confirmedAt = user.password_confirmed_at ? Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_6__["time"])(user.password_confirmed_at) : 0;
-  return Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_6__["time"])() - confirmedAt > app.password_timeout;
-};
-
 router.beforeEach(function _callee(to, from, next) {
-  return _babel_runtime_regenerator_index_js__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
@@ -27111,7 +27103,7 @@ router.beforeEach(function _callee(to, from, next) {
           }
 
           _context.next = 3;
-          return _babel_runtime_regenerator_index_js__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_store__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch('getUser'));
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_store__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch('getUser'));
 
         case 3:
           if (!(to.matched.some(function (record) {
@@ -27150,7 +27142,7 @@ router.beforeEach(function _callee(to, from, next) {
         case 9:
           if (!(to.matched.some(function (record) {
             return record.meta.requiresPasswordConfirm;
-          }) && shouldConfirmPassword(_store__WEBPACK_IMPORTED_MODULE_4__["default"].state.user))) {
+          }) && _store__WEBPACK_IMPORTED_MODULE_4__["default"].state.user.should_confirm_password)) {
             _context.next = 11;
             break;
           }
@@ -27494,23 +27486,6 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
     }
   }
 }));
-
-/***/ }),
-
-/***/ "./resources/js/utils/helpers.js":
-/*!***************************************!*\
-  !*** ./resources/js/utils/helpers.js ***!
-  \***************************************/
-/*! exports provided: time */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "time", function() { return time; });
-var time = function time(date) {
-  var timestamp = date ? +new Date(date) : +new Date();
-  return Math.floor(timestamp / 1000);
-};
 
 /***/ }),
 

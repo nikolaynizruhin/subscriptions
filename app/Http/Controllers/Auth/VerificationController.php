@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\Events\Verified;
@@ -68,7 +69,7 @@ class VerificationController extends Controller
             event(new Verified($request->user()));
         }
 
-        return ['verified' => true, 'user' => $request->user()];
+        return ['verified' => true, 'user' => new User($request->user())];
     }
 
     /**

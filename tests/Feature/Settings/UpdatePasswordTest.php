@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Settings;
 
+use App\Http\Resources\User as UserResource;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -33,7 +34,7 @@ class UpdatePasswordTest extends TestCase
             ])->assertSuccessful()
                 ->assertJson([
                     'token' => $user->api_token,
-                    'user' => $user->toArray(),
+                    'user' => (new UserResource($user))->jsonSerialize(),
                 ]);
 
         $this->assertTrue(Hash::check($newPassword, $user->password));

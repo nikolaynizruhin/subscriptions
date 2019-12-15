@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -36,6 +37,6 @@ class PasswordController extends Controller
             'api_token' => $token = Str::random(60),
         ]);
 
-        return ['token' => $token, 'user' => $request->user()];
+        return ['token' => $token, 'user' => new User($request->user())];
     }
 }

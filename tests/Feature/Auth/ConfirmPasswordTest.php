@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Auth;
 
+use App\Http\Resources\User as UserResource;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -60,7 +61,10 @@ class ConfirmPasswordTest extends TestCase
             ->postJson(route('password.confirm'), [
                 'password' => 'password',
             ])->assertSuccessful()
-            ->assertJson(['confirmed' => true, 'user' => $user->toArray()]);
+            ->assertJson([
+                'confirmed' => true,
+                'user' => (new UserResource($user))->jsonSerialize()
+            ]);
 
         $this->assertNotNull($user->password_confirmed_at);
     }

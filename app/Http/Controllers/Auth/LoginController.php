@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -51,7 +52,7 @@ class LoginController extends Controller
 
         return [
             'token' => $this->guard()->user()->api_token,
-            'user' => $this->guard()->user(),
+            'user' => new User($this->guard()->user()),
         ];
     }
 }
