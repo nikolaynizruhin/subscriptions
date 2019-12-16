@@ -62,7 +62,7 @@
 
 <script>
 import { mapMutations, mapState, mapActions } from 'vuex'
-import Dropdown from "./Dropdown"
+import Dropdown from "../Dropdown"
 import RemoveCard from "./RemoveCard"
 
 export default {

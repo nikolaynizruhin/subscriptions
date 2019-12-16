@@ -23,7 +23,7 @@
 
 <script>
 import { mapMutations, mapActions } from 'vuex'
-import Modal from "./Modal"
+import Modal from "../Modal"
 
 export default {
     name: "AddCard",

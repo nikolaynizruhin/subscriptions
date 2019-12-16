@@ -31,8 +31,8 @@
 import { mapState } from 'vuex'
 import AccountDropdown from "../components/AccountDropdown";
 import Sidebar from "../components/Sidebar";
-import VerifyAlert from "../components/VerifyAlert";
-import TrialAlert from "../components/TrialAlert"
+import VerifyAlert from "../components/alerts/VerifyAlert";
+import TrialAlert from "../components/alerts/TrialAlert"
 import toggle from "../mixins/toggle";
 import title from "../mixins/title";
 

@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import Cards from "../../components/Cards"
-import AddCard from "../../components/AddCard"
+import Cards from "../../components/cards/Cards"
+import AddCard from "../../components/cards/AddCard"
 
 export default {
     name: "Subscription",
