@@ -31,7 +31,7 @@ class SetupSubscription extends Command
     public function handle()
     {
         $product = Product::create([
-            'name' => config('app.name')
+            'name' => config('app.name'),
         ], Cashier::stripeOptions());
 
         $plans = collect(config('subscription.plans'))->map(function ($plan) use ($product) {

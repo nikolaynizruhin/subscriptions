@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
             'password_timeout' => config('auth.password_timeout', 10800),
             'stripe' => [
                 'key' => config('cashier.key'),
-                'currency_symbol' => currency_symbol()
+                'currency_symbol' => currency_symbol(),
             ],
         ]);
     }
