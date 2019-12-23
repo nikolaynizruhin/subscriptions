@@ -1,33 +1,16 @@
 <template>
     <div>
-        <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl">Cards</h3>
-            <button class="btn btn-primary" @click="showModal">Add Card</button>
-        </div>
+        <plan class="mb-6"/>
         <cards/>
-        <add-card v-if="isOpen" @close="closeModal"/>
     </div>
 </template>
 
 <script>
 import Cards from "../../components/cards/Cards"
-import AddCard from "../../components/cards/AddCard"
+import Plan from "../../components/plans/Plan"
 
 export default {
     name: "Subscription",
-    components: { AddCard, Cards },
-    data () {
-        return {
-            isOpen: false
-        }
-    },
-    methods: {
-        showModal () {
-            this.isOpen = true
-        },
-        closeModal () {
-            this.isOpen = false
-        }
-    }
+    components: { Plan, Cards },
 }
 </script>

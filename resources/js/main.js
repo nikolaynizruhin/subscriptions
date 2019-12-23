@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import store from './store'
 import date from './filters/date'
+import money from './filters/money'
 import Auth from "./layouts/Auth"
 import Default from "./layouts/Default"
 import Main from "./layouts/Main"
@@ -14,6 +15,7 @@ import './utils/http'
 Vue.use(PortalVue)
 
 Vue.filter('date', date)
+Vue.filter('money', money)
 
 Vue.component('icon', Icon)
 Vue.component('auth-layout', Auth)

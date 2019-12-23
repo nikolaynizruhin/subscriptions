@@ -21,6 +21,7 @@
                 <div v-if="isOpen" @click="close" class="sm:hidden absolute inset-0 bg-black opacity-25"></div>
                 <verify-alert v-if="!user.email_verified_at"/>
                 <trial-alert v-if="user.on_trial"/>
+                <grace-period-alert v-if="user.subscription.on_grace_period"/>
                 <slot/>
             </main>
         </div>
@@ -35,10 +36,12 @@ import VerifyAlert from "../components/alerts/VerifyAlert";
 import TrialAlert from "../components/alerts/TrialAlert"
 import toggle from "../mixins/toggle";
 import title from "../mixins/title";
+import GracePeriodAlert from "../components/alerts/GracePeriodAlert";
 
 export default {
     name: "MainLayout",
     components: {
+        GracePeriodAlert,
         TrialAlert,
         AccountDropdown,
         Sidebar,

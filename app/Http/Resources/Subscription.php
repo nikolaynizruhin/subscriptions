@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class User extends JsonResource
+class Subscription extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,9 +15,7 @@ class User extends JsonResource
     public function toArray($request)
     {
         return parent::toArray($request) + [
-            'should_confirm_password' => $this->shouldConfirmPassword(),
-            'on_trial' => $this->onGenericTrial(),
-            'subscription' => new Subscription($this->subscription(config('subscription.product'))),
+            'on_grace_period' => $this->onGracePeriod(),
         ];
     }
 }

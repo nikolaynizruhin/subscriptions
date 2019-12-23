@@ -42,6 +42,15 @@ Route::post('setup-intents', 'SetupIntentController@store')->name('setup-intents
 Route::get('customer', 'CustomerController@index')->name('customer.index');
 
 // Payment Methods
-Route::resource('payment-methods', 'PaymentMethodController');
+Route::apiResource('payment-methods', 'PaymentMethodController');
 Route::put('default-payment-method', 'DefaultPaymentMethodController@update')->name('default-payment-method.update');
 Route::post('customer-payment-method', 'CustomerPaymentMethodController@store')->name('customer-payment-method.store');
+
+// Plans
+Route::apiResource('plans', 'PlanController');
+
+// Subscriptions
+Route::post('subscription', 'SubscriptionController@store')->name('subscription.store');
+Route::post('resume-subscription', 'ResumeSubscriptionController@store')->name('resume-subscription.store');
+Route::put('subscription', 'SubscriptionController@update')->name('subscription.update');
+Route::delete('subscription', 'SubscriptionController@destroy')->name('subscription.destroy');

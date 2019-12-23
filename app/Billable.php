@@ -29,4 +29,12 @@ trait Billable
 
         return $paymentMethods->data;
     }
+
+    /**
+     * End trial period.
+     */
+    public function endTrial()
+    {
+        $this->update(['trial_ends_at' => null]);
+    }
 }
