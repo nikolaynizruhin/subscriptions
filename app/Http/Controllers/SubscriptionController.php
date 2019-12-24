@@ -32,8 +32,8 @@ class SubscriptionController extends Controller
                 'required',
                 'string',
                 new PlanExists,
-                new DefaultPaymentMethodExists($request->user())
-            ]
+                new DefaultPaymentMethodExists($request->user()),
+            ],
         ]);
 
         $paymentMethod = $request->user()->defaultPaymentMethod();
