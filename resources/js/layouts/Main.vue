@@ -21,7 +21,7 @@
                 <div v-if="isOpen" @click="close" class="sm:hidden absolute inset-0 bg-black opacity-25"></div>
                 <verify-alert v-if="!user.email_verified_at"/>
                 <trial-alert v-if="user.on_trial"/>
-                <grace-period-alert v-if="user.subscription.on_grace_period"/>
+                <grace-period-alert v-if="onGracePeriod"/>
                 <slot/>
             </main>
         </div>
@@ -48,6 +48,11 @@ export default {
         VerifyAlert,
     },
     mixins: [toggle, title],
-    computed: mapState(['user']),
+    computed: {
+        ...mapState(['user']),
+        onGracePeriod () {
+            return this.user.subscription && this.user.subscription.on_grace_period
+        }
+    },
 }
 </script>
