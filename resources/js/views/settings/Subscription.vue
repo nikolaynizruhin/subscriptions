@@ -1,5 +1,7 @@
 <template>
     <div>
+        <trial-alert v-if="user.on_trial"/>
+        <grace-period-alert v-if="onGracePeriod"/>
         <plan class="mb-6"/>
         <cards/>
     </div>
@@ -8,9 +10,18 @@
 <script>
 import Cards from "../../components/cards/Cards"
 import Plan from "../../components/plans/Plan"
+import TrialAlert from "../../components/alerts/TrialAlert"
+import GracePeriodAlert from "../../components/alerts/GracePeriodAlert"
+import { mapState } from "vuex"
 
 export default {
     name: "Subscription",
-    components: { Plan, Cards },
+    components: { TrialAlert, GracePeriodAlert, Plan, Cards },
+    computed: {
+        ...mapState(['user']),
+        onGracePeriod () {
+            return this.user.subscription && this.user.subscription.on_grace_period
+        }
+    }
 }
 </script>

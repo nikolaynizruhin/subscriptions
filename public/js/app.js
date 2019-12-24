@@ -3319,10 +3319,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_AccountDropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/AccountDropdown */ "./resources/js/components/AccountDropdown.vue");
 /* harmony import */ var _components_Sidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Sidebar */ "./resources/js/components/Sidebar.vue");
 /* harmony import */ var _components_alerts_VerifyAlert__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/alerts/VerifyAlert */ "./resources/js/components/alerts/VerifyAlert.vue");
-/* harmony import */ var _components_alerts_TrialAlert__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/alerts/TrialAlert */ "./resources/js/components/alerts/TrialAlert.vue");
-/* harmony import */ var _mixins_toggle__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../mixins/toggle */ "./resources/js/mixins/toggle.js");
-/* harmony import */ var _mixins_title__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../mixins/title */ "./resources/js/mixins/title.js");
-/* harmony import */ var _components_alerts_GracePeriodAlert__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/alerts/GracePeriodAlert */ "./resources/js/components/alerts/GracePeriodAlert.vue");
+/* harmony import */ var _mixins_toggle__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../mixins/toggle */ "./resources/js/mixins/toggle.js");
+/* harmony import */ var _mixins_title__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../mixins/title */ "./resources/js/mixins/title.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -3357,10 +3355,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-
-
 
 
 
@@ -3370,18 +3364,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "MainLayout",
   components: {
-    GracePeriodAlert: _components_alerts_GracePeriodAlert__WEBPACK_IMPORTED_MODULE_7__["default"],
-    TrialAlert: _components_alerts_TrialAlert__WEBPACK_IMPORTED_MODULE_4__["default"],
     AccountDropdown: _components_AccountDropdown__WEBPACK_IMPORTED_MODULE_1__["default"],
     Sidebar: _components_Sidebar__WEBPACK_IMPORTED_MODULE_2__["default"],
     VerifyAlert: _components_alerts_VerifyAlert__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
-  mixins: [_mixins_toggle__WEBPACK_IMPORTED_MODULE_5__["default"], _mixins_title__WEBPACK_IMPORTED_MODULE_6__["default"]],
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['user']), {
-    onGracePeriod: function onGracePeriod() {
-      return this.user.subscription && this.user.subscription.on_grace_period;
-    }
-  })
+  mixins: [_mixins_toggle__WEBPACK_IMPORTED_MODULE_4__["default"], _mixins_title__WEBPACK_IMPORTED_MODULE_5__["default"]],
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['user']))
 });
 
 /***/ }),
@@ -4134,6 +4122,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_cards_Cards__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/cards/Cards */ "./resources/js/components/cards/Cards.vue");
 /* harmony import */ var _components_plans_Plan__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/plans/Plan */ "./resources/js/components/plans/Plan.vue");
+/* harmony import */ var _components_alerts_TrialAlert__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/alerts/TrialAlert */ "./resources/js/components/alerts/TrialAlert.vue");
+/* harmony import */ var _components_alerts_GracePeriodAlert__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/alerts/GracePeriodAlert */ "./resources/js/components/alerts/GracePeriodAlert.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -4141,14 +4138,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Subscription",
   components: {
+    TrialAlert: _components_alerts_TrialAlert__WEBPACK_IMPORTED_MODULE_2__["default"],
+    GracePeriodAlert: _components_alerts_GracePeriodAlert__WEBPACK_IMPORTED_MODULE_3__["default"],
     Plan: _components_plans_Plan__WEBPACK_IMPORTED_MODULE_1__["default"],
     Cards: _components_cards_Cards__WEBPACK_IMPORTED_MODULE_0__["default"]
-  }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(['user']), {
+    onGracePeriod: function onGracePeriod() {
+      return this.user.subscription && this.user.subscription.on_grace_period;
+    }
+  })
 });
 
 /***/ }),
@@ -9365,10 +9374,6 @@ var render = function() {
             _vm._v(" "),
             !_vm.user.email_verified_at ? _c("verify-alert") : _vm._e(),
             _vm._v(" "),
-            _vm.user.on_trial ? _c("trial-alert") : _vm._e(),
-            _vm._v(" "),
-            _vm.onGracePeriod ? _c("grace-period-alert") : _vm._e(),
-            _vm._v(" "),
             _vm._t("default")
           ],
           2
@@ -10787,7 +10792,15 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    [_c("plan", { staticClass: "mb-6" }), _vm._v(" "), _c("cards")],
+    [
+      _vm.user.on_trial ? _c("trial-alert") : _vm._e(),
+      _vm._v(" "),
+      _vm.onGracePeriod ? _c("grace-period-alert") : _vm._e(),
+      _vm._v(" "),
+      _c("plan", { staticClass: "mb-6" }),
+      _vm._v(" "),
+      _c("cards")
+    ],
     1
   )
 }
