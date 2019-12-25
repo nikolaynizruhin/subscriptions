@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\PaymentMethodExists;
 use Illuminate\Http\Request;
 
 class CustomerPaymentMethodController extends Controller
@@ -24,6 +25,12 @@ class CustomerPaymentMethodController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'payment_method' => [
+                'required', 'string', 'max:255', new PaymentMethodExists,
+            ],
+        ]);
+
         return $request->user()->addPaymentMethod($request->payment_method)->asStripePaymentMethod()->toArray();
     }
 }

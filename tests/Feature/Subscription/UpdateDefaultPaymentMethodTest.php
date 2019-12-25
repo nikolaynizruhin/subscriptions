@@ -55,8 +55,6 @@ class UpdateDefaultPaymentMethodTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $user->createAsStripeCustomer();
-
         $this->actingAs($user, 'api')
             ->putJson(route('default-payment-method.update'), [
                 'payment_method' => 'non-exist',
