@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\User;
-use App\Rules\DefaultPaymentMethodExists;
 use App\Rules\PlanExists;
 use Illuminate\Http\Request;
 
@@ -27,14 +26,7 @@ class SubscriptionController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'plan' => [
-                'required',
-                'string',
-                new PlanExists,
-                new DefaultPaymentMethodExists($request->user()),
-            ],
-        ]);
+        $request->validate(['plan' => ['required', 'string', new PlanExists]]);
 
         $paymentMethod = $request->user()->defaultPaymentMethod();
 

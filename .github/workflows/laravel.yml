@@ -8,6 +8,7 @@ jobs:
     env:
       STRIPE_KEY: ${{ secrets.STRIPE_KEY }}
       STRIPE_SECRET: ${{ secrets.STRIPE_SECRET }}
+      STRIPE_PRODUCT: ${{ secrets.STRIPE_PRODUCT }}
     steps:
     - uses: actions/checkout@v1
     - name: Copy .env

@@ -29,7 +29,7 @@ return [
             'interval' => 'month',
         ],
         [
-            'nickname' => 'Premium',
+            'nickname' => 'Pro',
             'amount' => 2000,
             'interval' => 'month',
         ],

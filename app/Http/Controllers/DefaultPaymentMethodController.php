@@ -27,7 +27,7 @@ class DefaultPaymentMethodController extends Controller
     {
         $request->validate([
             'payment_method' => [
-                'required', 'string', 'max:255', new PaymentMethodExists($request->user()),
+                'required', 'string', 'max:255', new PaymentMethodExists,
             ],
         ]);
 

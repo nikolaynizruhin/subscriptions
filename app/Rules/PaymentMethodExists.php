@@ -2,26 +2,12 @@
 
 namespace App\Rules;
 
-use App\User;
 use Illuminate\Contracts\Validation\Rule;
+use Laravel\Cashier\Cashier;
+use Stripe\PaymentMethod;
 
 class PaymentMethodExists implements Rule
 {
-    /**
-     * @var User
-     */
-    private $user;
-
-    /**
-     * Create a new rule instance.
-     *
-     * @param  \App\User  $user
-     */
-    public function __construct(User $user)
-    {
-        $this->user = $user;
-    }
-
     /**
      * Determine if the validation rule passes.
      *
@@ -31,7 +17,11 @@ class PaymentMethodExists implements Rule
      */
     public function passes($attribute, $value)
     {
-        return (bool) $this->user->findPaymentMethod($value);
+        try {
+            return (bool) PaymentMethod::retrieve($value, Cashier::stripeOptions());
+        } catch (\Exception $exception) {
+            return false;
+        }
     }
 
     /**
