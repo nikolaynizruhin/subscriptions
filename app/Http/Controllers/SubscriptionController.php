@@ -26,7 +26,7 @@ class SubscriptionController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['plan' => ['required', 'string', new PlanExists]]);
+        $request->validate(['plan' => ['required', 'string', 'max:255', new PlanExists]]);
 
         $paymentMethod = $request->user()->defaultPaymentMethod();
 
