@@ -4,7 +4,6 @@ namespace Tests\Feature\Subscription;
 
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Cashier\Cashier;
 use Stripe\Plan;
 use Tests\TestCase;
