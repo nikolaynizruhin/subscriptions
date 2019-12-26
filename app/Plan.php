@@ -34,7 +34,7 @@ class Plan
         try {
             return StripePlan::retrieve($id, Cashier::stripeOptions());
         } catch (Exception $exception) {
-            return null;
+            return;
         }
     }
 
