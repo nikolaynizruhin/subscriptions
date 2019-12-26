@@ -3,9 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Plan;
-use Stripe\Plan as StripePlan;
 use Illuminate\Console\Command;
 use Laravel\Cashier\Cashier;
+use Stripe\Plan as StripePlan;
 use Stripe\Product;
 
 class SetupSubscription extends Command
