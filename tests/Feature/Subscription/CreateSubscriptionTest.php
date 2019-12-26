@@ -102,7 +102,9 @@ class CreateSubscriptionTest extends TestCase
                 ],
             ]);
 
-        $this->assertFalse($user->onGenericTrial());
-        $this->assertNotNull($user->subscription(config('subscription.product')));
+        tap($user->fresh(), function ($user) {
+            $this->assertFalse($user->onGenericTrial());
+            $this->assertNotNull($user->subscription(config('subscription.product')));
+        });
     }
 }
