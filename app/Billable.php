@@ -8,7 +8,10 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 trait Billable
 {
-    use CashierBillable { subscription as getSubscription; }
+    use CashierBillable {
+        subscription as getSubscription;
+        newSubscription as createSubscription;
+    }
 
     /**
      * Get a collection of the entity's payment methods.
@@ -64,5 +67,16 @@ trait Billable
     public function subscription()
     {
         return $this->getSubscription(config('subscription.product'));
+    }
+
+    /**
+     * Create new subscription.
+     *
+     * @param  string  $plan
+     * @return \Laravel\Cashier\SubscriptionBuilder
+     */
+    public function newSubscription($plan)
+    {
+        return $this->createSubscription(config('subscription.product'), $plan);
     }
 }

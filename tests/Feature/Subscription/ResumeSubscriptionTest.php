@@ -29,8 +29,7 @@ class ResumeSubscriptionTest extends TestCase
 
         $paymentMethod = $user->updateDefaultPaymentMethod('pm_card_visa');
 
-        $user->newSubscription(config('subscription.product'), $this->plan->id)
-            ->create($paymentMethod->id);
+        $user->newSubscription($this->plan->id)->create($paymentMethod->id);
 
         $subscription = $user->fresh()->subscription()->cancel();
 

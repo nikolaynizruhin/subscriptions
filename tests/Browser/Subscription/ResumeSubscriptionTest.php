@@ -30,7 +30,7 @@ class ResumeSubscriptionTest extends DuskTestCase
 
         $paymentMethod = $user->updateDefaultPaymentMethod('pm_card_visa');
 
-        $user->newSubscription(config('subscription.product'), $this->plans->first()->id)
+        $user->newSubscription($this->plans->first()->id)
             ->create($paymentMethod->id);
 
         $user->fresh()->subscription()->cancel();

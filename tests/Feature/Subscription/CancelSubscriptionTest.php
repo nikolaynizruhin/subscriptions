@@ -29,8 +29,7 @@ class CancelSubscriptionTest extends TestCase
 
         $paymentMethod = $user->updateDefaultPaymentMethod('pm_card_visa');
 
-        $user->newSubscription(config('subscription.product'), $this->plan->id)
-            ->create($paymentMethod->id);
+        $user->newSubscription($this->plan->id)->create($paymentMethod->id);
 
         $this->actingAs($user, 'api')
             ->deleteJson(route('subscription.destroy'))

@@ -30,11 +30,7 @@ class SubscriptionController extends Controller
 
         $paymentMethod = $request->user()->defaultPaymentMethod();
 
-        $product = config('subscription.product');
-
-        $request->user()
-            ->newSubscription($product, $request->plan)
-            ->create($paymentMethod->id);
+        $request->user()->newSubscription($request->plan)->create($paymentMethod->id);
 
         $request->user()->endTrial();
 

@@ -80,8 +80,7 @@ class SwapSubscriptionTest extends TestCase
 
         $paymentMethod = $user->updateDefaultPaymentMethod('pm_card_visa');
 
-        $user->newSubscription(config('subscription.product'), $this->plans->first()->id)
-            ->create($paymentMethod->id);
+        $user->newSubscription($this->plans->first()->id)->create($paymentMethod->id);
 
         $this->actingAs($user, 'api')
             ->putJson(route('subscription.update'), [
