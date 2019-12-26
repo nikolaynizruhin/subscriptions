@@ -28,7 +28,7 @@ trait Billable
             $this->stripeOptions()
         );
 
-        return $paymentMethods->data;
+        return collect($paymentMethods->data);
     }
 
     /**
