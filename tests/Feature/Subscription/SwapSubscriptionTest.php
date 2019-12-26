@@ -98,8 +98,8 @@ class SwapSubscriptionTest extends TestCase
                 'subscription' => [
                     'stripe_status' => 'active',
                     'stripe_plan' => $this->plans[1]->id,
-                    'on_grace_period' => false
-                ]
+                    'on_grace_period' => false,
+                ],
             ]);
     }
 }

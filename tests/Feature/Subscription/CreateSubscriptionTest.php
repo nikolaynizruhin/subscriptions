@@ -98,8 +98,8 @@ class CreateSubscriptionTest extends TestCase
                 'subscription' => [
                     'stripe_status' => 'active',
                     'stripe_plan' => $this->plan->id,
-                    'on_grace_period' => false
-                ]
+                    'on_grace_period' => false,
+                ],
             ]);
 
         $this->assertFalse($user->onGenericTrial());
