@@ -2,11 +2,10 @@
 
 namespace Tests\Browser\Subscription;
 
+use App\Plan;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Laravel\Cashier\Cashier;
 use Laravel\Dusk\Browser;
-use Stripe\Plan;
 use Tests\DuskTestCase;
 
 class SwapSubscriptionTest extends DuskTestCase
@@ -19,11 +18,7 @@ class SwapSubscriptionTest extends DuskTestCase
     {
         parent::setUp();
 
-        $product = config('subscription.product');
-
-        $plans = Plan::all(['product' => $product], Cashier::stripeOptions());
-
-        $this->plans = $plans->data;
+        $this->plans = Plan::all();
     }
 
     /** @test */
@@ -35,18 +30,18 @@ class SwapSubscriptionTest extends DuskTestCase
 
         $paymentMethod = $user->updateDefaultPaymentMethod('pm_card_visa');
 
-        $user->newSubscription(config('subscription.product'), $this->plans[0]->id)
+        $user->newSubscription(config('subscription.product'), $this->plans->first()->id)
             ->create($paymentMethod->id);
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->actingAs($user)
                 ->visit('/settings/subscription')
-                ->waitForText($this->plans[0]->nickname, 10)
-                ->assertSee($this->plans[0]->nickname)
-                ->waitForText($this->plans[1]->nickname, 10)
-                ->assertSee($this->plans[1]->nickname)
+                ->waitForText($this->plans->first()->nickname, 10)
+                ->assertSee($this->plans->first()->nickname)
+                ->waitForText($this->plans->last()->nickname, 10)
+                ->assertSee($this->plans->last()->nickname)
                 ->assertRadioSelected('plan', $this->plans[0]->id)
-                ->radio('plan', $this->plans[1]->id)
+                ->radio('plan', $this->plans->last()->id)
                 ->press('Update')
                 ->waitForText('Subscription updated successfully!', 10)
                 ->assertSee('Subscription updated successfully!')

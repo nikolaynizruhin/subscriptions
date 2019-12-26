@@ -17,7 +17,7 @@ class User extends JsonResource
         return parent::toArray($request) + [
             'should_confirm_password' => $this->shouldConfirmPassword(),
             'on_trial' => $this->onGenericTrial(),
-            'subscription' => new Subscription($this->subscription(config('subscription.product'))),
+            'subscription' => new Subscription($this->subscription()),
         ];
     }
 }

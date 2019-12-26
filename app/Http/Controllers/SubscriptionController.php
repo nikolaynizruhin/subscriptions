@@ -52,7 +52,7 @@ class SubscriptionController extends Controller
         $request->validate(['plan' => ['required', 'string', new PlanExists]]);
 
         $request->user()
-            ->subscription(config('subscription.product'))
+            ->subscription()
             ->swap($request->plan);
 
         $request->user()->endTrial();
@@ -68,7 +68,7 @@ class SubscriptionController extends Controller
      */
     public function destroy(Request $request)
     {
-        $request->user()->subscription(config('subscription.product'))->cancel();
+        $request->user()->subscription()->cancel();
 
         return new User($request->user());
     }

@@ -2,11 +2,10 @@
 
 namespace Tests\Browser\Subscription;
 
+use App\Plan;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Laravel\Cashier\Cashier;
 use Laravel\Dusk\Browser;
-use Stripe\Plan;
 use Tests\DuskTestCase;
 
 class CreateSubscriptionTest extends DuskTestCase
@@ -19,11 +18,7 @@ class CreateSubscriptionTest extends DuskTestCase
     {
         parent::setUp();
 
-        $product = config('subscription.product');
-
-        $plans = Plan::all(['product' => $product], Cashier::stripeOptions());
-
-        $this->plans = $plans->data;
+        $this->plans = Plan::all();
     }
 
     /** @test */
@@ -38,11 +33,11 @@ class CreateSubscriptionTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user) {
             $browser->actingAs($user)
                 ->visit('/settings/subscription')
-                ->waitForText($this->plans[0]->nickname, 10)
-                ->assertSee($this->plans[0]->nickname)
-                ->waitForText($this->plans[1]->nickname, 10)
-                ->assertSee($this->plans[1]->nickname)
-                ->radio('plan', $this->plans[0]->id)
+                ->waitForText($this->plans->first()->nickname, 10)
+                ->assertSee($this->plans->first()->nickname)
+                ->waitForText($this->plans->last()->nickname, 10)
+                ->assertSee($this->plans->last()->nickname)
+                ->radio('plan', $this->plans->first()->id)
                 ->press('Update')
                 ->waitForText('Subscription updated successfully!', 10)
                 ->assertSee('Subscription updated successfully!')

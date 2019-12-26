@@ -80,7 +80,7 @@ class CreateSubscriptionTest extends TestCase
         $user->updateDefaultPaymentMethod('pm_card_visa');
 
         $this->assertTrue($user->onGenericTrial());
-        $this->assertNull($user->subscription(config('subscription.product')));
+        $this->assertNull($user->subscription());
 
         $this->actingAs($user, 'api')
             ->postJson(route('subscription.store'), [
@@ -99,7 +99,7 @@ class CreateSubscriptionTest extends TestCase
 
         tap($user->fresh(), function ($user) {
             $this->assertFalse($user->onGenericTrial());
-            $this->assertNotNull($user->subscription(config('subscription.product')));
+            $this->assertNotNull($user->subscription());
         });
     }
 }

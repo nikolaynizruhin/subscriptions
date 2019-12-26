@@ -25,9 +25,7 @@ class ResumeSubscriptionController extends Controller
      */
     public function store(Request $request)
     {
-        $request->user()
-            ->subscription(config('subscription.product'))
-            ->resume();
+        $request->user()->subscription()->resume();
 
         return new User($request->user());
     }

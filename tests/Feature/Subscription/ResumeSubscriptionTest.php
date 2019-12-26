@@ -32,7 +32,7 @@ class ResumeSubscriptionTest extends TestCase
         $user->newSubscription(config('subscription.product'), $this->plan->id)
             ->create($paymentMethod->id);
 
-        $subscription = $user->fresh()->subscription(config('subscription.product'))->cancel();
+        $subscription = $user->fresh()->subscription()->cancel();
 
         $this->assertTrue($subscription->onGracePeriod());
 
@@ -40,7 +40,7 @@ class ResumeSubscriptionTest extends TestCase
             ->postJson(route('resume-subscription.store'))
             ->assertSuccessful();
 
-        $subscription = $user->fresh()->subscription(config('subscription.product'));
+        $subscription = $user->fresh()->subscription();
 
         $this->assertFalse($subscription->onGracePeriod());
         $this->assertTrue($subscription->active());

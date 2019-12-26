@@ -2,11 +2,10 @@
 
 namespace Tests\Browser;
 
+use App\Plan;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Laravel\Cashier\Cashier;
 use Laravel\Dusk\Browser;
-use Stripe\Plan;
 use Tests\DuskTestCase;
 
 class ResumeSubscriptionTest extends DuskTestCase
@@ -19,11 +18,7 @@ class ResumeSubscriptionTest extends DuskTestCase
     {
         parent::setUp();
 
-        $product = config('subscription.product');
-
-        $plans = Plan::all(['product' => $product], Cashier::stripeOptions());
-
-        $this->plans = $plans->data;
+        $this->plans = Plan::all();
     }
 
     /** @test */
@@ -35,16 +30,16 @@ class ResumeSubscriptionTest extends DuskTestCase
 
         $paymentMethod = $user->updateDefaultPaymentMethod('pm_card_visa');
 
-        $user->newSubscription(config('subscription.product'), $this->plans[0]->id)
+        $user->newSubscription(config('subscription.product'), $this->plans->first()->id)
             ->create($paymentMethod->id);
 
-        $user->fresh()->subscription(config('subscription.product'))->cancel();
+        $user->fresh()->subscription()->cancel();
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->actingAs($user)
                 ->visit('/settings/subscription')
-                ->waitForText($this->plans[0]->nickname, 10)
-                ->assertSee($this->plans[0]->nickname)
+                ->waitForText($this->plans->first()->nickname, 10)
+                ->assertSee($this->plans->first()->nickname)
                 ->waitForText('You Are On A Grace Period')
                 ->assertSee('You Are On A Grace Period')
                 ->waitForText('Resume', 10)

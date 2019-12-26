@@ -36,7 +36,7 @@ class CancelSubscriptionTest extends TestCase
             ->deleteJson(route('subscription.destroy'))
             ->assertSuccessful();
 
-        $subscription = $user->fresh()->subscription(config('subscription.product'));
+        $subscription = $user->fresh()->subscription();
 
         $this->assertTrue($subscription->onGracePeriod());
     }
