@@ -2,9 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Plan;
+use Stripe\Plan as StripePlan;
 use Illuminate\Console\Command;
 use Laravel\Cashier\Cashier;
-use Stripe\Plan;
 use Stripe\Product;
 
 class SetupSubscription extends Command
@@ -38,8 +39,8 @@ class SetupSubscription extends Command
             return Plan::create($plan + [
                 'currency' => config('cashier.currency'),
                 'product' => $product->id,
-            ], Cashier::stripeOptions());
-        })->map(function (Plan $plan, $key) {
+            ]);
+        })->map(function (StripePlan $plan, $key) {
             return collect([
                 '#' => $key + 1,
                 'nickname' => $plan->nickname,

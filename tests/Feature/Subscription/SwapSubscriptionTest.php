@@ -2,10 +2,9 @@
 
 namespace Tests\Feature\Subscription;
 
+use App\Plan;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Laravel\Cashier\Cashier;
-use Stripe\Plan;
 use Tests\TestCase;
 
 class SwapSubscriptionTest extends TestCase
@@ -18,18 +17,15 @@ class SwapSubscriptionTest extends TestCase
     {
         parent::setUp();
 
-        $product = config('subscription.product');
-
-        $plans = Plan::all(['product' => $product], Cashier::stripeOptions());
-
-        $this->plans = $plans->data;
+        $this->plans = Plan::all();
     }
 
     /** @test */
     public function guest_cant_swap_subscription()
     {
-        $this->putJson(route('subscription.update'), ['plan' => $this->plans[0]->id])
-            ->assertUnauthorized();
+        $this->putJson(route('subscription.update'), [
+            'plan' => $this->plans->first()->id,
+        ])->assertUnauthorized();
     }
 
     /** @test */
@@ -84,12 +80,12 @@ class SwapSubscriptionTest extends TestCase
 
         $paymentMethod = $user->updateDefaultPaymentMethod('pm_card_visa');
 
-        $user->newSubscription(config('subscription.product'), $this->plans[0]->id)
+        $user->newSubscription(config('subscription.product'), $this->plans->first()->id)
             ->create($paymentMethod->id);
 
         $this->actingAs($user, 'api')
             ->putJson(route('subscription.update'), [
-                'plan' => $this->plans[1]->id,
+                'plan' => $this->plans->last()->id,
             ])->assertSuccessful()
             ->assertJson([
                 'email' => $user->email,
@@ -97,7 +93,7 @@ class SwapSubscriptionTest extends TestCase
                 'on_trial' => false,
                 'subscription' => [
                     'stripe_status' => 'active',
-                    'stripe_plan' => $this->plans[1]->id,
+                    'stripe_plan' => $this->plans->last()->id,
                     'on_grace_period' => false,
                 ],
             ]);

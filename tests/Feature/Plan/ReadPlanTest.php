@@ -3,9 +3,8 @@
 namespace Tests\Feature\Plan;
 
 use App\User;
+use App\Plan;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Laravel\Cashier\Cashier;
-use Stripe\Plan;
 use Tests\TestCase;
 
 class ReadPlanTest extends TestCase
@@ -18,11 +17,7 @@ class ReadPlanTest extends TestCase
     {
         parent::setUp();
 
-        $product = config('subscription.product');
-
-        $plans = Plan::all(['product' => $product], Cashier::stripeOptions());
-
-        $this->plan = $plans->data[0];
+        $this->plan = Plan::all()->first();
     }
 
     /** @test */

@@ -2,11 +2,9 @@
 
 namespace App\Providers;
 
-use Exception;
+use App\Plan;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
-use Laravel\Cashier\Cashier;
-use Stripe\Plan;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -36,16 +34,11 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot();
 
         Route::bind('payment_method', function ($value) {
-            return request()->user()->findPaymentMethod($value)
-                ?: abort(404, 'No such payment method: '.$value);
+            return request()->user()->findPaymentMethodOrFail($value);
         });
 
         Route::bind('plan', function ($value) {
-            try {
-                return Plan::retrieve($value, Cashier::stripeOptions());
-            } catch (Exception $exception) {
-                abort(404, $exception->getMessage());
-            }
+            return Plan::findOrFail($value);
         });
     }
 

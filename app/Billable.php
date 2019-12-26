@@ -4,6 +4,7 @@ namespace App;
 
 use Laravel\Cashier\Billable as CashierBillable;
 use Stripe\PaymentMethod as StripePaymentMethod;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 trait Billable
 {
@@ -35,6 +36,23 @@ trait Billable
      */
     public function endTrial()
     {
-        $this->update(['trial_ends_at' => null]);
+        return $this->update(['trial_ends_at' => null]);
+    }
+
+    /**
+     * Find payment method or fail.
+     *
+     * @param  string  $id
+     * @return \Laravel\Cashier\PaymentMethod|null
+     */
+    public function findPaymentMethodOrFail($id)
+    {
+        $paymentMethod = $this->findPaymentMethod($id);
+
+        if (is_null($paymentMethod)) {
+            throw new NotFoundHttpException;
+        }
+
+        return $paymentMethod;
     }
 }

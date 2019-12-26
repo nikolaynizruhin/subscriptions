@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Laravel\Cashier\Cashier;
-use Stripe\Plan;
+use App\Plan;
+use Stripe\Plan as StripePlan;
 
 class PlanController extends Controller
 {
@@ -24,11 +24,7 @@ class PlanController extends Controller
      */
     public function index()
     {
-        $product = config('subscription.product');
-
-        $plans = Plan::all(['product' => $product], Cashier::stripeOptions());
-
-        return $plans->data;
+        return Plan::all();
     }
 
     /**
@@ -37,7 +33,7 @@ class PlanController extends Controller
      * @param  \Stripe\Plan  $plan
      * @return \Illuminate\Http\Response
      */
-    public function show(Plan $plan)
+    public function show(StripePlan $plan)
     {
         return $plan;
     }

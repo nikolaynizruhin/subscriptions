@@ -2,10 +2,9 @@
 
 namespace Tests\Feature\Subscription;
 
+use App\Plan;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Laravel\Cashier\Cashier;
-use Stripe\Plan;
 use Tests\TestCase;
 
 class CancelSubscriptionTest extends TestCase
@@ -18,11 +17,7 @@ class CancelSubscriptionTest extends TestCase
     {
         parent::setUp();
 
-        $product = config('subscription.product');
-
-        $plans = Plan::all(['product' => $product], Cashier::stripeOptions());
-
-        $this->plan = $plans->data[0];
+        $this->plan = Plan::all()->first();
     }
 
     /** @test */
