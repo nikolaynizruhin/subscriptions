@@ -44,7 +44,7 @@ class CancelSubscriptionTest extends DuskTestCase
                 ->waitForText($this->plans[0]->nickname, 10)
                 ->assertSee($this->plans[0]->nickname)
                 ->press('Cancel Plan')
-                ->waitForText('Are you sure you want to cancel ' . $this->plans[0]->nickname . ' subscription plan?', 10)
+                ->waitForText('Are you sure you want to cancel '.$this->plans[0]->nickname.' subscription plan?', 10)
                 ->click('@cancel-plan-button')
                 ->waitForText('Plan canceled!', 10)
                 ->assertSee('Plan canceled!')
