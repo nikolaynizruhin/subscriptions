@@ -11,7 +11,7 @@
                 </p>
             </div>
             <div class="bg-gray-100 px-6 py-4 rounded-b">
-                <button type="button" @click="cancel" class="btn btn-danger mr-2" :disabled="loadings.button">
+                <button dusk="cancel-plan-button" type="button" @click="cancel" class="btn btn-danger mr-2" :disabled="loadings.button">
                     <span v-if="loadings.button" class="spinner"/>
                     {{ loadings.button ? 'Loading...' : 'Cancel Plan' }}
                 </button>

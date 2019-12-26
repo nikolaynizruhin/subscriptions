@@ -8983,7 +8983,11 @@ var render = function() {
               "button",
               {
                 staticClass: "btn btn-danger mr-2",
-                attrs: { type: "button", disabled: _vm.loadings.button },
+                attrs: {
+                  dusk: "cancel-plan-button",
+                  type: "button",
+                  disabled: _vm.loadings.button
+                },
                 on: { click: _vm.cancel }
               },
               [
