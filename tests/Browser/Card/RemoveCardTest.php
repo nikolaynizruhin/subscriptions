@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\Subscription;
+namespace Tests\Browser\Card;
 
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

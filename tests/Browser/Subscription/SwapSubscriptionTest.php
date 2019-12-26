@@ -43,6 +43,8 @@ class SwapSubscriptionTest extends DuskTestCase
                 ->visit('/settings/subscription')
                 ->waitForText($this->plans[0]->nickname, 10)
                 ->assertSee($this->plans[0]->nickname)
+                ->waitForText($this->plans[1]->nickname, 10)
+                ->assertSee($this->plans[1]->nickname)
                 ->assertRadioSelected('plan', $this->plans[0]->id)
                 ->radio('plan', $this->plans[1]->id)
                 ->press('Update')

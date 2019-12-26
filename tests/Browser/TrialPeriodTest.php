@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\Subscription;
+namespace Tests\Browser;
 
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -16,9 +16,11 @@ class TrialPeriodTest extends DuskTestCase
     {
         $user = factory(User::class)->create();
 
+        $user->createAsStripeCustomer();
+
         $this->browse(function (Browser $browser) use ($user) {
             $browser->actingAs($user)
-                ->visit('/')
+                ->visit('/settings/subscription')
                 ->waitForText('You Are On A Trial Period')
                 ->assertSee('You Are On A Trial Period')
                 ->signOut();

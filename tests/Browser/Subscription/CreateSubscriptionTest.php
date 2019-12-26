@@ -13,7 +13,7 @@ class CreateSubscriptionTest extends DuskTestCase
 {
     use DatabaseMigrations;
 
-    protected $plan;
+    protected $plans;
 
     protected function setUp(): void
     {
@@ -23,7 +23,7 @@ class CreateSubscriptionTest extends DuskTestCase
 
         $plans = Plan::all(['product' => $product], Cashier::stripeOptions());
 
-        $this->plan = $plans->data[0];
+        $this->plans = $plans->data;
     }
 
     /** @test */
@@ -38,10 +38,11 @@ class CreateSubscriptionTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user) {
             $browser->actingAs($user)
                 ->visit('/settings/subscription')
-                ->waitForText($this->plan->nickname, 10)
-                ->assertSee($this->plan->nickname)
-                ->assertRadioNotSelected('plan', $this->plan->id)
-                ->radio('plan', $this->plan->id)
+                ->waitForText($this->plans[0]->nickname, 10)
+                ->assertSee($this->plans[0]->nickname)
+                ->waitForText($this->plans[1]->nickname, 10)
+                ->assertSee($this->plans[1]->nickname)
+                ->radio('plan', $this->plans[0]->id)
                 ->press('Update')
                 ->waitForText('Subscription updated successfully!', 10)
                 ->assertSee('Subscription updated successfully!')

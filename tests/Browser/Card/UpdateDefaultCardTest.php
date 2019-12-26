@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\Subscription;
+namespace Tests\Browser\Card;
 
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -12,7 +12,7 @@ class UpdateDefaultCardTest extends DuskTestCase
     use DatabaseMigrations;
 
     /** @test */
-    public function user_can_remove_card()
+    public function user_can_update_default_card()
     {
         $user = factory(User::class)->create();
 

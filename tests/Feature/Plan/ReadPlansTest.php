@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Subscription;
+namespace Tests\Feature\Plan;
 
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;

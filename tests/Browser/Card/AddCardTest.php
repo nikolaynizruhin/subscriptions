@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\Subscription;
+namespace Tests\Browser\Card;
 
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -29,10 +29,13 @@ class AddCardTest extends DuskTestCase
                 ->press('Add Card')
                 ->waitFor('#card-element iframe')
                 ->withinFrame('#card-element iframe', function ($iframe) use ($expire) {
-                    $iframe->waitfor('input[name="cardnumber"]')
+                    $iframe->waitfor('input[name="cardnumber"]', 10)
                         ->type('cardnumber', '4242424242424242')
+                        ->waitfor('input[name="exp-date"]')
                         ->type('exp-date', $expire->format('my'))
+                        ->waitfor('input[name="cvc"]')
                         ->type('cvc', '111')
+                        ->waitfor('input[name="postal"]')
                         ->type('postal', $this->faker->postcode);
                 })->click('@add-card-button')
                 ->waitForText('Credit card successfully added!', 10)
