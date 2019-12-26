@@ -38,7 +38,7 @@ class SubscriptionController extends Controller
 
         $request->user()->endTrial();
 
-        return new User($request->user());
+        return new User($request->user()->fresh());
     }
 
     /**
@@ -54,6 +54,8 @@ class SubscriptionController extends Controller
         $request->user()
             ->subscription(config('subscription.product'))
             ->swap($request->plan);
+
+        $request->user()->endTrial();
 
         return new User($request->user());
     }

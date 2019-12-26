@@ -8,11 +8,11 @@ use Laravel\Cashier\Cashier;
 use Stripe\Plan;
 use Tests\TestCase;
 
-class CreateSubscriptionTest extends TestCase
+class SwapSubscriptionTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected $plan;
+    protected $plans;
 
     protected function setUp(): void
     {
@@ -22,13 +22,13 @@ class CreateSubscriptionTest extends TestCase
 
         $plans = Plan::all(['product' => $product], Cashier::stripeOptions());
 
-        $this->plan = $plans->data[0];
+        $this->plans = $plans->data;
     }
 
     /** @test */
-    public function guest_cant_create_subscription()
+    public function guest_cant_swap_subscription()
     {
-        $this->postJson(route('subscription.store'), ['plan' => $this->plan->id])
+        $this->putJson(route('subscription.update'), ['plan' => $this->plans[0]->id])
             ->assertUnauthorized();
     }
 
@@ -38,7 +38,7 @@ class CreateSubscriptionTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user, 'api')
-            ->postJson(route('subscription.store'))
+            ->putJson(route('subscription.update'))
             ->assertJsonValidationErrors('plan');
     }
 
@@ -48,7 +48,7 @@ class CreateSubscriptionTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user, 'api')
-            ->postJson(route('subscription.store'), [
+            ->putJson(route('subscription.update'), [
                 'plan' => 1,
             ])->assertJsonValidationErrors('plan');
     }
@@ -59,7 +59,7 @@ class CreateSubscriptionTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user, 'api')
-            ->postJson(route('subscription.store'), [
+            ->putJson(route('subscription.update'), [
                 'plan' => str_repeat('a', 256),
             ])->assertJsonValidationErrors('plan');
     }
@@ -70,26 +70,26 @@ class CreateSubscriptionTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user, 'api')
-            ->postJson(route('subscription.store'), [
+            ->putJson(route('subscription.update'), [
                 'plan' => 'non-exist',
             ])->assertJsonValidationErrors('plan');
     }
 
     /** @test */
-    public function user_can_subscribe_to_a_plan()
+    public function user_can_swap_a_plan()
     {
         $user = factory(User::class)->create();
 
         $customer = $user->createAsStripeCustomer();
 
-        $user->updateDefaultPaymentMethod('pm_card_visa');
+        $paymentMethod = $user->updateDefaultPaymentMethod('pm_card_visa');
 
-        $this->assertTrue($user->onGenericTrial());
-        $this->assertNull($user->subscription(config('subscription.product')));
+        $user->newSubscription(config('subscription.product'), $this->plans[0]->id)
+            ->create($paymentMethod->id);
 
         $this->actingAs($user, 'api')
-            ->postJson(route('subscription.store'), [
-                'plan' => $this->plan->id,
+            ->putJson(route('subscription.update'), [
+                'plan' => $this->plans[1]->id,
             ])->assertSuccessful()
             ->assertJson([
                 'email' => $user->email,
@@ -97,12 +97,9 @@ class CreateSubscriptionTest extends TestCase
                 'on_trial' => false,
                 'subscription' => [
                     'stripe_status' => 'active',
-                    'stripe_plan' => $this->plan->id,
+                    'stripe_plan' => $this->plans[1]->id,
                     'on_grace_period' => false
                 ]
             ]);
-
-        $this->assertFalse($user->onGenericTrial());
-        $this->assertNotNull($user->subscription(config('subscription.product')));
     }
 }
