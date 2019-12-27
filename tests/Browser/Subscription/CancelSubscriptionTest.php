@@ -12,34 +12,27 @@ class CancelSubscriptionTest extends DuskTestCase
 {
     use DatabaseMigrations;
 
-    protected $plans;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->plans = Plan::all();
-    }
-
     /** @test */
     public function user_can_cancel_subscription()
     {
         $user = factory(User::class)->create();
 
+        $plan = Plan::first();
+
         $user->createAsStripeCustomer();
 
         $paymentMethod = $user->updateDefaultPaymentMethod('pm_card_visa');
 
-        $user->newSubscription($this->plans->first()->id)
+        $user->newSubscription($plan->id)
             ->create($paymentMethod->id);
 
-        $this->browse(function (Browser $browser) use ($user) {
+        $this->browse(function (Browser $browser) use ($user, $plan) {
             $browser->actingAs($user)
                 ->visit('/settings/subscription')
-                ->waitForText($this->plans->first()->nickname, 10)
-                ->assertSee($this->plans->first()->nickname)
+                ->waitForText($plan->nickname, 10)
+                ->assertSee($plan->nickname)
                 ->press('Cancel Plan')
-                ->waitForText('Are you sure you want to cancel '.$this->plans->first()->nickname.' subscription plan?', 10)
+                ->waitForText('Are you sure you want to cancel '.$plan->nickname.' subscription plan?', 10)
                 ->click('@cancel-plan-button')
                 ->waitForText('Plan canceled!', 10)
                 ->assertSee('Plan canceled!')
