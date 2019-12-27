@@ -12,36 +12,29 @@ class SwapSubscriptionTest extends DuskTestCase
 {
     use DatabaseMigrations;
 
-    protected $plans;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->plans = Plan::all();
-    }
-
     /** @test */
     public function user_can_swap_subscription_plan()
     {
         $user = factory(User::class)->create();
 
+        [$pro, $basic] = Plan::all();
+
         $user->createAsStripeCustomer();
 
         $paymentMethod = $user->updateDefaultPaymentMethod('pm_card_visa');
 
-        $user->newSubscription($this->plans->first()->id)
-            ->create($paymentMethod->id);
+        $user->newSubscription($basic->id)->create($paymentMethod->id);
 
-        $this->browse(function (Browser $browser) use ($user) {
+        $this->browse(function (Browser $browser) use ($user, $basic, $pro) {
             $browser->actingAs($user)
                 ->visit('/settings/subscription')
-                ->waitForText($this->plans->first()->nickname, 10)
-                ->assertSee($this->plans->first()->nickname)
-                ->waitForText($this->plans->last()->nickname, 10)
-                ->assertSee($this->plans->last()->nickname)
-                ->assertRadioSelected('plan', $this->plans[0]->id)
-                ->radio('plan', $this->plans->last()->id)
+                ->waitForText($basic->nickname, 10)
+                ->waitForText($pro->nickname, 10)
+                ->assertSee($basic->nickname)
+                ->assertSee($pro->nickname)
+                ->assertRadioSelected('plan', $basic->id)
+                ->assertRadioNotSelected('plan', $pro->id)
+                ->radio('plan', $pro->id)
                 ->press('Update')
                 ->waitForText('Subscription updated successfully!', 10)
                 ->assertSee('Subscription updated successfully!')

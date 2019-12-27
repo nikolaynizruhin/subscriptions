@@ -12,37 +12,28 @@ class ResumeSubscriptionTest extends DuskTestCase
 {
     use DatabaseMigrations;
 
-    protected $plans;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->plans = Plan::all();
-    }
-
     /** @test */
     public function user_can_resume_canceled_subscription()
     {
         $user = factory(User::class)->create();
 
+        $plan = Plan::first();
+
         $user->createAsStripeCustomer();
 
         $paymentMethod = $user->updateDefaultPaymentMethod('pm_card_visa');
 
-        $user->newSubscription($this->plans->first()->id)
-            ->create($paymentMethod->id);
+        $user->newSubscription($plan->id)->create($paymentMethod->id);
 
         $user->fresh()->subscription()->cancel();
 
-        $this->browse(function (Browser $browser) use ($user) {
+        $this->browse(function (Browser $browser) use ($user, $plan) {
             $browser->actingAs($user)
                 ->visit('/settings/subscription')
-                ->waitForText($this->plans->first()->nickname, 10)
-                ->assertSee($this->plans->first()->nickname)
+                ->waitForText($plan->nickname, 10)
+                ->assertSee($plan->nickname)
                 ->waitForText('You Are On A Grace Period')
                 ->assertSee('You Are On A Grace Period')
-                ->waitForText('Resume', 10)
                 ->press('Resume')
                 ->waitForText('Subscription updated successfully!', 10)
                 ->assertSee('Subscription updated successfully!')

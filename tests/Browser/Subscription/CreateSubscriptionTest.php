@@ -12,32 +12,25 @@ class CreateSubscriptionTest extends DuskTestCase
 {
     use DatabaseMigrations;
 
-    protected $plans;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->plans = Plan::all();
-    }
-
     /** @test */
     public function user_can_create_subscription()
     {
         $user = factory(User::class)->create();
 
+        [$pro, $basic] = Plan::all();
+
         $user->createAsStripeCustomer();
 
         $user->updateDefaultPaymentMethod('pm_card_visa');
 
-        $this->browse(function (Browser $browser) use ($user) {
+        $this->browse(function (Browser $browser) use ($user, $pro, $basic) {
             $browser->actingAs($user)
                 ->visit('/settings/subscription')
-                ->waitForText($this->plans->first()->nickname, 10)
-                ->assertSee($this->plans->first()->nickname)
-                ->waitForText($this->plans->last()->nickname, 10)
-                ->assertSee($this->plans->last()->nickname)
-                ->radio('plan', $this->plans->first()->id)
+                ->waitForText($basic->nickname, 10)
+                ->waitForText($pro->nickname)
+                ->assertRadioNotSelected('plan', $basic->id)
+                ->assertRadioNotSelected('plan', $pro->id)
+                ->radio('plan', $basic->id)
                 ->press('Update')
                 ->waitForText('Subscription updated successfully!', 10)
                 ->assertSee('Subscription updated successfully!')

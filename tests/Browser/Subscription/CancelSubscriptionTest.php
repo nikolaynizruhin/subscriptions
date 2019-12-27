@@ -23,14 +23,14 @@ class CancelSubscriptionTest extends DuskTestCase
 
         $paymentMethod = $user->updateDefaultPaymentMethod('pm_card_visa');
 
-        $user->newSubscription($plan->id)
-            ->create($paymentMethod->id);
+        $user->newSubscription($plan->id)->create($paymentMethod->id);
 
         $this->browse(function (Browser $browser) use ($user, $plan) {
             $browser->actingAs($user)
                 ->visit('/settings/subscription')
                 ->waitForText($plan->nickname, 10)
                 ->assertSee($plan->nickname)
+                ->assertRadioSelected('plan', $plan->id)
                 ->press('Cancel Plan')
                 ->waitForText('Are you sure you want to cancel '.$plan->nickname.' subscription plan?', 10)
                 ->click('@cancel-plan-button')
