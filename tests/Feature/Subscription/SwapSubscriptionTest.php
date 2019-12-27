@@ -11,20 +11,11 @@ class SwapSubscriptionTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected $plans;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->plans = Plan::all();
-    }
-
     /** @test */
     public function guest_cant_swap_subscription()
     {
         $this->putJson(route('subscription.update'), [
-            'plan' => $this->plans->first()->id,
+            'plan' => Plan::first()->id,
         ])->assertUnauthorized();
     }
 
@@ -76,15 +67,17 @@ class SwapSubscriptionTest extends TestCase
     {
         $user = factory(User::class)->create();
 
+        [$pro, $basic] = Plan::all();
+
         $customer = $user->createAsStripeCustomer();
 
         $paymentMethod = $user->updateDefaultPaymentMethod('pm_card_visa');
 
-        $user->newSubscription($this->plans->first()->id)->create($paymentMethod->id);
+        $user->newSubscription($basic->id)->create($paymentMethod->id);
 
         $this->actingAs($user, 'api')
             ->putJson(route('subscription.update'), [
-                'plan' => $this->plans->last()->id,
+                'plan' => $pro->id,
             ])->assertSuccessful()
             ->assertJson([
                 'email' => $user->email,
@@ -92,7 +85,7 @@ class SwapSubscriptionTest extends TestCase
                 'on_trial' => false,
                 'subscription' => [
                     'stripe_status' => 'active',
-                    'stripe_plan' => $this->plans->last()->id,
+                    'stripe_plan' => $pro->id,
                     'on_grace_period' => false,
                 ],
             ]);

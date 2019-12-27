@@ -11,19 +11,10 @@ class ReadPlanTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected $plan;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->plan = Plan::all()->first();
-    }
-
     /** @test */
     public function guest_cant_read_plan()
     {
-        $this->getJson(route('plans.show', ['plan' => $this->plan->id]))
+        $this->getJson(route('plans.show', ['plan' => Plan::first()->id]))
             ->assertUnauthorized();
     }
 
@@ -33,8 +24,8 @@ class ReadPlanTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user, 'api')
-            ->getJson(route('plans.show', ['plan' => $this->plan->id]))
+            ->getJson(route('plans.show', ['plan' => Plan::first()->id]))
             ->assertSuccessful()
-            ->assertJson($this->plan->toArray());
+            ->assertJson(Plan::first()->toArray());
     }
 }

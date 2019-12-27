@@ -11,20 +11,12 @@ class CreateSubscriptionTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected $plan;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->plan = Plan::all()->first();
-    }
-
     /** @test */
     public function guest_cant_create_subscription()
     {
-        $this->postJson(route('subscription.store'), ['plan' => $this->plan->id])
-            ->assertUnauthorized();
+        $this->postJson(route('subscription.store'), [
+            'plan' => Plan::first()->id,
+        ])->assertUnauthorized();
     }
 
     /** @test */
@@ -84,7 +76,7 @@ class CreateSubscriptionTest extends TestCase
 
         $this->actingAs($user, 'api')
             ->postJson(route('subscription.store'), [
-                'plan' => $this->plan->id,
+                'plan' => $planId = Plan::first()->id,
             ])->assertSuccessful()
             ->assertJson([
                 'email' => $user->email,
@@ -92,7 +84,7 @@ class CreateSubscriptionTest extends TestCase
                 'on_trial' => false,
                 'subscription' => [
                     'stripe_status' => 'active',
-                    'stripe_plan' => $this->plan->id,
+                    'stripe_plan' => $planId,
                     'on_grace_period' => false,
                 ],
             ]);

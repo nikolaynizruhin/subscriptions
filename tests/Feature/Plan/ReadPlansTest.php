@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Plan;
 
+use App\Plan;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -22,15 +23,12 @@ class ReadPlansTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $plans = config('subscription.plans');
-
-        $basic = collect($plans)->first();
-        $pro = collect($plans)->last();
+        [$pro, $basic] = Plan::all();
 
         $this->actingAs($user, 'api')
             ->getJson(route('plans.index'))
             ->assertSuccessful()
-            ->assertJsonFragment($basic)
-            ->assertJsonFragment($pro);
+            ->assertJsonFragment($basic->toArray())
+            ->assertJsonFragment($pro->toArray());
     }
 }

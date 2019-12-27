@@ -24,6 +24,16 @@ class Plan
     }
 
     /**
+     * Get first plan.
+     *
+     * @return \Stripe\Plan
+     */
+    public static function first()
+    {
+        return static::all()->first();
+    }
+
+    /**
      * Get subscription plan by id.
      *
      * @param  string  $id

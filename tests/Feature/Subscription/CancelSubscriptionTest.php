@@ -11,15 +11,6 @@ class CancelSubscriptionTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected $plan;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->plan = Plan::all()->first();
-    }
-
     /** @test */
     public function user_can_cancel_subscription()
     {
@@ -29,7 +20,7 @@ class CancelSubscriptionTest extends TestCase
 
         $paymentMethod = $user->updateDefaultPaymentMethod('pm_card_visa');
 
-        $user->newSubscription($this->plan->id)->create($paymentMethod->id);
+        $user->newSubscription(Plan::first()->id)->create($paymentMethod->id);
 
         $this->actingAs($user, 'api')
             ->deleteJson(route('subscription.destroy'))
