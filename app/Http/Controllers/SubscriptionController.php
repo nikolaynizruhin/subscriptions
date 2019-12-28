@@ -32,8 +32,6 @@ class SubscriptionController extends Controller
 
         $request->user()->newSubscription($request->plan)->create($paymentMethod->id);
 
-        $request->user()->endTrial();
-
         return new User($request->user()->fresh());
     }
 
@@ -48,8 +46,6 @@ class SubscriptionController extends Controller
         $request->validate(['plan' => ['required', 'string', new PlanExists]]);
 
         $request->user()->subscription()->swap($request->plan);
-
-        $request->user()->endTrial();
 
         return new User($request->user());
     }

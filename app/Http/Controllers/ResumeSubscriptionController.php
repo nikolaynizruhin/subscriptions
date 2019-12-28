@@ -27,8 +27,6 @@ class ResumeSubscriptionController extends Controller
     {
         $request->user()->subscription()->resume();
 
-        $request->user()->endTrial();
-
         return new User($request->user());
     }
 }
