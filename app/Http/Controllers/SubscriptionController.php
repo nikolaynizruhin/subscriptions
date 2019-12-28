@@ -47,9 +47,7 @@ class SubscriptionController extends Controller
     {
         $request->validate(['plan' => ['required', 'string', new PlanExists]]);
 
-        $request->user()
-            ->subscription()
-            ->swap($request->plan);
+        $request->user()->subscription()->swap($request->plan);
 
         $request->user()->endTrial();
 
