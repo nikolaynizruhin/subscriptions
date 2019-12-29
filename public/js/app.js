@@ -3155,6 +3155,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3173,6 +3174,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])(['user']), {
     onGracePeriod: function onGracePeriod() {
       return this.user.subscription && this.user.subscription.on_grace_period;
+    },
+    hasNoSubscription: function hasNoSubscription() {
+      return !this.user.subscription;
     },
     method: function method() {
       return this.onGracePeriod || !this.user.subscription ? 'post' : 'put';
@@ -9203,6 +9207,8 @@ var render = function() {
                       ])
                     : _vm.onGracePeriod
                     ? _c("span", [_vm._v("Resume")])
+                    : _vm.hasNoSubscription
+                    ? _c("span", [_vm._v("Subscribe")])
                     : _c("span", [_vm._v("Update")])
                 ]
               )

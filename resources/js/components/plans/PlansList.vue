@@ -26,6 +26,7 @@
                         Loading...
                     </span>
                     <span v-else-if="onGracePeriod">Resume</span>
+                    <span v-else-if="hasNoSubscription">Subscribe</span>
                     <span v-else>Update</span>
                 </button>
             </div>
@@ -54,6 +55,9 @@ export default {
         ...mapState(['user']),
         onGracePeriod () {
             return this.user.subscription && this.user.subscription.on_grace_period
+        },
+        hasNoSubscription () {
+            return !this.user.subscription
         },
         method () {
             return (this.onGracePeriod || !this.user.subscription) ? 'post' : 'put'
