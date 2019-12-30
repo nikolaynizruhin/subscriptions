@@ -60,7 +60,7 @@ export default {
             return !this.user.subscription
         },
         method () {
-            return (this.onGracePeriod || !this.user.subscription) ? 'post' : 'put'
+            return (this.onGracePeriod || this.hasNoSubscription) ? 'post' : 'put'
         },
         prefix () {
             return this.onGracePeriod ? 'resume-' : ''

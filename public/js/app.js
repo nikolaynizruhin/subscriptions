@@ -3179,7 +3179,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return !this.user.subscription;
     },
     method: function method() {
-      return this.onGracePeriod || !this.user.subscription ? 'post' : 'put';
+      return this.onGracePeriod || this.hasNoSubscription ? 'post' : 'put';
     },
     prefix: function prefix() {
       return this.onGracePeriod ? 'resume-' : '';
