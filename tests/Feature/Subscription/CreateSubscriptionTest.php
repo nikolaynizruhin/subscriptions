@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Subscription;
 
+use App\Exceptions\MissingPaymentMethodException;
 use App\Plan;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -60,6 +61,23 @@ class CreateSubscriptionTest extends TestCase
             ->postJson(route('subscription.store'), [
                 'plan' => 'non-exist',
             ])->assertJsonValidationErrors('plan');
+    }
+
+    /** @test */
+    public function default_payment_method_is_required()
+    {
+        $this->withoutExceptionHandling();
+
+        $this->expectException(MissingPaymentMethodException::class);
+
+        $user = factory(User::class)->create();
+
+        $user->createAsStripeCustomer();
+
+        $this->actingAs($user, 'api')
+            ->postJson(route('subscription.store'), [
+                'plan' => $planId = Plan::first()->id,
+            ])->assertStatus(500);
     }
 
     /** @test */

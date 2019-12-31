@@ -16,6 +16,8 @@ class SubscriptionController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
+
+        $this->middleware('payment')->only('store');
     }
 
     /**
