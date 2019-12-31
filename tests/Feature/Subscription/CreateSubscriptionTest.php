@@ -76,7 +76,7 @@ class CreateSubscriptionTest extends TestCase
 
         $this->actingAs($user, 'api')
             ->postJson(route('subscription.store'), [
-                'plan' => $planId = Plan::first()->id,
+                'plan' => Plan::first()->id,
             ])->assertStatus(500);
     }
 
