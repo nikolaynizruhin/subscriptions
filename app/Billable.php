@@ -76,4 +76,16 @@ trait Billable
     {
         return new SubscriptionBuilder($this, config('subscription.product'), $plan);
     }
+
+    /**
+     * Get list of stripe invoices.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function stripeInvoices()
+    {
+        return $this->invoices()->map(function ($invoice) {
+            return $invoice->asStripeInvoice()->toArray();
+        });
+    }
 }

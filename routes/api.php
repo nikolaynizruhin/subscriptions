@@ -54,3 +54,6 @@ Route::post('subscription', 'SubscriptionController@store')->name('subscription.
 Route::post('resume-subscription', 'ResumeSubscriptionController@store')->name('resume-subscription.store');
 Route::put('subscription', 'SubscriptionController@update')->name('subscription.update');
 Route::delete('subscription', 'SubscriptionController@destroy')->name('subscription.destroy');
+
+// Invoices
+Route::apiResource('invoices', 'InvoiceController')->only(['index']);

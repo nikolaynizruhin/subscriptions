@@ -4,6 +4,7 @@
         <grace-period-alert v-if="onGracePeriod"/>
         <plan class="mb-6"/>
         <cards/>
+        <invoices/>
     </div>
 </template>
 
@@ -13,10 +14,11 @@ import Plan from "../../components/plans/Plan"
 import TrialAlert from "../../components/alerts/TrialAlert"
 import GracePeriodAlert from "../../components/alerts/GracePeriodAlert"
 import { mapState } from "vuex"
+import Invoices from "../../components/Invoices"
 
 export default {
     name: "Subscription",
-    components: { TrialAlert, GracePeriodAlert, Plan, Cards },
+    components: { Invoices, TrialAlert, GracePeriodAlert, Plan, Cards },
     computed: {
         ...mapState(['user']),
         onGracePeriod () {

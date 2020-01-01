@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="mb-6">
         <div class="flex items-center justify-between mb-4">
             <h3 class="text-xl">Cards</h3>
             <button class="btn btn-primary" @click="open">Add Card</button>
