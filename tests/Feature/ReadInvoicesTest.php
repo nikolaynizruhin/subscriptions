@@ -33,5 +33,7 @@ class ReadInvoicesTest extends TestCase
             ->getJson(route('invoices.index'))
             ->assertSuccessful()
             ->assertJson($user->stripeInvoices()->all());
+
+        $this->assertCount(1, $user->stripeInvoices());
     }
 }
