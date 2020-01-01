@@ -25,6 +25,10 @@ class CreateSubscriptionTest extends TestCase
     {
         $user = factory(User::class)->create();
 
+        $user->createAsStripeCustomer();
+
+        $user->updateDefaultPaymentMethod('pm_card_visa');
+
         $this->actingAs($user, 'api')
             ->postJson(route('subscription.store'))
             ->assertJsonValidationErrors('plan');
@@ -34,6 +38,10 @@ class CreateSubscriptionTest extends TestCase
     public function plan_should_be_a_string()
     {
         $user = factory(User::class)->create();
+
+        $user->createAsStripeCustomer();
+
+        $user->updateDefaultPaymentMethod('pm_card_visa');
 
         $this->actingAs($user, 'api')
             ->postJson(route('subscription.store'), [
@@ -46,6 +54,10 @@ class CreateSubscriptionTest extends TestCase
     {
         $user = factory(User::class)->create();
 
+        $user->createAsStripeCustomer();
+
+        $user->updateDefaultPaymentMethod('pm_card_visa');
+
         $this->actingAs($user, 'api')
             ->postJson(route('subscription.store'), [
                 'plan' => str_repeat('a', 256),
@@ -56,6 +68,10 @@ class CreateSubscriptionTest extends TestCase
     public function plan_should_exists()
     {
         $user = factory(User::class)->create();
+
+        $user->createAsStripeCustomer();
+
+        $user->updateDefaultPaymentMethod('pm_card_visa');
 
         $this->actingAs($user, 'api')
             ->postJson(route('subscription.store'), [
