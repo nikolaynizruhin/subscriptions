@@ -27,7 +27,7 @@ class DuskServiceProvider extends ServiceProvider
     {
         Browser::macro('actingAs', function (User $user) {
             $this->visit('/login');
-            $this->script("localStorage.token = '$user->api_token'");
+            $this->script("localStorage.token = '{$user->api_token}'");
             $this->visit('/');
 
             return $this;
