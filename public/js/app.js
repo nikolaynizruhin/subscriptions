@@ -8944,7 +8944,7 @@ var render = function() {
     "aside",
     {
       staticClass:
-        "gradient absolute flex-shrink-0 h-full sm:h-auto sm:transform-none sm:static sm:block w-56 p-4 text-gray-300 z-10 sm:z-auto"
+        "gradient absolute flex-shrink-0 h-full sm:h-auto sm:transform-none sm:static sm:block w-64 p-4 text-gray-300 z-10 sm:z-auto"
     },
     [
       _c(
@@ -9968,7 +9968,7 @@ var render = function() {
         "div",
         {
           staticClass:
-            "bg-gray-800 border-b border-gray-800 w-full sm:w-56 px-6 py-3 flex items-center justify-between"
+            "bg-gray-800 border-b border-gray-800 w-full sm:w-64 px-6 py-3 flex items-center justify-between"
         },
         [
           _c(

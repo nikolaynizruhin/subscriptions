@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col min-h-screen">
         <header class="flex shadow">
-            <div class="bg-gray-800 border-b border-gray-800 w-full sm:w-56 px-6 py-3 flex items-center justify-between">
+            <div class="bg-gray-800 border-b border-gray-800 w-full sm:w-64 px-6 py-3 flex items-center justify-between">
                 <div class="flex items-center">
                     <icon name="layers" class="text-white" width="32" height="32"/>
                     <h3 class="ml-3 text-white text-xl tracking-wide">{{ title }}</h3>
