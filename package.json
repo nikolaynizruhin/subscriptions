@@ -15,7 +15,7 @@
         "cross-env": "^5.1",
         "feather-icons": "^4.24.1",
         "form-backend-validation": "^2.3.8",
-        "laravel-mix": "^4.0.7",
+        "laravel-mix": "^5.0.1",
         "nprogress": "^0.2.0",
         "portal-vue": "^2.1.6",
         "resolve-url-loader": "2.3.1",
