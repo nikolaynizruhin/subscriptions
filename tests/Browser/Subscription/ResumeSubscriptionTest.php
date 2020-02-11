@@ -17,21 +17,21 @@ class ResumeSubscriptionTest extends DuskTestCase
     {
         $user = factory(User::class)->create();
 
-        $plan = Plan::first();
+        [$pro, $basic] = Plan::all();
 
         $user->createAsStripeCustomer();
 
         $paymentMethod = $user->updateDefaultPaymentMethod('pm_card_visa');
 
-        $user->newSubscription($plan->id)->create($paymentMethod->id);
+        $user->newSubscription($pro->id)->create($paymentMethod->id);
 
         $user->fresh()->subscription()->cancel();
 
-        $this->browse(function (Browser $browser) use ($user, $plan) {
+        $this->browse(function (Browser $browser) use ($user, $pro, $basic) {
             $browser->actingAs($user)
                 ->visit('/settings/subscription')
-                ->waitForText($plan->nickname, 10)
-                ->assertSee($plan->nickname)
+                ->waitForText($pro->nickname, 10)
+                ->waitForText($basic->nickname, 10)
                 ->waitForText('You Are On A Grace Period')
                 ->assertSee('You Are On A Grace Period')
                 ->press('Resume')
