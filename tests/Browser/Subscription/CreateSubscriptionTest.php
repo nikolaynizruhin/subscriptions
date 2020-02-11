@@ -27,7 +27,7 @@ class CreateSubscriptionTest extends DuskTestCase
             $browser->actingAs($user)
                 ->visit('/settings/subscription')
                 ->waitForText($basic->nickname, 10)
-                ->waitForText($pro->nickname)
+                ->waitForText($pro->nickname, 10)
                 ->assertRadioNotSelected('plan', $basic->id)
                 ->assertRadioNotSelected('plan', $pro->id)
                 ->radio('plan', $basic->id)
