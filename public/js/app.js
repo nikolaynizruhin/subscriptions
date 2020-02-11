@@ -1358,7 +1358,6 @@ module.exports = function isAbsoluteURL(url) {
 
 
 var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
-var isValidXss = __webpack_require__(/*! ./isValidXss */ "./node_modules/axios/lib/helpers/isValidXss.js");
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -1378,10 +1377,6 @@ module.exports = (
     */
       function resolveURL(url) {
         var href = url;
-
-        if (isValidXss(url)) {
-          throw new Error('URL contains XSS injection attempt');
-        }
 
         if (msie) {
         // IE needs attribute set twice to normalize properties
@@ -1428,25 +1423,6 @@ module.exports = (
       };
     })()
 );
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/helpers/isValidXss.js":
-/*!******************************************************!*\
-  !*** ./node_modules/axios/lib/helpers/isValidXss.js ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function isValidXss(requestURL) {
-  var xssRegex = /(\b)(on\w+)=|javascript|(<\s*)(\/*)script/gi;
-  return xssRegex.test(requestURL);
-};
-
 
 
 /***/ }),
@@ -2239,8 +2215,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
-    getInvoices: function () {
-      var _getInvoices = _asyncToGenerator(
+    getInvoices: function getInvoices() {
+      var _this = this;
+
+      return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var _ref, data;
@@ -2255,28 +2233,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 _ref = _context.sent;
                 data = _ref.data;
-                this.invoices = data;
+                _this.invoices = data;
 
               case 5:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this);
-      }));
-
-      function getInvoices() {
-        return _getInvoices.apply(this, arguments);
-      }
-
-      return getInvoices;
-    }(),
+        }, _callee);
+      }))();
+    },
     isNotLastInvoice: function isNotLastInvoice(index) {
       return index !== this.invoices.length - 1;
     }
   },
-  mounted: function () {
-    var _mounted = _asyncToGenerator(
+  mounted: function mounted() {
+    var _this2 = this;
+
+    return _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
@@ -2284,25 +2258,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.next = 2;
-              return this.getInvoices();
+              return _this2.getInvoices();
 
             case 2:
-              this.loading = false;
+              _this2.loading = false;
 
             case 3:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, this);
-    }));
-
-    function mounted() {
-      return _mounted.apply(this, arguments);
-    }
-
-    return mounted;
-  }()
+      }, _callee2);
+    }))();
+  }
 });
 
 /***/ }),
@@ -2528,8 +2496,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return this.$route.query['verify-link'];
     }
   },
-  created: function () {
-    var _created = _asyncToGenerator(
+  created: function created() {
+    var _this = this;
+
+    return _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var _ref, data;
@@ -2538,7 +2508,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              if (this.verifyLink) {
+              if (_this.verifyLink) {
                 _context.next = 2;
                 break;
               }
@@ -2547,20 +2517,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
             case 2:
               _context.next = 4;
-              return axios.get(this.verifyLink);
+              return axios.get(_this.verifyLink);
 
             case 4:
               _ref = _context.sent;
               data = _ref.data;
 
               if (data.verified) {
-                this.setUser(data.user);
-                this.setFlash({
+                _this.setUser(data.user);
+
+                _this.setFlash({
                   message: 'Your email was successfully verified!'
                 });
               }
 
-              this.$router.replace({
+              _this.$router.replace({
                 'query': null
               });
 
@@ -2569,18 +2540,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return _context.stop();
           }
         }
-      }, _callee, this);
-    }));
-
-    function created() {
-      return _created.apply(this, arguments);
-    }
-
-    return created;
-  }(),
+      }, _callee);
+    }))();
+  },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setFlash', 'setUser']), {
-    resend: function () {
-      var _resend = _asyncToGenerator(
+    resend: function resend() {
+      var _this2 = this;
+
+      return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var _ref2, data;
@@ -2595,7 +2562,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 _ref2 = _context2.sent;
                 data = _ref2.data;
-                data.resent && this.setFlash({
+                data.resent && _this2.setFlash({
                   message: 'A fresh verification link has been sent to your email address.'
                 });
 
@@ -2604,15 +2571,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context2.stop();
             }
           }
-        }, _callee2, this);
-      }));
-
-      function resend() {
-        return _resend.apply(this, arguments);
-      }
-
-      return resend;
-    }()
+        }, _callee2);
+      }))();
+    }
   })
 });
 
@@ -2681,17 +2642,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       loading: false
     };
   },
-  mounted: function () {
-    var _mounted = _asyncToGenerator(
+  mounted: function mounted() {
+    var _this = this;
+
+    return _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var _this = this;
-
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              this.$nextTick(function () {
+              _this.$nextTick(function () {
                 return _this.init();
               });
 
@@ -2700,15 +2661,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return _context.stop();
           }
         }
-      }, _callee, this);
-    }));
-
-    function mounted() {
-      return _mounted.apply(this, arguments);
-    }
-
-    return mounted;
-  }(),
+      }, _callee);
+    }))();
+  },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setFlash']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['addPaymentMethod']), {
     init: function init() {
       var _this2 = this;
@@ -2745,8 +2700,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     clearError: function clearError() {
       this.error = '';
     },
-    add: function () {
-      var _add = _asyncToGenerator(
+    add: function add() {
+      var _this3 = this;
+
+      return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var _ref2, data, _ref3, setupIntent, error;
@@ -2755,8 +2712,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                this.clearError();
-                this.loading = true;
+                _this3.clearError();
+
+                _this3.loading = true;
                 _context2.next = 4;
                 return axios.post('/api/setup-intents');
 
@@ -2764,9 +2722,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _ref2 = _context2.sent;
                 data = _ref2.data;
                 _context2.next = 8;
-                return this.stripe.confirmCardSetup(data.client_secret, {
+                return _this3.stripe.confirmCardSetup(data.client_secret, {
                   payment_method: {
-                    card: this.card
+                    card: _this3.card
                   }
                 });
 
@@ -2780,35 +2738,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   break;
                 }
 
-                this.loading = false;
-                return _context2.abrupt("return", this.error = error.message);
+                _this3.loading = false;
+                return _context2.abrupt("return", _this3.error = error.message);
 
               case 14:
                 _context2.next = 16;
-                return this.addPaymentMethod(setupIntent.payment_method);
+                return _this3.addPaymentMethod(setupIntent.payment_method);
 
               case 16:
-                this.card.clear();
-                this.setFlash({
+                _this3.card.clear();
+
+                _this3.setFlash({
                   message: 'Credit card successfully added!'
                 });
-                this.close();
-                this.loading = false;
+
+                _this3.close();
+
+                _this3.loading = false;
 
               case 20:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, this);
-      }));
-
-      function add() {
-        return _add.apply(this, arguments);
-      }
-
-      return add;
-    }()
+        }, _callee2);
+      }))();
+    }
   })
 });
 
@@ -2982,17 +2937,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     isNotLastPaymentMethod: function isNotLastPaymentMethod(index) {
       return index !== this.paymentMethods.length - 1;
     },
-    setAsDefault: function () {
-      var _setAsDefault = _asyncToGenerator(
+    setAsDefault: function setAsDefault(paymentMethod) {
+      var _this = this;
+
+      return _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(paymentMethod) {
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var _ref, data;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                this.loadings[paymentMethod.id] = true;
+                _this.loadings[paymentMethod.id] = true;
                 _context.next = 3;
                 return axios.put("/api/default-payment-method", {
                   payment_method: paymentMethod.id
@@ -3001,27 +2958,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 3:
                 _ref = _context.sent;
                 data = _ref.data;
-                this.customer = data;
-                this.setFlash({
+                _this.customer = data;
+
+                _this.setFlash({
                   message: 'Default payment method updated!'
                 });
-                this.loadings[paymentMethod.id] = false;
-                this.$refs[paymentMethod.id][0].close();
+
+                _this.loadings[paymentMethod.id] = false;
+
+                _this.$refs[paymentMethod.id][0].close();
 
               case 9:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this);
-      }));
-
-      function setAsDefault(_x) {
-        return _setAsDefault.apply(this, arguments);
-      }
-
-      return setAsDefault;
-    }(),
+        }, _callee);
+      }))();
+    },
     showModal: function showModal(paymentMethod) {
       this.paymentMethod = paymentMethod;
       this.isOpen = true;
@@ -3030,8 +2984,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.paymentMethod = {};
       this.isOpen = false;
     },
-    getCustomer: function () {
-      var _getCustomer = _asyncToGenerator(
+    getCustomer: function getCustomer() {
+      var _this2 = this;
+
+      return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var _ref2, data;
@@ -3046,36 +3002,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 2:
                 _ref2 = _context2.sent;
                 data = _ref2.data;
-                this.customer = data;
+                _this2.customer = data;
 
               case 5:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, this);
-      }));
-
-      function getCustomer() {
-        return _getCustomer.apply(this, arguments);
-      }
-
-      return getCustomer;
-    }()
+        }, _callee2);
+      }))();
+    }
   }),
   watch: {
     paymentMethods: function paymentMethods(_paymentMethods) {
-      var _this = this;
+      var _this3 = this;
 
       this.loadings = {};
 
       _paymentMethods.forEach(function (paymentMethod) {
-        return _this.$set(_this.loadings, paymentMethod.id, false);
+        return _this3.$set(_this3.loadings, paymentMethod.id, false);
       });
     }
   },
-  mounted: function () {
-    var _mounted = _asyncToGenerator(
+  mounted: function mounted() {
+    var _this4 = this;
+
+    return _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
@@ -3083,29 +3035,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.next = 2;
-              return this.getCustomer();
+              return _this4.getCustomer();
 
             case 2:
               _context3.next = 4;
-              return this.getPaymentMethods();
+              return _this4.getPaymentMethods();
 
             case 4:
-              this.loading = false;
+              _this4.loading = false;
 
             case 5:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, this);
-    }));
-
-    function mounted() {
-      return _mounted.apply(this, arguments);
-    }
-
-    return mounted;
-  }()
+      }, _callee3);
+    }))();
+  }
 });
 
 /***/ }),
@@ -3176,39 +3122,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     close: function close() {
       this.$emit('close');
     },
-    remove: function () {
-      var _remove = _asyncToGenerator(
+    remove: function remove() {
+      var _this = this;
+
+      return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                this.loading = true;
+                _this.loading = true;
                 _context.next = 3;
-                return this.removePaymentMethod(this.paymentMethod);
+                return _this.removePaymentMethod(_this.paymentMethod);
 
               case 3:
-                this.setFlash({
+                _this.setFlash({
                   message: 'Card removed!'
                 });
-                this.loading = false;
-                this.close();
+
+                _this.loading = false;
+
+                _this.close();
 
               case 6:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this);
-      }));
-
-      function remove() {
-        return _remove.apply(this, arguments);
-      }
-
-      return remove;
-    }()
+        }, _callee);
+      }))();
+    }
   })
 });
 
@@ -3285,8 +3229,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     close: function close() {
       this.$emit('close');
     },
-    cancel: function () {
-      var _cancel = _asyncToGenerator(
+    cancel: function cancel() {
+      var _this = this;
+
+      return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var _ref, data;
@@ -3295,36 +3241,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                this.loadings.button = true;
+                _this.loadings.button = true;
                 _context.next = 3;
                 return axios["delete"]('/api/subscription');
 
               case 3:
                 _ref = _context.sent;
                 data = _ref.data;
-                this.setUser(data);
-                this.setFlash({
+
+                _this.setUser(data);
+
+                _this.setFlash({
                   message: 'Plan canceled!'
                 });
-                this.loadings.button = false;
-                this.close();
+
+                _this.loadings.button = false;
+
+                _this.close();
 
               case 9:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this);
-      }));
+        }, _callee);
+      }))();
+    },
+    getPlan: function getPlan() {
+      var _this2 = this;
 
-      function cancel() {
-        return _cancel.apply(this, arguments);
-      }
-
-      return cancel;
-    }(),
-    getPlan: function () {
-      var _getPlan = _asyncToGenerator(
+      return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var _ref2, data;
@@ -3334,30 +3280,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return axios.get("/api/plans/".concat(this.user.subscription.stripe_plan));
+                return axios.get("/api/plans/".concat(_this2.user.subscription.stripe_plan));
 
               case 2:
                 _ref2 = _context2.sent;
                 data = _ref2.data;
-                this.plan = data;
+                _this2.plan = data;
 
               case 5:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, this);
-      }));
-
-      function getPlan() {
-        return _getPlan.apply(this, arguments);
-      }
-
-      return getPlan;
-    }()
+        }, _callee2);
+      }))();
+    }
   }),
-  mounted: function () {
-    var _mounted = _asyncToGenerator(
+  mounted: function mounted() {
+    var _this3 = this;
+
+    return _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
@@ -3365,25 +3307,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.next = 2;
-              return this.getPlan();
+              return _this3.getPlan();
 
             case 2:
-              this.loadings.main = false;
+              _this3.loadings.main = false;
 
             case 3:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, this);
-    }));
-
-    function mounted() {
-      return _mounted.apply(this, arguments);
-    }
-
-    return mounted;
-  }()
+      }, _callee3);
+    }))();
+  }
 });
 
 /***/ }),
@@ -3540,8 +3476,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapMutations"])(['setFlash', 'setUser']), {
-    update: function () {
-      var _update = _asyncToGenerator(
+    update: function update() {
+      var _this = this;
+
+      return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var user;
@@ -3550,13 +3488,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return this.form[this.method]("/api/".concat(this.prefix, "subscription"));
+                return _this.form[_this.method]("/api/".concat(_this.prefix, "subscription"));
 
               case 2:
                 user = _context.sent;
-                this.setUser(user);
-                this.form.plan = this.user.subscription.stripe_plan;
-                this.setFlash({
+
+                _this.setUser(user);
+
+                _this.form.plan = _this.user.subscription.stripe_plan;
+
+                _this.setFlash({
                   message: 'Subscription updated successfully!'
                 });
 
@@ -3565,17 +3506,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _context.stop();
             }
           }
-        }, _callee, this);
-      }));
+        }, _callee);
+      }))();
+    },
+    getPlans: function getPlans() {
+      var _this2 = this;
 
-      function update() {
-        return _update.apply(this, arguments);
-      }
-
-      return update;
-    }(),
-    getPlans: function () {
-      var _getPlans = _asyncToGenerator(
+      return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var _ref, data;
@@ -3590,25 +3527,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 2:
                 _ref = _context2.sent;
                 data = _ref.data;
-                this.plans = data;
+                _this2.plans = data;
 
               case 5:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, this);
-      }));
-
-      function getPlans() {
-        return _getPlans.apply(this, arguments);
-      }
-
-      return getPlans;
-    }()
+        }, _callee2);
+      }))();
+    }
   }),
-  mounted: function () {
-    var _mounted = _asyncToGenerator(
+  mounted: function mounted() {
+    var _this3 = this;
+
+    return _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
@@ -3616,29 +3549,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.next = 2;
-              return this.getPlans();
+              return _this3.getPlans();
 
             case 2:
-              if (this.user.subscription) {
-                this.form.plan = this.user.subscription.stripe_plan;
+              if (_this3.user.subscription) {
+                _this3.form.plan = _this3.user.subscription.stripe_plan;
               }
 
-              this.loading = false;
+              _this3.loading = false;
 
             case 4:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, this);
-    }));
-
-    function mounted() {
-      return _mounted.apply(this, arguments);
-    }
-
-    return mounted;
-  }()
+      }, _callee3);
+    }))();
+  }
 });
 
 /***/ }),
@@ -3874,8 +3801,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['login']), {
-    signIn: function () {
-      var _signIn = _asyncToGenerator(
+    signIn: function signIn() {
+      var _this = this;
+
+      return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var data;
@@ -3884,27 +3813,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return this.form.post('/api/login');
+                return _this.form.post('/api/login');
 
               case 2:
                 data = _context.sent;
-                this.login(data);
-                this.$router.push(this.$route.query.redirect || '/');
+
+                _this.login(data);
+
+                _this.$router.push(_this.$route.query.redirect || '/');
 
               case 5:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this);
-      }));
-
-      function signIn() {
-        return _signIn.apply(this, arguments);
-      }
-
-      return signIn;
-    }()
+        }, _callee);
+      }))();
+    }
   })
 });
 
@@ -3987,8 +3912,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['login']), {
-    register: function () {
-      var _register = _asyncToGenerator(
+    register: function register() {
+      var _this = this;
+
+      return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var data;
@@ -3997,12 +3924,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return this.form.post('/api/register');
+                return _this.form.post('/api/register');
 
               case 2:
                 data = _context.sent;
-                this.login(data);
-                this.$router.push({
+
+                _this.login(data);
+
+                _this.$router.push({
                   name: 'dashboard'
                 });
 
@@ -4011,15 +3940,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _context.stop();
             }
           }
-        }, _callee, this);
-      }));
-
-      function register() {
-        return _register.apply(this, arguments);
-      }
-
-      return register;
-    }()
+        }, _callee);
+      }))();
+    }
   })
 });
 
@@ -4082,8 +4005,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setUser']), {
-    confirm: function () {
-      var _confirm = _asyncToGenerator(
+    confirm: function confirm() {
+      var _this = this;
+
+      return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var _ref, confirmed, user;
@@ -4093,29 +4018,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return this.form.post('/api/password/confirm');
+                return _this.form.post('/api/password/confirm');
 
               case 2:
                 _ref = _context.sent;
                 confirmed = _ref.confirmed;
                 user = _ref.user;
-                confirmed && this.setUser(user);
-                this.$router.push(this.$route.query.redirect || '/');
+                confirmed && _this.setUser(user);
+
+                _this.$router.push(_this.$route.query.redirect || '/');
 
               case 7:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this);
-      }));
-
-      function confirm() {
-        return _confirm.apply(this, arguments);
-      }
-
-      return confirm;
-    }()
+        }, _callee);
+      }))();
+    }
   })
 });
 
@@ -4173,8 +4093,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setFlash']), {
-    send: function () {
-      var _send = _asyncToGenerator(
+    send: function send() {
+      var _this = this;
+
+      return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var _ref, status;
@@ -4184,12 +4106,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return this.form.post('/api/password/email');
+                return _this.form.post('/api/password/email');
 
               case 2:
                 _ref = _context.sent;
                 status = _ref.status;
-                this.setFlash({
+
+                _this.setFlash({
                   message: status
                 });
 
@@ -4198,15 +4121,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _context.stop();
             }
           }
-        }, _callee, this);
-      }));
-
-      function send() {
-        return _send.apply(this, arguments);
-      }
-
-      return send;
-    }()
+        }, _callee);
+      }))();
+    }
   })
 });
 
@@ -4276,8 +4193,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setFlash', 'login']), {
-    reset: function () {
-      var _reset = _asyncToGenerator(
+    reset: function reset() {
+      var _this = this;
+
+      return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var _ref, token, status, user;
@@ -4287,21 +4206,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return this.form.post('/api/password/reset');
+                return _this.form.post('/api/password/reset');
 
               case 2:
                 _ref = _context.sent;
                 token = _ref.token;
                 status = _ref.status;
                 user = _ref.user;
-                this.login({
+
+                _this.login({
                   token: token,
                   user: user
                 });
-                this.setFlash({
+
+                _this.setFlash({
                   message: status
                 });
-                this.$router.push({
+
+                _this.$router.push({
                   name: 'dashboard'
                 });
 
@@ -4310,15 +4232,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _context.stop();
             }
           }
-        }, _callee, this);
-      }));
-
-      function reset() {
-        return _reset.apply(this, arguments);
-      }
-
-      return reset;
-    }()
+        }, _callee);
+      }))();
+    }
   })
 });
 
@@ -4435,8 +4351,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(['user']),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setUser', 'setFlash']), {
-    update: function () {
-      var _update = _asyncToGenerator(
+    update: function update() {
+      var _this = this;
+
+      return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var user;
@@ -4445,12 +4363,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return this.form.put('/api/user');
+                return _this.form.put('/api/user');
 
               case 2:
                 user = _context.sent;
-                this.setUser(user);
-                this.setFlash({
+
+                _this.setUser(user);
+
+                _this.setFlash({
                   message: 'Profile updated successfully!'
                 });
 
@@ -4459,15 +4379,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _context.stop();
             }
           }
-        }, _callee, this);
-      }));
-
-      function update() {
-        return _update.apply(this, arguments);
-      }
-
-      return update;
-    }()
+        }, _callee);
+      }))();
+    }
   }),
   mounted: function mounted() {
     this.form.name = this.user.name;
@@ -4559,8 +4473,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(['setFlash', 'login']), {
-    update: function () {
-      var _update = _asyncToGenerator(
+    update: function update() {
+      var _this = this;
+
+      return _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var data;
@@ -4569,12 +4485,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return this.form.put('/api/password');
+                return _this.form.put('/api/password');
 
               case 2:
                 data = _context.sent;
-                this.login(data);
-                this.setFlash({
+
+                _this.login(data);
+
+                _this.setFlash({
                   message: 'Password updated successfully!'
                 });
 
@@ -4583,15 +4501,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _context.stop();
             }
           }
-        }, _callee, this);
-      }));
-
-      function update() {
-        return _update.apply(this, arguments);
-      }
-
-      return update;
-    }()
+        }, _callee);
+      }))();
+    }
   })
 });
 
@@ -4664,7 +4576,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".slide-up-enter-active[data-v-e4161ed6], .slide-up-leave-active[data-v-e4161ed6] {\n  opacity: 1;\n  -webkit-transform: translateY(0%);\n          transform: translateY(0%);\n  -webkit-transition: all .3s;\n  transition: all .3s;\n}\n.slide-up-enter[data-v-e4161ed6], .slide-up-leave-to[data-v-e4161ed6] {\n  opacity: 0;\n  -webkit-transform: translateY(100%);\n          transform: translateY(100%);\n  -webkit-transition: all .3s;\n  transition: all .3s;\n}\n", ""]);
+exports.push([module.i, ".slide-up-enter-active[data-v-e4161ed6], .slide-up-leave-active[data-v-e4161ed6] {\n  opacity: 1;\n  transform: translateY(0%);\n  transition: all .3s;\n}\n.slide-up-enter[data-v-e4161ed6], .slide-up-leave-to[data-v-e4161ed6] {\n  opacity: 0;\n  transform: translateY(100%);\n  transition: all .3s;\n}\n", ""]);
 
 // exports
 
@@ -29645,137 +29557,112 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
     }
   },
   actions: {
-    getUser: function () {
-      var _getUser = _asyncToGenerator(
+    getUser: function getUser(_ref3) {
+      var commit = _ref3.commit;
+      return _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref3) {
-        var commit, _ref4, data;
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var _ref4, data;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                commit = _ref3.commit;
-                _context.next = 3;
+                _context.next = 2;
                 return axios.get('/api/user');
 
-              case 3:
+              case 2:
                 _ref4 = _context.sent;
                 data = _ref4.data;
                 commit('setUser', data);
 
-              case 6:
+              case 5:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
-      }));
-
-      function getUser(_x) {
-        return _getUser.apply(this, arguments);
-      }
-
-      return getUser;
-    }(),
-    addPaymentMethod: function () {
-      var _addPaymentMethod = _asyncToGenerator(
+      }))();
+    },
+    addPaymentMethod: function addPaymentMethod(_ref5, paymentMethod) {
+      var commit = _ref5.commit;
+      return _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref5, paymentMethod) {
-        var commit, _ref6, data;
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var _ref6, data;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                commit = _ref5.commit;
-                _context2.next = 3;
+                _context2.next = 2;
                 return axios.post('/api/customer-payment-method', {
                   payment_method: paymentMethod
                 });
 
-              case 3:
+              case 2:
                 _ref6 = _context2.sent;
                 data = _ref6.data;
                 commit('addPaymentMethod', data);
 
-              case 6:
+              case 5:
               case "end":
                 return _context2.stop();
             }
           }
         }, _callee2);
-      }));
-
-      function addPaymentMethod(_x2, _x3) {
-        return _addPaymentMethod.apply(this, arguments);
-      }
-
-      return addPaymentMethod;
-    }(),
-    getPaymentMethods: function () {
-      var _getPaymentMethods = _asyncToGenerator(
+      }))();
+    },
+    getPaymentMethods: function getPaymentMethods(_ref7) {
+      var commit = _ref7.commit;
+      return _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref7) {
-        var commit, _ref8, data;
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var _ref8, data;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                commit = _ref7.commit;
-                _context3.next = 3;
+                _context3.next = 2;
                 return axios.get('/api/payment-methods');
 
-              case 3:
+              case 2:
                 _ref8 = _context3.sent;
                 data = _ref8.data;
                 commit('setPaymentMethods', data);
 
-              case 6:
+              case 5:
               case "end":
                 return _context3.stop();
             }
           }
         }, _callee3);
-      }));
-
-      function getPaymentMethods(_x4) {
-        return _getPaymentMethods.apply(this, arguments);
-      }
-
-      return getPaymentMethods;
-    }(),
-    removePaymentMethod: function () {
-      var _removePaymentMethod = _asyncToGenerator(
+      }))();
+    },
+    removePaymentMethod: function removePaymentMethod(_ref9, paymentMethod) {
+      var commit = _ref9.commit;
+      return _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(_ref9, paymentMethod) {
-        var commit;
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                commit = _ref9.commit;
-                _context4.next = 3;
+                _context4.next = 2;
                 return axios["delete"]("/api/payment-methods/".concat(paymentMethod.id));
 
-              case 3:
+              case 2:
                 commit('removePaymentMethod', paymentMethod);
 
-              case 4:
+              case 3:
               case "end":
                 return _context4.stop();
             }
           }
         }, _callee4);
-      }));
-
-      function removePaymentMethod(_x5, _x6) {
-        return _removePaymentMethod.apply(this, arguments);
-      }
-
-      return removePaymentMethod;
-    }()
+      }))();
+    }
   },
   getters: {
     isAuth: function isAuth(state) {
