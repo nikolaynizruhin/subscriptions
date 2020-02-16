@@ -32,7 +32,7 @@ class CreateSubscriptionTest extends DuskTestCase
                 ->assertRadioNotSelected('plan', $pro->id)
                 ->radio('plan', $basic->id)
                 ->press('Subscribe')
-                ->waitForText('Subscription updated successfully!', 20)
+                ->waitForText('Subscription updated successfully!', 10)
                 ->assertSee('Subscription updated successfully!')
                 ->signOut();
         });
