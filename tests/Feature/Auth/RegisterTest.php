@@ -27,17 +27,18 @@ class RegisterTest extends TestCase
         $user = User::whereEmail($email)->first();
 
         $response
+            ->assertSuccessful()
             ->assertJson([
                 'token' => $user->api_token,
                 'user' => (new UserResource($user))->jsonSerialize(),
-            ])->assertSuccessful();
+            ]);
 
         $this->assertNotNull($user->api_token);
         $this->assertNotNull($user->stripe_id);
         $this->assertNotNull($user->trial_ends_at);
         $this->assertEquals($user->trial_ends_at->diff(now())->days, config('subscription.trial_days'));
         $this->assertAuthenticatedAs($user);
-        $this->assertDatabaseHas('users', $user->toArray());
+        $this->assertDatabaseHas('users', $user->getOriginal());
     }
 
     /** @test */
