@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::share('app', [
-            'name' => config('app.name', 'Libra'),
+            'name' => config('app.name'),
             'password_timeout' => config('auth.password_timeout', 10800),
             'stripe' => [
                 'key' => config('cashier.key'),
