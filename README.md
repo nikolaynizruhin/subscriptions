@@ -1,4 +1,4 @@
-# Libra
+# Subscriptions
 
 [![GitHub Actions](https://github.com/nikolaynizruhin/libra/workflows/Laravel/badge.svg)](https://github.com/nikolaynizruhin/libra/workflows/Laravel/badge.svg)
 [![StyleCI](https://github.styleci.io/repos/220341513/shield?branch=master)](https://github.styleci.io/repos/220341513)
@@ -9,7 +9,7 @@
 
 1. Clone this repository:
 ```
-git clone https://github.com/nikolaynizruhin/libra.git
+git clone https://github.com/nikolaynizruhin/subscriptions.git
 ```
 2. Copy .env file and update it with your variables:
 ```
