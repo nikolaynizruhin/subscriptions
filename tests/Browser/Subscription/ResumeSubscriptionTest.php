@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser;
+namespace Tests\Browser\Subscription;
 
 use App\Plan;
 use App\User;

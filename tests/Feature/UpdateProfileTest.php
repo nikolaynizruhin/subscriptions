@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Settings;
+namespace Tests\Feature;
 
 use App\Http\Resources\User as UserResource;
 use App\User;
