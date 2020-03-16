@@ -1129,16 +1129,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v7.1.2",
+            "version": "v7.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "951e10fbfed2a2d547c3fc33853125b4a619e01a"
+                "reference": "42b311862adfc36b8628ac62d226a3682f463439"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/951e10fbfed2a2d547c3fc33853125b4a619e01a",
-                "reference": "951e10fbfed2a2d547c3fc33853125b4a619e01a",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/42b311862adfc36b8628ac62d226a3682f463439",
+                "reference": "42b311862adfc36b8628ac62d226a3682f463439",
                 "shasum": ""
             },
             "require": {
@@ -1276,7 +1276,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-03-13T13:52:44+00:00"
+            "time": "2020-03-14T14:33:32+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2566,16 +2566,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v7.27.1",
+            "version": "v7.27.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "6e973221ac6f7a94be31c48390c1e750dba7e9ba"
+                "reference": "e3f37892c709f9318aa0e619511b858a3668165b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/6e973221ac6f7a94be31c48390c1e750dba7e9ba",
-                "reference": "6e973221ac6f7a94be31c48390c1e750dba7e9ba",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/e3f37892c709f9318aa0e619511b858a3668165b",
+                "reference": "e3f37892c709f9318aa0e619511b858a3668165b",
                 "shasum": ""
             },
             "require": {
@@ -2619,7 +2619,7 @@
                 "payment processing",
                 "stripe"
             ],
-            "time": "2020-03-04T03:43:39+00:00"
+            "time": "2020-03-13T18:40:27+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

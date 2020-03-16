@@ -30442,8 +30442,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/nikolaynizruhin/Sites/Valet/libra/resources/js/main.js */"./resources/js/main.js");
-module.exports = __webpack_require__(/*! /Users/nikolaynizruhin/Sites/Valet/libra/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /Users/nikolaynizruhin/Sites/Valet/subscriptions/resources/js/main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! /Users/nikolaynizruhin/Sites/Valet/subscriptions/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })
