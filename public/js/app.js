@@ -2219,7 +2219,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _ref, data;
+        var _yield$axios$get, data;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -2229,8 +2229,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.get('/api/invoices');
 
               case 2:
-                _ref = _context.sent;
-                data = _ref.data;
+                _yield$axios$get = _context.sent;
+                data = _yield$axios$get.data;
                 _this.invoices = data;
 
               case 5:
@@ -2496,7 +2496,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var _ref, data;
+      var _yield$axios$get, data;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
@@ -2514,8 +2514,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return axios.get(_this.verifyLink);
 
             case 4:
-              _ref = _context.sent;
-              data = _ref.data;
+              _yield$axios$get = _context.sent;
+              data = _yield$axios$get.data;
 
               if (data.verified) {
                 _this.setUser(data.user);
@@ -2542,7 +2542,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var _ref2, data;
+        var _yield$axios$post, data;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
@@ -2552,8 +2552,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.post('/api/email/resend');
 
               case 2:
-                _ref2 = _context2.sent;
-                data = _ref2.data;
+                _yield$axios$post = _context2.sent;
+                data = _yield$axios$post.data;
                 data.resent && _this2.setFlash({
                   message: 'A fresh verification link has been sent to your email address.'
                 });
@@ -2694,7 +2694,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var _ref2, data, _ref3, setupIntent, error;
+        var _yield$axios$post, data, _yield$_this3$stripe$, setupIntent, error;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
@@ -2707,8 +2707,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.post('/api/setup-intents');
 
               case 4:
-                _ref2 = _context2.sent;
-                data = _ref2.data;
+                _yield$axios$post = _context2.sent;
+                data = _yield$axios$post.data;
                 _context2.next = 8;
                 return _this3.stripe.confirmCardSetup(data.client_secret, {
                   payment_method: {
@@ -2717,9 +2717,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 8:
-                _ref3 = _context2.sent;
-                setupIntent = _ref3.setupIntent;
-                error = _ref3.error;
+                _yield$_this3$stripe$ = _context2.sent;
+                setupIntent = _yield$_this3$stripe$.setupIntent;
+                error = _yield$_this3$stripe$.error;
 
                 if (!error) {
                   _context2.next = 14;
@@ -2929,7 +2929,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _ref, data;
+        var _yield$axios$put, data;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -2942,8 +2942,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 });
 
               case 3:
-                _ref = _context.sent;
-                data = _ref.data;
+                _yield$axios$put = _context.sent;
+                data = _yield$axios$put.data;
                 _this.customer = data;
 
                 _this.setFlash({
@@ -2974,7 +2974,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var _ref2, data;
+        var _yield$axios$get, data;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
@@ -2984,8 +2984,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return axios.get('/api/customer');
 
               case 2:
-                _ref2 = _context2.sent;
-                data = _ref2.data;
+                _yield$axios$get = _context2.sent;
+                data = _yield$axios$get.data;
                 _this2.customer = data;
 
               case 5:
@@ -3213,7 +3213,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _ref, data;
+        var _yield$axios$delete, data;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -3224,8 +3224,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return axios["delete"]('/api/subscription');
 
               case 3:
-                _ref = _context.sent;
-                data = _ref.data;
+                _yield$axios$delete = _context.sent;
+                data = _yield$axios$delete.data;
 
                 _this.setUser(data);
 
@@ -3249,7 +3249,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var _ref2, data;
+        var _yield$axios$get, data;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
@@ -3259,8 +3259,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return axios.get("/api/plans/".concat(_this2.user.subscription.stripe_plan));
 
               case 2:
-                _ref2 = _context2.sent;
-                data = _ref2.data;
+                _yield$axios$get = _context2.sent;
+                data = _yield$axios$get.data;
                 _this2.plan = data;
 
               case 5:
@@ -3485,7 +3485,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var _ref, data;
+        var _yield$axios$get, data;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
@@ -3495,8 +3495,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return axios.get('/api/plans');
 
               case 2:
-                _ref = _context2.sent;
-                data = _ref.data;
+                _yield$axios$get = _context2.sent;
+                data = _yield$axios$get.data;
                 _this2.plans = data;
 
               case 5:
@@ -3973,7 +3973,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _ref, confirmed, user;
+        var _yield$_this$form$pos, confirmed, user;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -3983,9 +3983,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _this.form.post('/api/password/confirm');
 
               case 2:
-                _ref = _context.sent;
-                confirmed = _ref.confirmed;
-                user = _ref.user;
+                _yield$_this$form$pos = _context.sent;
+                confirmed = _yield$_this$form$pos.confirmed;
+                user = _yield$_this$form$pos.user;
                 confirmed && _this.setUser(user);
 
                 _this.$router.push(_this.$route.query.redirect || '/');
@@ -4059,7 +4059,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _ref, status;
+        var _yield$_this$form$pos, status;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -4069,8 +4069,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _this.form.post('/api/password/email');
 
               case 2:
-                _ref = _context.sent;
-                status = _ref.status;
+                _yield$_this$form$pos = _context.sent;
+                status = _yield$_this$form$pos.status;
 
                 _this.setFlash({
                   message: status
@@ -4157,7 +4157,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _ref, token, status, user;
+        var _yield$_this$form$pos, token, status, user;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -4167,10 +4167,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _this.form.post('/api/password/reset');
 
               case 2:
-                _ref = _context.sent;
-                token = _ref.token;
-                status = _ref.status;
-                user = _ref.user;
+                _yield$_this$form$pos = _context.sent;
+                token = _yield$_this$form$pos.token;
+                status = _yield$_this$form$pos.status;
+                user = _yield$_this$form$pos.user;
 
                 _this.login({
                   token: token,
@@ -29517,23 +29517,23 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
   },
   actions: {
     getUser: function getUser(_ref3) {
-      var commit = _ref3.commit;
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _ref4, data;
+        var commit, _yield$axios$get, data;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
+                commit = _ref3.commit;
+                _context.next = 3;
                 return axios.get('/api/user');
 
-              case 2:
-                _ref4 = _context.sent;
-                data = _ref4.data;
+              case 3:
+                _yield$axios$get = _context.sent;
+                data = _yield$axios$get.data;
                 commit('setUser', data);
 
-              case 5:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -29541,26 +29541,26 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
         }, _callee);
       }))();
     },
-    addPaymentMethod: function addPaymentMethod(_ref5, paymentMethod) {
-      var commit = _ref5.commit;
+    addPaymentMethod: function addPaymentMethod(_ref4, paymentMethod) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var _ref6, data;
+        var commit, _yield$axios$post, data;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
+                commit = _ref4.commit;
+                _context2.next = 3;
                 return axios.post('/api/customer-payment-method', {
                   payment_method: paymentMethod
                 });
 
-              case 2:
-                _ref6 = _context2.sent;
-                data = _ref6.data;
+              case 3:
+                _yield$axios$post = _context2.sent;
+                data = _yield$axios$post.data;
                 commit('addPaymentMethod', data);
 
-              case 5:
+              case 6:
               case "end":
                 return _context2.stop();
             }
@@ -29568,24 +29568,24 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
         }, _callee2);
       }))();
     },
-    getPaymentMethods: function getPaymentMethods(_ref7) {
-      var commit = _ref7.commit;
+    getPaymentMethods: function getPaymentMethods(_ref5) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var _ref8, data;
+        var commit, _yield$axios$get2, data;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.next = 2;
+                commit = _ref5.commit;
+                _context3.next = 3;
                 return axios.get('/api/payment-methods');
 
-              case 2:
-                _ref8 = _context3.sent;
-                data = _ref8.data;
+              case 3:
+                _yield$axios$get2 = _context3.sent;
+                data = _yield$axios$get2.data;
                 commit('setPaymentMethods', data);
 
-              case 5:
+              case 6:
               case "end":
                 return _context3.stop();
             }
@@ -29593,20 +29593,21 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
         }, _callee3);
       }))();
     },
-    removePaymentMethod: function removePaymentMethod(_ref9, paymentMethod) {
-      var commit = _ref9.commit;
+    removePaymentMethod: function removePaymentMethod(_ref6, paymentMethod) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var commit;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _context4.next = 2;
+                commit = _ref6.commit;
+                _context4.next = 3;
                 return axios["delete"]("/api/payment-methods/".concat(paymentMethod.id));
 
-              case 2:
+              case 3:
                 commit('removePaymentMethod', paymentMethod);
 
-              case 3:
+              case 4:
               case "end":
                 return _context4.stop();
             }
